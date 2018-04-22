@@ -1,0 +1,131 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.nepitc.mshandloomfrabics.daoimp;
+
+import com.nepitc.mshandloomfrabics.dao.GenericDAO;
+import java.lang.reflect.ParameterizedType;
+import java.util.List;
+import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+
+/**
+ *
+ * @author Nishan Dhungana
+ * @param <T>
+ */
+
+public abstract class GenericDAOImp<T> implements GenericDAO<T>{
+
+    @Autowired
+    private SessionFactory sessionFactory;
+    
+    private final Class<T> persistClass;
+    private Session session;
+    private Transaction trans;
+    
+    public GenericDAOImp() {
+        persistClass = (Class<T>) ((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+    }
+    
+    @Override
+    public void insert(T t) throws Exception {
+        session = sessionFactory.openSession();
+        trans = session.beginTransaction();
+        
+        try {
+            session.save(t);
+            trans.commit();
+        } catch(HibernateException ex) {
+            trans.rollback();
+            throw new HibernateException(ex);
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public void update(T t) throws Exception{
+        session = sessionFactory.openSession();
+        trans = session.beginTransaction();
+        
+        try {
+            session.update(t);
+            trans.commit();
+        } catch(HibernateException ex) {
+            trans.rollback();
+            throw new HibernateException(ex);
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public boolean delete(T t) throws Exception {
+        session = sessionFactory.openSession();
+        trans = session.beginTransaction();
+        
+        boolean res = false;
+        
+        try {
+            session.delete(t);
+            trans.commit();
+            res = true;
+        } catch(HibernateException ex) {
+            trans.rollback();
+            throw new HibernateException(ex);
+        } finally {
+            session.close();
+        }
+        
+        return res;
+    }
+
+    @Override
+    public T getById(int id) throws Exception {
+        session = sessionFactory.openSession();
+        trans = session.beginTransaction();
+        
+        T t = null;
+        
+        try {
+            t = (T) session.get(persistClass, id);
+            trans.commit();
+        } catch(HibernateException ex) {
+            trans.rollback();
+            throw new HibernateException(ex);
+        } finally {
+            session.close();
+        }
+        
+        return t;
+    }
+
+    @Override
+    public List<T> getAll() throws Exception {
+        session = sessionFactory.openSession();
+        trans = session.beginTransaction();
+        
+        List<T> list = null;
+        try {
+            Criteria criteria = session.createCriteria(persistClass);
+            list = criteria.list();
+            
+            trans.commit();
+        } catch(HibernateException ex) {
+            trans.rollback();
+            throw new HibernateException(ex);
+        } finally {
+            session.close();
+        }
+        
+        return list;
+    }
+    
+}
