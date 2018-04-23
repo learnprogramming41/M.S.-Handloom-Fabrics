@@ -20,7 +20,7 @@ import javax.persistence.Temporal;
  * @author Nishan Dhungana
  */
 @Entity
-@Table(name = "TBL_ADMIN", catalog = "", schema = "NEPITC")
+@Table(name = "TBL_ADMIN", catalog = "", schema = "NISHAN")
 
 @NamedQueries({
     @NamedQuery(name = "Admin.findAll", query = "SELECT a FROM Admin a")
@@ -39,7 +39,7 @@ public class Admin implements Serializable {
     @Column(name = "USERNAME")
     private String username;
     
-    @Column(name = "PASSWORD")
+    @Column(name = "PASSWORDS")
     private String password;
 
     @Column(name = "ENABLED", insertable = false)

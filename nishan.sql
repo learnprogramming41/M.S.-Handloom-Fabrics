@@ -1,20 +1,21 @@
 CREATE TABLE tbl_admin(
     admin_id INTEGER,
     username VARCHAR2(50) NOT NULL UNIQUE,
-    password VARCHAR2(50) NOT NULL,
+    passwords VARCHAR2(50) NOT NULL,
+    email VARCHAR2(100) UNIQUE,
+    enabled CHAR(1) DEFAULT 1 NOT NULL,
+    created_at DATE DEFAULT SYSDATE NOT NULL,
     CONSTRAINT pk_admin_id PRIMARY KEY(admin_id)
 );
+commit;
 
 DESC TBL_ADMIN;
 
-ALTER TABLE tbl_admin RENAME COLUMN active TO enabled;
-ALTER TABLE tbl_admin MODIFY enabled CHAR(1) DEFAULT 1;
 
-ALTER TABLE tbl_admin ADD active NUMBER(1) DEFAULT 1 NOT NULL;
-ALTER TABLE tbl_admin ADD created_at DATE DEFAULT SYSDATE NOT NULL;
-
+--1
 CREATE SEQUENCE sq_admin_id START WITH 1;
-
+commit;
+--2
 CREATE OR REPLACE TRIGGER tr_admin
 BEFORE INSERT ON tbl_admin
 FOR EACH ROW
@@ -24,13 +25,16 @@ BEGIN
     FROM dual;
 END;
 
-INSERT INTO TBL_ADMIN(username, password) VALUES ('admin', 'admin');
+commit;
+
+--6
+INSERT INTO TBL_ADMIN(username, passwords) VALUES ('admin', 'admin');
 
 SELECT * FROM TBL_ADMIN;
 
-ALTER TABLE TBL_ADMIN ADD email VARCHAR2(100) UNIQUE;
 
-SELECT USERNAME, PASSWORD FROM TBL_ADMIN WHERE USERNAME='admin' AND PASSWORD='admin';
+
+SELECT USERNAME, PASSWORD FROM TBL_ADMIN WHERE USERNAME='admin' AND PASSWORDS='admin';
     
     
 CREATE TABLE tbl_user_role(
@@ -58,8 +62,6 @@ BEGIN
 END;
 
 INSERT INTO tbl_user_role(username) VALUES('admin');
-INSERT INTO tbl_user_role(username) VALUES('nishan');
-INSERT INTO tbl_user_role(username) VALUES('nishan11');
 
 SELECT * FROM tbl_user_role;
 
