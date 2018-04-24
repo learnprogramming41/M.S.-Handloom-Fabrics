@@ -10,7 +10,6 @@ package com.nepitc.mshandloomfrabics.entity;
  * @author Nishan Dhungana
  */
 public class Login {
-    
     private String username;
     private String password;
     
