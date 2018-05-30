@@ -37,7 +37,18 @@
         <filter-name>springSecurityFilterChain</filter-name>  
         <url-pattern>/*</url-pattern>  
     </filter-mapping>
-
+    
+    <!--Registering CORS filter-->
+    <filter>
+        <filter-name>cors</filter-name>
+        <filter-class>com.nepitc.mshandloomfrabics.configuration.CorsFilter</filter-class>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>cors</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
     <session-config>
         <session-timeout>
             30

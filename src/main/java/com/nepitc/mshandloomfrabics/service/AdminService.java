@@ -11,13 +11,13 @@ import com.nepitc.mshandloomfrabics.entity.Login;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Nishan Dhungana
  */
-@Repository(value = "adminService")
+@Service(value = "adminService")
 public class AdminService implements GenericService<Admin> {
 
     @Autowired

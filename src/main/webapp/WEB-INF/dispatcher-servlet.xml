@@ -16,7 +16,4 @@
     <bean id="" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/view/" p:suffix=".jsp"/>
     
-    <mvc:cors>
-        <mvc:mapping path="/**" />
-    </mvc:cors>
 </beans>
