@@ -1,42 +1,3 @@
-CREATE TABLE tbl_admin(
-    admin_id INTEGER,
-    username VARCHAR2(50) NOT NULL UNIQUE,
-    passwords VARCHAR2(50) NOT NULL,
-    email VARCHAR2(100) UNIQUE,
-    enabled CHAR(1) DEFAULT 1 NOT NULL,
-    created_at DATE DEFAULT SYSDATE NOT NULL,
-    CONSTRAINT pk_admin_id PRIMARY KEY(admin_id)
-);
-commit;
-
-DESC TBL_ADMIN;
-
-
---1
-CREATE SEQUENCE sq_admin_id START WITH 1;
-commit;
---2
-CREATE OR REPLACE TRIGGER tr_admin
-BEFORE INSERT ON tbl_admin
-FOR EACH ROW
-BEGIN
-    SELECT sq_admin_id.NEXTVAL
-    INTO :NEW.admin_id 
-    FROM dual;
-END;
-
-commit;
-
---6
-INSERT INTO TBL_ADMIN(username, passwords) VALUES ('admin', 'admin');
-
-SELECT * FROM TBL_ADMIN;
-
-
-
-SELECT USERNAME, PASSWORD FROM TBL_ADMIN WHERE USERNAME='admin' AND PASSWORDS='admin';
-    
-    
 CREATE TABLE tbl_user_role(
     user_role_id INTEGER,
     username VARCHAR2(50) NOT NULL,
@@ -45,10 +6,6 @@ CREATE TABLE tbl_user_role(
 );    
 
 DESC TBL_USER_ROLE;
-
-ALTER TABLE tbl_user_role ADD CONSTRAINT fk_username FOREIGN KEY(username) REFERENCES tbl_admin(username);
-
-DESC tbl_user_role;
 
 CREATE SEQUENCE sq_user_role_id START WITH 1;
 
@@ -102,6 +59,13 @@ CREATE TABLE TBL_USER(
     CONSTRAINT pk_user_id PRIMARY KEY(user_id)
 );
 
+ALTER TABLE TBL_USER ADD USER_TYPE VARCHAR2(10);
+ALTER TABLE TBL_USER RENAME COLUMN USER_PASSWORD TO PASSWORD;
+ALTER TABLE TBL_USER MODIFY FULL_NAME VARCHAR2(255) NULL;
+ALTER TABLE TBL_USER MODIFY USER_TYPE VARCHAR2(10) NOT NULL;
+DESC TBL_USER;
+
+
 CREATE SEQUENCE sq_user_id START WITH 1;
 
 CREATE OR REPLACE TRIGGER tr_user_id
@@ -112,7 +76,6 @@ BEGIN
     INTO :NEW.user_id
     FROM DUAL;
 END;
-
 
 
 --444444444444444444444444444444444444444444444444444444444444444444444444444444444
@@ -250,10 +213,43 @@ BEGIN
 END;
 
 --------------------------------------------------------------------------------------------------------------------------------
+--TBL_ADMIN.username%TYPE
 
+CREATE OR REPLACE TRIGGER tr_admin_user_role
+AFTER INSERT ON tbl_admin
+FOR EACH ROW
+BEGIN
+    INSERT INTO tbl_user_role(username, user_role) VALUES(:NEW.username, 'ROLE_ADMIN');
+END;
+DROP TRIGGER tr_admin_user_role;
+-------------------------------------------------------------------------------------------------
+CREATE OR REPLACE TRIGGER tr_user_user_role
+AFTER INSERT ON TBL_USER
+FOR EACH ROW
+BEGIN
+    IF :NEW.USER_TYPE = 'admin' THEN
+        INSERT INTO tbl_user_role(username, user_role) VALUES(:NEW.username, 'ROLE_ADMIN');    
+    ELSE 
+        INSERT INTO tbl_user_role(username, user_role) VALUES(:NEW.username, 'ROLE_USER');
+    END IF;
+END;
+-------------------------------------------------------------------------------------------------
 
+INSERT INTO tbl_admin(username, passwords) VALUES('nisha', 'nisha');
+select * from tbl_user;
 
+INSERT INTO tbl_user(full_name, email, contact, address, username, user_password, user_type) 
+VALUES('Admin', 'admin@gmail.com', '+977-9861211775', 'Hokse', 'admin', 'admin', 'admin');
 
+INSERT INTO tbl_user(full_name, email, contact, address, username, user_password, user_type) 
+VALUES('Nishan Dhungana', 'nishandhungana41@gmail.com', '+977-9861211775', 'Hokse', 'nishandhungana41', 'nishan', 'user');
+
+select * from tbl_user_role;
+DELETE FROM TBL_USER_ROLE;
+select * from TBL_USER;
+DELETE FROM TBL_USER;
+SELECT USERNAME, PASSWORD, ENABLED FROM TBL_USER WHERE USERNAME='admin';
+SELECT USERNAME, USER_ROLE FROM TBL_USER_ROLE WHERE USERNAME='admin';
 
 
 

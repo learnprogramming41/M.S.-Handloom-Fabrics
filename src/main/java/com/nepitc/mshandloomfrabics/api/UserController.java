@@ -5,8 +5,8 @@
  */
 package com.nepitc.mshandloomfrabics.api;
 
-import com.nepitc.mshandloomfrabics.entity.Admin;
-import com.nepitc.mshandloomfrabics.service.AdminService;
+import com.nepitc.mshandloomfrabics.entity.User;
+import com.nepitc.mshandloomfrabics.service.UserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,16 +21,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author Nishan Dhungana & Barik Ansari
  */
 @Controller
-@RequestMapping(value = "/admin")
+@RequestMapping(value = "/user")
 
-public class AdminController {
+public class UserController {
     
     @Autowired
-    private AdminService adminService;
+    private UserService adminService;
     
-    @RequestMapping(value = "/getAllAdmin", method = RequestMethod.GET)
-    public ResponseEntity<List<Admin>> getAll() {
-        List<Admin> admin = null;
+    @RequestMapping(value = "/getAllUsers", method = RequestMethod.GET)
+    public ResponseEntity<List<User>> getAll() {
+        List<User> admin = null;
         try {
             admin = adminService.getAll();
             return new ResponseEntity<>(admin, HttpStatus.OK);
@@ -39,8 +39,8 @@ public class AdminController {
         }
     }  
     
-    @RequestMapping(value = "/create-admin", method = RequestMethod.POST)
-    public ResponseEntity<Void> create(@RequestBody Admin admin) {
+    @RequestMapping(value = "/create-user", method = RequestMethod.POST)
+    public ResponseEntity<Void> create(@RequestBody User admin) {
         try {
             adminService.insert(admin);
             return new ResponseEntity<>(HttpStatus.OK);

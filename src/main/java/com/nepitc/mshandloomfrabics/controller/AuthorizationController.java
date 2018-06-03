@@ -5,12 +5,12 @@
  */
 package com.nepitc.mshandloomfrabics.controller;
 
-import com.nepitc.mshandloomfrabics.entity.Admin;
+import com.nepitc.mshandloomfrabics.entity.User;
 import com.nepitc.mshandloomfrabics.entity.Login;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.nepitc.mshandloomfrabics.service.AdminService;
+import com.nepitc.mshandloomfrabics.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,17 +25,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AuthorizationController {
     
     @Autowired
-    AdminService adminService;
+    UserService adminService;
     
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ResponseEntity<Admin> login(@RequestParam("username") String username, @RequestParam("password") String password) {
+    public ResponseEntity<User> login(@RequestParam("username") String username, @RequestParam("password") String password) {
         Login login = new Login(username, password);
         
         if (username.isEmpty() || password.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             try {
-                Admin admin = adminService.login(login);
+                User admin = adminService.login(login);
                 return new ResponseEntity<>(admin, HttpStatus.OK);
             } catch (Exception ex) {
                 System.out.println(ex);

@@ -80,7 +80,7 @@
                 <user name="admin" password="admin" authorities="ROLE_ADMIN" />  
             </user-service>  -->
             <jdbc-user-service data-source-ref="dataSource"
-                               users-by-username-query = "SELECT USERNAME, PASSWORDS, ENABLED FROM TBL_ADMIN WHERE USERNAME=?"
+                               users-by-username-query = "SELECT USERNAME, PASSWORD, ENABLED FROM TBL_USER WHERE USERNAME=?"
                                authorities-by-username-query = "SELECT USERNAME, USER_ROLE FROM TBL_USER_ROLE WHERE USERNAME=?"
             />
         </authentication-provider>  

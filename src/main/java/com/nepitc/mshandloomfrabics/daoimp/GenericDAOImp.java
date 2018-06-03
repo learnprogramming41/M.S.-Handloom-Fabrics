@@ -90,15 +90,12 @@ public abstract class GenericDAOImp<T> implements GenericDAO<T>{
     @Override
     public T getById(int id) throws Exception {
         session = sessionFactory.openSession();
-        trans = session.beginTransaction();
         
         T t = null;
         
         try {
             t = (T) session.get(persistClass, id);
-            trans.commit();
         } catch(HibernateException ex) {
-            trans.rollback();
             throw new HibernateException(ex);
         } finally {
             session.close();
@@ -110,16 +107,12 @@ public abstract class GenericDAOImp<T> implements GenericDAO<T>{
     @Override
     public List<T> getAll() throws Exception {
         session = sessionFactory.openSession();
-        trans = session.beginTransaction();
         
         List<T> list = null;
         try {
             Criteria criteria = session.createCriteria(persistClass);
             list = criteria.list();
-            
-            trans.commit();
         } catch(HibernateException ex) {
-            trans.rollback();
             throw new HibernateException(ex);
         } finally {
             session.close();
