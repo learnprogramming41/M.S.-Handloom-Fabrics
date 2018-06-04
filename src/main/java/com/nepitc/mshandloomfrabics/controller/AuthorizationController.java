@@ -27,7 +27,7 @@ public class AuthorizationController {
     @Autowired
     UserService adminService;
     
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "admin/login", method = RequestMethod.GET)
     public ResponseEntity<User> login(@RequestParam("username") String username, @RequestParam("password") String password) {
         Login login = new Login(username, password);
         
@@ -35,7 +35,7 @@ public class AuthorizationController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             try {
-                User admin = adminService.login(login);
+                User admin = adminService.login(login, "ROLE_ADMIN");
                 return new ResponseEntity<>(admin, HttpStatus.OK);
             } catch (Exception ex) {
                 System.out.println(ex);

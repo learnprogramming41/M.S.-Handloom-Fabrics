@@ -29,17 +29,18 @@ public class UserDAOImp extends GenericDAOImp<User> implements UserDAO{
     private Transaction trans;
     
     @Override
-    public User login(Login login) throws Exception {
+    public User login(Login login, String userType) throws Exception {
         session = sessionFactory.openSession();
         trans = session.beginTransaction();
         
         User admin = null;
-        final String sql = "SELECT a FROM User a WHERE username=:username AND password=:pass";
-            
+        final String sql = "SELECT u FROM User u, UserRole ur WHERE u.username = ur.username AND u.username = :username AND u.password = :password AND ur.userRole = :ust";
+        
         try {
             Query query = session.createQuery(sql);
             query.setParameter("username", login.getUsername());
-            query.setParameter("pass", login.getPassword());
+            query.setParameter("password", login.getPassword());
+            query.setParameter("ust", userType);
             
             admin = (User) query.uniqueResult();
             return admin;

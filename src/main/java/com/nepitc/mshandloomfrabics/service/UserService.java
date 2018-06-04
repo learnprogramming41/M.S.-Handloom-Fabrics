@@ -69,9 +69,9 @@ public class UserService implements GenericService<User> {
         }
     }
     
-    public User login(Login login) throws Exception {
+    public User login(Login login, String userType) throws Exception {
         try {
-            return adminDaoImp.login(login);
+            return adminDaoImp.login(login, userType);
         } catch(HibernateException ex) {
             throw new HibernateException(ex);
         }

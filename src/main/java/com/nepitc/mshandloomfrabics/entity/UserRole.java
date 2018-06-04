@@ -18,7 +18,7 @@ import javax.persistence.Table;
  * @author Nishan Dhungana
  */
 @Entity
-@Table(name = "TBL_USER_ROLE", catalog = "", schema = "NISHAN")
+@Table(name = "TBL_USER_ROLE")
 
 @NamedQueries({
     @NamedQuery(name = "UserRole.findAll", query = "SELECT u FROM UserRole u")
@@ -39,6 +39,7 @@ public class UserRole implements Serializable {
     
     @Column(name = "USER_ROLE")
     private String userRole;
+    
 
     public UserRole() {
     }

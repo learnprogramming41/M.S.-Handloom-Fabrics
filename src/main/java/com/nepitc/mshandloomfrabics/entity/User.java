@@ -6,26 +6,26 @@
 package com.nepitc.mshandloomfrabics.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Nishan Dhungana
  */
 @Entity
-@Table(name = "TBL_USER", catalog = "", schema = "NISHAN")
-@XmlRootElement
+@Table(name = "TBL_USER")
+
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
     , @NamedQuery(name = "User.findByUserId", query = "SELECT u FROM User u WHERE u.userId = :userId")
@@ -34,23 +34,22 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "User.findByContact", query = "SELECT u FROM User u WHERE u.contact = :contact")
     , @NamedQuery(name = "User.findByAddress", query = "SELECT u FROM User u WHERE u.address = :address")
     , @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username")
-    , @NamedQuery(name = "User.findByUserPassword", query = "SELECT u FROM User u WHERE u.userPassword = :userPassword")
+    , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")
     , @NamedQuery(name = "User.findByCreatedAt", query = "SELECT u FROM User u WHERE u.createdAt = :createdAt")
-    , @NamedQuery(name = "User.findByEnabled", query = "SELECT u FROM User u WHERE u.enabled = :enabled")})
+    , @NamedQuery(name = "User.findByEnabled", query = "SELECT u FROM User u WHERE u.enabled = :enabled")
+    , @NamedQuery(name = "User.findByUserType", query = "SELECT u FROM User u WHERE u.userType = :userType")})
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     
-    @Column(name = "USER_ID", insertable = false)
-    private int userId;
-    
+    @Column(name = "USER_ID")
+    private BigDecimal userId;
     @Column(name = "FULL_NAME")
     private String fullName;
     @Column(name = "EMAIL")
     private String email;
-    
     @Column(name = "CONTACT")
     private String contact;
     @Column(name = "ADDRESS")
@@ -59,40 +58,40 @@ public class User implements Serializable {
     @Column(name = "USERNAME")
     private String username;
     
-    @Column(name = "USER_PASSWORD")
-    private String userPassword;
+    @Column(name = "PASSWORD")
+    private String password;
     
     @Column(name = "CREATED_AT", insertable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
     
-    @Column(name = "ENABLED")
-    private boolean enabled;
-    @OneToMany(mappedBy = "userId")
-    private List<Orders> ordersList;
-
+    @Column(name = "ENABLED", insertable = false)
+    private Character enabled;
+    
+    @Column(name = "USER_TYPE")
+    private String userType;
+    
     public User() {
     }
 
-    public User(int userId) {
+    public User(BigDecimal userId) {
         this.userId = userId;
     }
 
-    public User(int userId, String fullName, String contact, String username, String userPassword, Date createdAt, boolean enabled) {
+    public User(BigDecimal userId, String username, String password, Date createdAt, Character enabled, String userType) {
         this.userId = userId;
-        this.fullName = fullName;
-        this.contact = contact;
         this.username = username;
-        this.userPassword = userPassword;
+        this.password = password;
         this.createdAt = createdAt;
         this.enabled = enabled;
+        this.userType = userType;
     }
 
-    public int getUserId() {
+    public BigDecimal getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(BigDecimal userId) {
         this.userId = userId;
     }
 
@@ -136,12 +135,12 @@ public class User implements Serializable {
         this.username = username;
     }
 
-    public String getUserPassword() {
-        return userPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Date getCreatedAt() {
@@ -152,19 +151,19 @@ public class User implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public boolean getEnabled() {
+    public Character getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
+    public void setEnabled(Character enabled) {
         this.enabled = enabled;
     }
 
-    public List<Orders> getOrdersList() {
-        return ordersList;
+    public String getUserType() {
+        return userType;
     }
 
-    public void setOrdersList(List<Orders> ordersList) {
-        this.ordersList = ordersList;
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 }
