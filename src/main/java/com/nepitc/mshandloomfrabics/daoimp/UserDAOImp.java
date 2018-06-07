@@ -8,13 +8,8 @@ package com.nepitc.mshandloomfrabics.daoimp;
 import com.nepitc.mshandloomfrabics.dao.UserDAO;
 import com.nepitc.mshandloomfrabics.entity.User;
 import com.nepitc.mshandloomfrabics.entity.Login;
-import java.util.ArrayList;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -67,6 +62,41 @@ public class UserDAOImp extends GenericDAOImp<User> implements UserDAO{
         
         return res;
     }
-    
+
+    @Override
+    public String getUsername(String email) throws HibernateException {
+        session = sessionFactory.openSession();
+        final String hql = "SELECT username FROM User u WHERE email=:email";
+        
+        try {
+            Query query = session.createQuery(hql);
+            query.setParameter("email", email);
+            
+            return (String) query.uniqueResult();
+        } catch (HibernateException e) {
+            throw new HibernateException(e.getMessage());
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public void changePassword(String password, String username) throws HibernateException {
+        session = sessionFactory.openSession();
+        trans = session.beginTransaction();
+        final String hql = "UPDATE User SET password=:password WHERE username=:username";
+        
+        try {
+            Query query = session.createQuery(hql);
+            query.setParameter("password", password);
+            query.setParameter("username", username);
+            trans.commit();
+        } catch (HibernateException e) {
+            trans.rollback();
+            throw new HibernateException(e.getMessage());
+        } finally {
+            session.close();
+        }
+    }
     
 }

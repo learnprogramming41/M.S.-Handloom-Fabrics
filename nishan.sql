@@ -262,11 +262,11 @@ AND U.USERNAME = 'admin'
 AND U.PASSWORD = 'admin'
 AND UR.USER_ROLE = 'ROLE_ADMIN';
 
-UPDATE TBL_USER SET EMAIL = 'admin@gmail.com' WHERE USER_ID = 16;
+UPDATE TBL_USER SET EMAIL = 'nishandhungana41@hotmail.com' WHERE USER_ID = 17;
 SELECT * FROM TBL_USER;
 
 SELECT * FROM TBL_USER WHERE EMAIL = 'nishandhungana41@gmail.com';
-
+UPDATE TBL_USER SET PASSWORD='admin' WHERE USERNAME='nishandhungana41';
 
 ----------------------------------------------------------------------------------------------------------------
 

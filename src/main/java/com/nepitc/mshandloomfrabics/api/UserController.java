@@ -8,6 +8,7 @@ package com.nepitc.mshandloomfrabics.api;
 import com.nepitc.mshandloomfrabics.entity.User;
 import com.nepitc.mshandloomfrabics.service.UserService;
 import java.util.List;
+import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +17,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import com.nepitc.mshandloomfrabics.entity.UpdatePassword;
+import org.springframework.web.bind.annotation.ModelAttribute;
 /**
  *
- * @author Nishan Dhungana & Barik Ansari
+ * @author Nishan Dhungana
  */
 @Controller
 @RequestMapping(value = "/user")
@@ -65,4 +67,15 @@ public class UserController {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
+    
+    @RequestMapping(value = "/change-password", method = RequestMethod.PUT)
+    public ResponseEntity<String> changePassword(@RequestBody UpdatePassword upPass) {
+        try {
+            adminService.changePassword(upPass.getPassword(), upPass.getUsername());
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (HibernateException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+    
 }

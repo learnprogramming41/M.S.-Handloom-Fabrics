@@ -84,4 +84,20 @@ public class UserService implements GenericService<User> {
             throw new HibernateException(ex);
         }
     }
+    
+    public String getUsername(String email) throws HibernateException {
+        try {
+            return adminDaoImp.getUsername(email);
+        } catch (HibernateException ex) {
+            throw new HibernateException(ex);
+        }
+    }
+    
+    public void changePassword(String password, String username) throws HibernateException {
+        try {
+            adminDaoImp.changePassword(password, username);
+        } catch (HibernateException ex) {
+            throw new HibernateException(ex);
+        }
+    }
 }

@@ -5,7 +5,7 @@
  */
 package com.nepitc.mshandloomfrabics.mail;
 
-import com.nepitc.mshandloomfrabics.entity.ForgotPassword;
+import com.nepitc.mshandloomfrabics.service.UserService;
 import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,10 +33,14 @@ public class MailController {
     @Autowired
     private JavaMailSender mailSenderObj;
 
+    @Autowired
+    private UserService userService;
+    
     @RequestMapping(value = "/send-mail", method = RequestMethod.POST, produces="application/x-www-form-urlencoded")
     public ResponseEntity<String> sendEmailToClient(@RequestBody final String email) {
         final StringBuilder message = new StringBuilder();
-        message.append("<p>Please click <a href=\"https://www.youtube.com/watch?v=yKNxeF4KMsY\">here</a> to recover password</p>");
+        String userName = userService.getUsername(email);
+        message.append("<p>Please click <a href=\"http://localhost:4200/admin/change-password?username=").append(userName).append("\">here</a> to recover password</p>");
 
         try {
             mailSenderObj.send(new MimeMessagePreparator() {
