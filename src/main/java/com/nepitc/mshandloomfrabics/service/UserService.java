@@ -76,4 +76,12 @@ public class UserService implements GenericService<User> {
             throw new HibernateException(ex);
         }
     }    
+    
+    public boolean checkEmailAvailability(String email) throws Exception {
+        try {
+            return adminDaoImp.checkEmailAvailability(email);
+        } catch (HibernateException ex) {
+            throw new HibernateException(ex);
+        }
+    }
 }

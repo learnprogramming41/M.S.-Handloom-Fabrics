@@ -24,11 +24,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 public abstract class GenericDAOImp<T> implements GenericDAO<T>{
 
     @Autowired
-    private SessionFactory sessionFactory;
+    protected SessionFactory sessionFactory;
     
     private final Class<T> persistClass;
-    private Session session;
-    private Transaction trans;
+    protected Session session;
+    protected Transaction trans;
     
     public GenericDAOImp() {
         persistClass = (Class<T>) ((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0];

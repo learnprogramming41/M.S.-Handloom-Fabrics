@@ -14,4 +14,5 @@ import com.nepitc.mshandloomfrabics.entity.Login;
  */
 public interface UserDAO extends GenericDAO<User>{
     User login(Login login, String userType) throws Exception;
+    boolean checkEmailAvailability(String email) throws Exception;
 }

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -24,10 +25,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/user")
 
 public class UserController {
-    
+
     @Autowired
     private UserService adminService;
-    
+
     @RequestMapping(value = "/getAllUsers", method = RequestMethod.GET)
     public ResponseEntity<List<User>> getAll() {
         List<User> admin = null;
@@ -37,15 +38,31 @@ public class UserController {
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-    }  
-    
+    }
+
     @RequestMapping(value = "/create-user", method = RequestMethod.POST)
     public ResponseEntity<Void> create(@RequestBody User admin) {
         try {
             adminService.insert(admin);
             return new ResponseEntity<>(HttpStatus.OK);
-        } catch(Exception e) {
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/check-email", method = RequestMethod.GET)
+    public ResponseEntity<String> checkAdminEmail(@RequestParam("email") String email) {
+        try {
+            boolean res = adminService.checkEmailAvailability(email);
+
+            if (res) {
+                return new ResponseEntity<>(HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
+        } catch (Exception ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 }

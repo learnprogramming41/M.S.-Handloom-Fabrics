@@ -8,6 +8,7 @@ package com.nepitc.mshandloomfrabics.daoimp;
 import com.nepitc.mshandloomfrabics.dao.UserDAO;
 import com.nepitc.mshandloomfrabics.entity.User;
 import com.nepitc.mshandloomfrabics.entity.Login;
+import java.util.ArrayList;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -23,21 +24,15 @@ import org.springframework.stereotype.Repository;
 @Repository(value="adminDaoImp")
 public class UserDAOImp extends GenericDAOImp<User> implements UserDAO{
 
-    @Autowired
-    private SessionFactory sessionFactory;
-    private Session session;
-    private Transaction trans;
-    
     @Override
     public User login(Login login, String userType) throws Exception {
         session = sessionFactory.openSession();
-        trans = session.beginTransaction();
         
         User admin = null;
-        final String sql = "SELECT u FROM User u, UserRole ur WHERE u.username = ur.username AND u.username = :username AND u.password = :password AND ur.userRole = :ust";
+        final String hql = "SELECT u FROM User u, UserRole ur WHERE u.username = ur.username AND u.username = :username AND u.password = :password AND ur.userRole = :ust";
         
         try {
-            Query query = session.createQuery(sql);
+            Query query = session.createQuery(hql);
             query.setParameter("username", login.getUsername());
             query.setParameter("password", login.getPassword());
             query.setParameter("ust", userType);
@@ -50,5 +45,28 @@ public class UserDAOImp extends GenericDAOImp<User> implements UserDAO{
             session.close();
         }
     }
+
+    @Override
+    public boolean checkEmailAvailability(String email) throws Exception {
+        session = sessionFactory.openSession();
+        final String hql = "SELECT u FROM User u WHERE email=:email";
+        boolean res = false;
+        
+        try {
+            Query query = session.createQuery(hql);
+            query.setParameter("email", email);
+            
+            if(query.list().size() > 0) {
+                res = true;
+            }
+        } catch (HibernateException e) {
+            throw new Exception(e.getMessage());
+        } finally {
+            session.close();
+        }
+        
+        return res;
+    }
+    
     
 }
