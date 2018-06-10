@@ -11,17 +11,12 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -29,7 +24,6 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  */
 @Entity
 @Table(name = "TBL_PASHMINA", catalog = "", schema = "NISHAN")
-
 @NamedQueries({
     @NamedQuery(name = "Pashmina.findAll", query = "SELECT p FROM Pashmina p")
     , @NamedQuery(name = "Pashmina.findByPashminaId", query = "SELECT p FROM Pashmina p WHERE p.pashminaId = :pashminaId")
@@ -40,14 +34,11 @@ import org.codehaus.jackson.annotate.JsonIgnore;
     , @NamedQuery(name = "Pashmina.findByCategoryId", query = "SELECT p FROM Pashmina p WHERE p.categoryId = :categoryId")})
 public class Pashmina implements Serializable {
 
-    @OneToMany(mappedBy = "pashminaId")
-    private List<PashminaColour> pashminaColourList;
-
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     
-    @Column(name = "PASHMINA_ID", insertable = false)
+    @Column(name = "PASHMINA_ID")
     private int pashminaId;
     @Column(name = "PASHMINA_NAME")
     private String pashminaName;
@@ -60,17 +51,20 @@ public class Pashmina implements Serializable {
     private Date addedAt;
     
     @Column(name = "ENABLED", insertable = false)
-    private boolean enabled;
+    private Character enabled;
+    
     @Column(name = "CATEGORY_ID")
     private int categoryId;
-    @OneToMany(mappedBy = "pashminaId")
-    private List<Description> descriptionList;
-    @JoinColumn(name = "PASHMINA_ID", referencedColumnName = "CATEGORY_ID", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private Category category;
-    @OneToMany(mappedBy = "pashminaId")
-    private List<Orders> ordersList;
 
+    @OneToMany(mappedBy = "colourId")
+    private List<PashminaColour> pashminaColor;
+    
+    @OneToMany(mappedBy = "imageId")
+    private List<Image> images;
+    
+    @OneToMany(mappedBy = "descriptionId")
+    private List<Description> descriptions;
+    
     public Pashmina() {
     }
 
@@ -78,7 +72,7 @@ public class Pashmina implements Serializable {
         this.pashminaId = pashminaId;
     }
 
-    public Pashmina(int pashminaId, double price, Date addedAt, boolean enabled) {
+    public Pashmina(int pashminaId, double price, Date addedAt, Character enabled) {
         this.pashminaId = pashminaId;
         this.price = price;
         this.addedAt = addedAt;
@@ -117,11 +111,11 @@ public class Pashmina implements Serializable {
         this.addedAt = addedAt;
     }
 
-    public boolean getEnabled() {
+    public Character getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
+    public void setEnabled(Character enabled) {
         this.enabled = enabled;
     }
 
@@ -133,36 +127,30 @@ public class Pashmina implements Serializable {
         this.categoryId = categoryId;
     }
 
-    public List<Description> getDescriptionList() {
-        return descriptionList;
+    public List<PashminaColour> getPashminaColor() {
+        return pashminaColor;
     }
 
-    public void setDescriptionList(List<Description> descriptionList) {
-        this.descriptionList = descriptionList;
+    public void setPashminaColor(List<PashminaColour> pashminaColor) {
+        this.pashminaColor = pashminaColor;
     }
 
-    public Category getCategory() {
-        return category;
+    public List<Image> getImages() {
+        return images;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 
-    public List<Orders> getOrdersList() {
-        return ordersList;
+    public List<Description> getDescriptions() {
+        return descriptions;
     }
 
-    public void setOrdersList(List<Orders> ordersList) {
-        this.ordersList = ordersList;
-    }
-
-    public List<PashminaColour> getPashminaColourList() {
-        return pashminaColourList;
-    }
-
-    public void setPashminaColourList(List<PashminaColour> pashminaColourList) {
-        this.pashminaColourList = pashminaColourList;
+    public void setDescriptions(List<Description> descriptions) {
+        this.descriptions = descriptions;
     }
     
+    
+
 }

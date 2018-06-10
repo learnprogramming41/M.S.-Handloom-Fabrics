@@ -118,6 +118,8 @@ BEGIN
     FROM DUAL;
 END;
 
+DROP TABLE TBL_CATEGORY;
+DROP SEQUENCE sq_category_id;
 
 --66666666666666666666666666666666666666666666666666666666666666666666666666
 CREATE TABLE TBL_PASHMINA(
@@ -142,7 +144,7 @@ BEGIN
     FROM DUAL;
 END;
 
-
+ALTER TABLE TBL_PASHMINA DROP CONSTRAINT fk_category_id;
 
 --777777777777777777777777777777777777777777777777777777777777777777777777777777777
 CREATE TABLE TBL_DESCRIPTION(
@@ -270,12 +272,17 @@ UPDATE TBL_USER SET PASSWORD='admin' WHERE USERNAME='nishandhungana41';
 
 ----------------------------------------------------------------------------------------------------------------
 
+desc tbl_image;
+alter table tbl_image drop column image;
+alter table tbl_image add pashmina_id number;
+alter table tbl_image add constraint fk_image_pashmina_id foreign key(pashmina_id) references tbl_pashmina(pashmina_id);
 
+desc tbl_pashmina;
 
+select * from tbl_user;
+select * from tbl_user_role;
 
-
-
-
+delete from tbl_user_role where user_role_id = 2;
 
 
 
