@@ -10,10 +10,13 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,41 +33,42 @@ import javax.persistence.TemporalType;
     , @NamedQuery(name = "Pashmina.findByPashminaName", query = "SELECT p FROM Pashmina p WHERE p.pashminaName = :pashminaName")
     , @NamedQuery(name = "Pashmina.findByPrice", query = "SELECT p FROM Pashmina p WHERE p.price = :price")
     , @NamedQuery(name = "Pashmina.findByAddedAt", query = "SELECT p FROM Pashmina p WHERE p.addedAt = :addedAt")
-    , @NamedQuery(name = "Pashmina.findByEnabled", query = "SELECT p FROM Pashmina p WHERE p.enabled = :enabled")
-    , @NamedQuery(name = "Pashmina.findByCategoryId", query = "SELECT p FROM Pashmina p WHERE p.categoryId = :categoryId")})
+    , @NamedQuery(name = "Pashmina.findByEnabled", query = "SELECT p FROM Pashmina p WHERE p.enabled = :enabled")})
 public class Pashmina implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
-    
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "sq_pashmina_id")
+    @SequenceGenerator(name = "sq_pashmina_id", sequenceName = "sq_pashmina_id")
     @Column(name = "PASHMINA_ID")
     private int pashminaId;
+
     @Column(name = "PASHMINA_NAME")
     private String pashminaName;
-    
+
     @Column(name = "PRICE")
     private double price;
-    
+
     @Column(name = "ADDED_AT", insertable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date addedAt;
-    
+
+    @Column(name = "CATEGORY")
+    private String category;
+
     @Column(name = "ENABLED", insertable = false)
     private Character enabled;
-    
-    @Column(name = "CATEGORY_ID")
-    private int categoryId;
 
     @OneToMany(mappedBy = "colourId")
     private List<PashminaColour> pashminaColor;
-    
+
     @OneToMany(mappedBy = "imageId")
     private List<Image> images;
-    
+
     @OneToMany(mappedBy = "descriptionId")
     private List<Description> descriptions;
-    
+
     public Pashmina() {
     }
 
@@ -72,11 +76,12 @@ public class Pashmina implements Serializable {
         this.pashminaId = pashminaId;
     }
 
-    public Pashmina(int pashminaId, double price, Date addedAt, Character enabled) {
+    public Pashmina(int pashminaId, double price, Date addedAt, Character enabled, String category) {
         this.pashminaId = pashminaId;
         this.price = price;
         this.addedAt = addedAt;
         this.enabled = enabled;
+        this.category = category;
     }
 
     public int getPashminaId() {
@@ -119,12 +124,12 @@ public class Pashmina implements Serializable {
         this.enabled = enabled;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public String getCategory() {
+        return category;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public List<PashminaColour> getPashminaColor() {
@@ -150,7 +155,5 @@ public class Pashmina implements Serializable {
     public void setDescriptions(List<Description> descriptions) {
         this.descriptions = descriptions;
     }
-    
-    
 
 }

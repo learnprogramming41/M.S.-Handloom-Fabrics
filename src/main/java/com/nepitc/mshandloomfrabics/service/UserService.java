@@ -25,7 +25,7 @@ public class UserService implements GenericService<User> {
     private UserDAOImp adminDaoImp;
     
     @Override
-    public void insert(User t) throws Exception {
+    public void insert(User t) throws HibernateException {
         try {
             adminDaoImp.insert(t);
         } catch(HibernateException ex) {
@@ -34,7 +34,7 @@ public class UserService implements GenericService<User> {
     }
 
     @Override
-    public void update(User t) throws Exception {
+    public void update(User t) throws HibernateException {
         try {
             adminDaoImp.update(t);
         } catch(HibernateException ex) {
@@ -43,7 +43,7 @@ public class UserService implements GenericService<User> {
     }
 
     @Override
-    public boolean delete(User t) throws Exception {
+    public boolean delete(User t) throws HibernateException {
         try {
             return adminDaoImp.delete(t);
         } catch(HibernateException ex) {
@@ -52,7 +52,7 @@ public class UserService implements GenericService<User> {
     }
 
     @Override
-    public User getById(int id) throws Exception {
+    public User getById(int id) throws HibernateException {
         try {
             return adminDaoImp.getById(id);
         } catch(HibernateException ex) {
@@ -61,7 +61,7 @@ public class UserService implements GenericService<User> {
     }
 
     @Override
-    public List<User> getAll() throws Exception {
+    public List<User> getAll() throws HibernateException {
         try {
             return adminDaoImp.getAll();
         } catch(HibernateException ex) {
@@ -69,7 +69,7 @@ public class UserService implements GenericService<User> {
         }
     }
     
-    public User login(Login login, String userType) throws Exception {
+    public User login(Login login, String userType) throws HibernateException {
         try {
             return adminDaoImp.login(login, userType);
         } catch(HibernateException ex) {
@@ -77,7 +77,7 @@ public class UserService implements GenericService<User> {
         }
     }    
     
-    public boolean checkEmailAvailability(String email) throws Exception {
+    public boolean checkEmailAvailability(String email) throws HibernateException {
         try {
             return adminDaoImp.checkEmailAvailability(email);
         } catch (HibernateException ex) {

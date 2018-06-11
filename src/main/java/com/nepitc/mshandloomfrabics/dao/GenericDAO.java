@@ -6,6 +6,7 @@
 package com.nepitc.mshandloomfrabics.dao;
 
 import java.util.List;
+import org.hibernate.HibernateException;
 
 /**
  *
@@ -13,9 +14,9 @@ import java.util.List;
  * @param <T>
  */
 public interface GenericDAO<T> {
-    void insert(T t) throws Exception;
-    void update(T t) throws Exception;
-    boolean delete(T t) throws Exception;
-    T getById(int id) throws Exception;
-    List<T> getAll() throws Exception;
+    void insert(T t) throws HibernateException;
+    void update(T t) throws HibernateException;
+    boolean delete(T t) throws HibernateException;
+    T getById(int id) throws HibernateException;
+    List<T> getAll() throws HibernateException;
 }

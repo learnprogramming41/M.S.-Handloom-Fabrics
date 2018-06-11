@@ -31,15 +31,19 @@ public class Description implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
-    
+
     @Column(name = "DESCRIPTION_ID")
     private int descriptionId;
-    
+
     @Column(name = "PASHMINA_DESCRIPTION")
     private String pashminaDescription;
-    @JoinColumn(name = "PASHMINA_ID", referencedColumnName = "PASHMINA_ID")
-    @ManyToOne
-    private Pashmina pashminaId;
+
+    @Column(name = "PASHMINA_ID")
+    private int pashminaId;
+
+//    @JoinColumn(name = "PASHMINA_ID", referencedColumnName = "PASHMINA_ID")
+//    @ManyToOne
+//    private Pashmina pashmina;
 
     public Description() {
     }
@@ -69,11 +73,19 @@ public class Description implements Serializable {
         this.pashminaDescription = pashminaDescription;
     }
 
-    public Pashmina getPashminaId() {
+    public int getPashminaId() {
         return pashminaId;
     }
 
-    public void setPashminaId(Pashmina pashminaId) {
+    public void setPashminaId(int pashminaId) {
         this.pashminaId = pashminaId;
     }
+
+//    public Pashmina getPashmina() {
+//        return pashmina;
+//    }
+//
+//    public void setPashmina(Pashmina pashmina) {
+//        this.pashmina = pashmina;
+//    }
 }

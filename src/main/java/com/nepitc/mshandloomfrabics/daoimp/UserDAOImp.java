@@ -20,7 +20,7 @@ import org.springframework.stereotype.Repository;
 public class UserDAOImp extends GenericDAOImp<User> implements UserDAO{
 
     @Override
-    public User login(Login login, String userType) throws Exception {
+    public User login(Login login, String userType) throws HibernateException {
         session = sessionFactory.openSession();
         
         User admin = null;
@@ -35,14 +35,14 @@ public class UserDAOImp extends GenericDAOImp<User> implements UserDAO{
             admin = (User) query.uniqueResult();
             return admin;
         } catch(HibernateException ex) {
-            throw new Exception(ex);
+            throw new HibernateException(ex);
         } finally {
             session.close();
         }
     }
 
     @Override
-    public boolean checkEmailAvailability(String email) throws Exception {
+    public boolean checkEmailAvailability(String email) throws HibernateException {
         session = sessionFactory.openSession();
         final String hql = "SELECT u FROM User u WHERE email=:email";
         boolean res = false;
@@ -55,7 +55,7 @@ public class UserDAOImp extends GenericDAOImp<User> implements UserDAO{
                 res = true;
             }
         } catch (HibernateException e) {
-            throw new Exception(e.getMessage());
+            throw new HibernateException(e.getMessage());
         } finally {
             session.close();
         }

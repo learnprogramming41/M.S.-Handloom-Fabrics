@@ -35,7 +35,7 @@ public abstract class GenericDAOImp<T> implements GenericDAO<T>{
     }
     
     @Override
-    public void insert(T t) throws Exception {
+    public void insert(T t) throws HibernateException {
         session = sessionFactory.openSession();
         trans = session.beginTransaction();
         
@@ -51,7 +51,7 @@ public abstract class GenericDAOImp<T> implements GenericDAO<T>{
     }
 
     @Override
-    public void update(T t) throws Exception{
+    public void update(T t) throws HibernateException{
         session = sessionFactory.openSession();
         trans = session.beginTransaction();
         
@@ -67,7 +67,7 @@ public abstract class GenericDAOImp<T> implements GenericDAO<T>{
     }
 
     @Override
-    public boolean delete(T t) throws Exception {
+    public boolean delete(T t) throws HibernateException {
         session = sessionFactory.openSession();
         trans = session.beginTransaction();
         
@@ -88,7 +88,7 @@ public abstract class GenericDAOImp<T> implements GenericDAO<T>{
     }
 
     @Override
-    public T getById(int id) throws Exception {
+    public T getById(int id) throws HibernateException {
         session = sessionFactory.openSession();
         
         T t = null;
@@ -105,7 +105,7 @@ public abstract class GenericDAOImp<T> implements GenericDAO<T>{
     }
 
     @Override
-    public List<T> getAll() throws Exception {
+    public List<T> getAll() throws HibernateException {
         session = sessionFactory.openSession();
         
         List<T> list = null;
