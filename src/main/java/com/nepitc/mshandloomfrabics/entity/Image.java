@@ -36,9 +36,15 @@ public class Image implements Serializable {
     
     @Column(name = "IMAGE_NAME")
     private String imageName;
-    @JoinColumn(name = "PASHMINA_ID", referencedColumnName = "PASHMINA_ID")
-    @ManyToOne
-    private Pashmina pashminaId;
+    
+    @Column(name = "PASHMINA_ID")
+    private int pashminaId;
+    
+//    @JoinColumn(name = "PASHMINA_ID", referencedColumnName = "PASHMINA_ID")
+//    @ManyToOne
+//    private Pashmina pashminaId;
+    
+    //private String imagePath;
 
     public Image() {
     }
@@ -67,13 +73,29 @@ public class Image implements Serializable {
     public void setImageName(String imageName) {
         this.imageName = imageName;
     }
+    
+//    public Pashmina getPashminaId() {
+//        return pashminaId;
+//    }
+//
+//    public void setPashminaId(Pashmina pashminaId) {
+//        this.pashminaId = pashminaId;
+//    }
 
-    public Pashmina getPashminaId() {
+    public int getPashminaId() {
         return pashminaId;
     }
 
-    public void setPashminaId(Pashmina pashminaId) {
+    public void setPashminaId(int pashminaId) {
         this.pashminaId = pashminaId;
     }
+
+//    public String getImagePath() {
+//        return imagePath;
+//    }
+//
+//    public void setImagePath(String imagePath) {
+//        this.imagePath = imagePath;
+//    }
 
 }

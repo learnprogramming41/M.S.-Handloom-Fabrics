@@ -5,21 +5,24 @@
  */
 package com.nepitc.mshandloomfrabics.api;
 
+import com.nepitc.mshandloomfrabics.common.CloudinaryConfig;
 import com.nepitc.mshandloomfrabics.entity.Description;
+import com.nepitc.mshandloomfrabics.entity.Image;
 import com.nepitc.mshandloomfrabics.entity.Pashmina;
 import com.nepitc.mshandloomfrabics.entity.PashminaColour;
 import com.nepitc.mshandloomfrabics.service.DescriptionService;
+import com.nepitc.mshandloomfrabics.service.ImageService;
 import com.nepitc.mshandloomfrabics.service.PashminaColorService;
 import com.nepitc.mshandloomfrabics.service.PashminaService;
-import java.util.List;
+import java.io.IOException;
+import java.util.Date;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 /**
  *
@@ -38,17 +41,21 @@ public class PashminaController {
     @Autowired
     DescriptionService descriptionService;
 
+    @Autowired
+    ImageService imageService;
+
+    @Async
     @RequestMapping(value = "/add-pashmina", method = RequestMethod.POST)
     public ResponseEntity<String> insertPashmina(@RequestBody Pashmina pashmina) {
         if (pashmina != null) {
             try {
                 pashminaService.insert(pashmina);
-                
+
                 int pashminaId = pashmina.getPashminaId();
-                
+
                 for (PashminaColour pash : pashmina.getPashminaColor()) {
                     pash.setPashminaId(pashminaId);
-                    pashminaColorService.insert(pash);
+                    //pashminaColorService.insert(pash);
                 }
 
                 for (Description desc : pashmina.getDescriptions()) {
@@ -56,10 +63,24 @@ public class PashminaController {
                     descriptionService.insert(desc);
                 }
 
+                for (Image image : pashmina.getImages()) {
+                    String imageUrl = image.getImageName();
+                    String imageName = "";
+                    try {
+                        imageName = CloudinaryConfig.uploadImage(imageUrl);
+                    } catch (IOException e) {
+                        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+                    }
+                    
+                    image.setPashminaId(pashminaId);
+                    image.setImageName(imageName);
+                    imageService.insert(image);
+                    
+                }
+
                 return new ResponseEntity<>(HttpStatus.OK);
 
             } catch (HibernateException e) {
-                int pashminaId = new Pashmina().getPashminaId();
                 return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
             }
         } else {
