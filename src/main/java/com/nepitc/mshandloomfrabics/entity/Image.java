@@ -53,9 +53,9 @@ public class Image implements Serializable {
         this.imageId = imageId;
     }
 
-    public Image(int imageId, String imageName) {
-        this.imageId = imageId;
+    public Image(String imageName, int pashminaId) {
         this.imageName = imageName;
+        this.pashminaId = pashminaId;
     }
 
     public int getImageId() {

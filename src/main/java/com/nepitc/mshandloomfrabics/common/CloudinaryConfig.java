@@ -7,7 +7,7 @@ package com.nepitc.mshandloomfrabics.common;
 
 import com.cloudinary.*;
 import com.cloudinary.utils.ObjectUtils;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public class CloudinaryConfig {
 
-    public static String uploadImage(String imageUrl) throws IOException {
+    public static String uploadImage(File imageUrl) throws IOException {
         Map config = new HashMap();
         config.put("cloud_name", "nishan");
         config.put("api_key", "783919866387176");
