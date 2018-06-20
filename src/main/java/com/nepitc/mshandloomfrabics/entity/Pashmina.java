@@ -7,9 +7,11 @@ package com.nepitc.mshandloomfrabics.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,6 +22,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -60,14 +64,17 @@ public class Pashmina implements Serializable {
     @Column(name = "ENABLED", insertable = false)
     private Character enabled;
 
-    @OneToMany(mappedBy = "colourId")
-    private List<PashminaColour> pashminaColor;
+    @OneToMany(mappedBy = "colourId", fetch = FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
+    private Set<PashminaColour> pashminaColor;
 
-    @OneToMany(mappedBy = "imageId")
-    private List<Image> images;
+    @OneToMany(mappedBy = "imageId", fetch = FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
+    private Set<Image> images;
 
-    @OneToMany(mappedBy = "descriptionId")
-    private List<Description> descriptions;
+    @OneToMany(mappedBy = "descriptionId", fetch = FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
+    private Set<Description> descriptions;
 
     public Pashmina() {
     }
@@ -132,27 +139,27 @@ public class Pashmina implements Serializable {
         this.category = category;
     }
 
-    public List<PashminaColour> getPashminaColor() {
+    public Set<PashminaColour> getPashminaColor() {
         return pashminaColor;
     }
 
-    public void setPashminaColor(List<PashminaColour> pashminaColor) {
+    public void setPashminaColor(Set<PashminaColour> pashminaColor) {
         this.pashminaColor = pashminaColor;
     }
 
-    public List<Image> getImages() {
+    public Set<Image> getImages() {
         return images;
     }
 
-    public void setImages(List<Image> images) {
+    public void setImages(Set<Image> images) {
         this.images = images;
     }
 
-    public List<Description> getDescriptions() {
+    public Set<Description> getDescriptions() {
         return descriptions;
     }
 
-    public void setDescriptions(List<Description> descriptions) {
+    public void setDescriptions(Set<Description> descriptions) {
         this.descriptions = descriptions;
     }
 

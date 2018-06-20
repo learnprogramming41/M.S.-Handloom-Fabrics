@@ -8,6 +8,7 @@ package com.nepitc.mshandloomfrabics.api;
 import com.nepitc.mshandloomfrabics.entity.*;
 import com.nepitc.mshandloomfrabics.service.*;
 import com.nepitc.mshandloomfrabics.service.PashminaService;
+import java.util.List;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,13 +46,11 @@ public class PashminaController {
                 pashminaId = pashmina.getPashminaId();
 
                 for (PashminaColour pash : pashmina.getPashminaColor()) {
-                    pash.setPashminaId(pashminaId);
-                    pashminaColorService.insert(pash);
+                    pashminaColorService.insert(new PashminaColour(pash.getColor(), new Pashmina(pashminaId)));
                 }
 
                 for (Description desc : pashmina.getDescriptions()) {
-                    desc.setPashminaId(pashminaId);
-                    descriptionService.insert(desc);
+                    descriptionService.insert(new Description(desc.getPashminaDescription(), new Pashmina(pashminaId)));
                 }
 
                 return new ResponseEntity<>(HttpStatus.OK);
@@ -64,6 +63,15 @@ public class PashminaController {
         }
     }
     
-    
+    @Async 
+    @RequestMapping(value = "/get-all-pashmina", method = RequestMethod.GET)
+    public ResponseEntity<List<Pashmina>> getAllPashmina() {
+        try {
+            List<Pashmina> pashmina = pashminaService.getAll();
+            return new ResponseEntity<>(pashmina, HttpStatus.OK);
+        } catch (HibernateException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
         
 }

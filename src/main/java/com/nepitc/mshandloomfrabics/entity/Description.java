@@ -38,12 +38,12 @@ public class Description implements Serializable {
     @Column(name = "PASHMINA_DESCRIPTION")
     private String pashminaDescription;
 
-    @Column(name = "PASHMINA_ID")
-    private int pashminaId;
+//    @Column(name = "PASHMINA_ID")
+//    private int pashminaId;
 
-//    @JoinColumn(name = "PASHMINA_ID", referencedColumnName = "PASHMINA_ID")
-//    @ManyToOne
-//    private Pashmina pashmina;
+    @JoinColumn(name = "PASHMINA_ID", referencedColumnName = "PASHMINA_ID")
+    @ManyToOne
+    private Pashmina pashmina;
 
     public Description() {
     }
@@ -52,9 +52,9 @@ public class Description implements Serializable {
         this.descriptionId = descriptionId;
     }
 
-    public Description(int descriptionId, String pashminaDescription) {
-        this.descriptionId = descriptionId;
+    public Description(String pashminaDescription, Pashmina pashmina) {
         this.pashminaDescription = pashminaDescription;
+        this.pashmina = pashmina;
     }
 
     public int getDescriptionId() {
@@ -73,19 +73,19 @@ public class Description implements Serializable {
         this.pashminaDescription = pashminaDescription;
     }
 
-    public int getPashminaId() {
-        return pashminaId;
-    }
-
-    public void setPashminaId(int pashminaId) {
-        this.pashminaId = pashminaId;
-    }
-
-//    public Pashmina getPashmina() {
-//        return pashmina;
+//    public int getPashminaId() {
+//        return pashminaId;
 //    }
 //
-//    public void setPashmina(Pashmina pashmina) {
-//        this.pashmina = pashmina;
+//    public void setPashminaId(int pashminaId) {
+//        this.pashminaId = pashminaId;
 //    }
+
+    public Pashmina getPashmina() {
+        return pashmina;
+    }
+
+    public void setPashmina(Pashmina pashmina) {
+        this.pashmina = pashmina;
+    }
 }

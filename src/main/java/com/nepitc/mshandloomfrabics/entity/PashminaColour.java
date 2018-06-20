@@ -37,18 +37,23 @@ public class PashminaColour implements Serializable {
     @Column(name = "COLOR")
     private String color;
     
-    @Column(name = "PASHMINA_ID")
-    private int pashminaId;
+//    @Column(name = "PASHMINA_ID")
+//    private int pashminaId;
     
-//    @JoinColumn(name = "PASHMINA_ID", referencedColumnName = "PASHMINA_ID")
-//    @ManyToOne
-//    private Pashmina pashmina;
+    @JoinColumn(name = "PASHMINA_ID", referencedColumnName = "PASHMINA_ID")
+    @ManyToOne
+    private Pashmina pashmina;
 
     public PashminaColour() {
     }
 
     public PashminaColour(int colourId) {
         this.colourId = colourId;
+    }
+
+    public PashminaColour(String color, Pashmina pashmina) {
+        this.color = color;
+        this.pashmina = pashmina;
     }
 
     public int getColourId() {
@@ -67,19 +72,19 @@ public class PashminaColour implements Serializable {
         this.color = color;
     }
 
-    public int getPashminaId() {
-        return pashminaId;
-    }
-    
-    public void setPashminaId(int pashminaId) {
-        this.pashminaId = pashminaId;
-    }
-    
-//    public Pashmina getPashmina() {
-//        return pashmina;
+//    public int getPashminaId() {
+//        return pashminaId;
 //    }
-//
-//    public void setPashmina(Pashmina pashmina) {
-//        this.pashmina = pashmina;
+//    
+//    public void setPashminaId(int pashminaId) {
+//        this.pashminaId = pashminaId;
 //    }
+    
+    public Pashmina getPashmina() {
+        return pashmina;
+    }
+
+    public void setPashmina(Pashmina pashmina) {
+        this.pashmina = pashmina;
+    }
 }
