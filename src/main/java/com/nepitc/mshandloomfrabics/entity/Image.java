@@ -8,12 +8,15 @@ package com.nepitc.mshandloomfrabics.entity;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -37,11 +40,9 @@ public class Image implements Serializable {
     @Column(name = "IMAGE_NAME")
     private String imageName;
     
-//    @Column(name = "PASHMINA_ID")
-//    private int pashminaId;
-    
     @JoinColumn(name = "PASHMINA_ID", referencedColumnName = "PASHMINA_ID")
     @ManyToOne
+    @JsonBackReference
     private Pashmina pashmina;
 
     public Image() {
@@ -72,6 +73,7 @@ public class Image implements Serializable {
         this.imageName = imageName;
     }
     
+    
     public Pashmina getPashmina() {
         return pashmina;
     }
@@ -79,14 +81,4 @@ public class Image implements Serializable {
     public void setPashmina(Pashmina pashmina) {
         this.pashmina = pashmina;
     }
-
-//    public int getPashminaId() {
-//        return pashminaId;
-//    }
-//
-//    public void setPashminaId(int pashminaId) {
-//        this.pashminaId = pashminaId;
-//    }
-
-
 }

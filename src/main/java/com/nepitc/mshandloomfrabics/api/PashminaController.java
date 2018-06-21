@@ -67,7 +67,7 @@ public class PashminaController {
     @RequestMapping(value = "/get-all-pashmina", method = RequestMethod.GET)
     public ResponseEntity<List<Pashmina>> getAllPashmina() {
         try {
-            List<Pashmina> pashmina = pashminaService.getAll();
+            List<Pashmina> pashmina = pashminaService.getAllPashmina(2, 2);
             return new ResponseEntity<>(pashmina, HttpStatus.OK);
         } catch (HibernateException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

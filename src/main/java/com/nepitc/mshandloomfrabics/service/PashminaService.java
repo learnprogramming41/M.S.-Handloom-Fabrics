@@ -8,6 +8,7 @@ package com.nepitc.mshandloomfrabics.service;
 import com.nepitc.mshandloomfrabics.daoimp.PashminaDAOImp;
 import com.nepitc.mshandloomfrabics.entity.Pashmina;
 import java.util.List;
+import org.hibernate.HibernateError;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,6 +67,14 @@ public class PashminaService implements GenericService<Pashmina> {
     public List<Pashmina> getAll() throws HibernateException {
         try {
             return pashminaDaoImp.getAll();
+        } catch (HibernateException e) {
+            throw new HibernateException(e.getMessage());
+        }
+    }
+    
+    public List<Pashmina> getAllPashmina(int pageSize, int pageNumber) throws HibernateException {
+        try {
+            return pashminaDaoImp.getAllPashmina(pageSize, pageNumber);
         } catch (HibernateException e) {
             throw new HibernateException(e.getMessage());
         }

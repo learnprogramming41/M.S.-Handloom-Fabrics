@@ -289,8 +289,15 @@ select * from tbl_user_role;
 
 delete from tbl_user_role where user_role_id = 2;
 
+----------------------------------------------------------------------------------------------------------------
+--store procedure for pagination
 
+SELECT COUNT(*) FROM TBL_PASHMINA;
 
+SELECT * FROM TBL_PASHMINA P, TBL_IMAGE I, TBL_DESCRIPTION D, TBL_PASHMINA_COLOUR PC
+WHERE P.PASHMINA_ID = I.PASHMINA_ID
+AND P.PASHMINA_ID = D.PASHMINA_ID
+AND P.PASHMINA_ID = PC.PASHMINA_ID;
 
 
 
