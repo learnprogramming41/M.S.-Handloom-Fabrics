@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.*;
 public class PashminaController {
 
     public static int pashminaId = 0;
-    
+
     @Autowired
     PashminaService pashminaService;
 
@@ -62,16 +62,27 @@ public class PashminaController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
-    
-    @Async 
-    @RequestMapping(value = "/get-all-pashmina", method = RequestMethod.GET)
-    public ResponseEntity<List<Pashmina>> getAllPashmina() {
+
+    @RequestMapping(value = "/get-all-pashmina/{pageSize}/{pageNumber}", method = RequestMethod.GET)
+    public @Async ResponseEntity<List<Pashmina>> getAllPashmina(@PathVariable int pageSize, @PathVariable int pageNumber) {
         try {
-            List<Pashmina> pashmina = pashminaService.getAllPashmina(2, 2);
+            Thread.sleep(1000);
+            List<Pashmina> pashmina = pashminaService.getAllPashmina(pageSize, pageNumber);
             return new ResponseEntity<>(pashmina, HttpStatus.OK);
+        } catch (HibernateException | InterruptedException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/get-pashmina-count", method = RequestMethod.GET)
+    public ResponseEntity<Long> getPashminaCount() {
+        Long count = pashminaService.getPashminaCount();
+        System.out.println(count);
+        try {
+            return new ResponseEntity<>(count, HttpStatus.OK);
         } catch (HibernateException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-        
+    
 }

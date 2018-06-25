@@ -15,4 +15,5 @@ import org.hibernate.HibernateException;
  */
 public interface PashminaDAO extends GenericDAO<Pashmina>{
     List<Pashmina> getAllPashmina(int pageSize, int pageNumber) throws HibernateException;
+    Long getPashminaCount() throws HibernateException;
 }

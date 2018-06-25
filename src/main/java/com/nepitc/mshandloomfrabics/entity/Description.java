@@ -8,7 +8,6 @@ package com.nepitc.mshandloomfrabics.entity;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,7 +15,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import org.codehaus.jackson.annotate.JsonBackReference;
-import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -43,7 +41,6 @@ public class Description implements Serializable {
 
     @JoinColumn(name = "PASHMINA_ID", referencedColumnName = "PASHMINA_ID")
     @ManyToOne
-    @JsonBackReference
     private Pashmina pashmina;
 
     public Description() {
@@ -74,9 +71,9 @@ public class Description implements Serializable {
         this.pashminaDescription = pashminaDescription;
     }
     
-    public Pashmina getPashmina() {
-        return pashmina;
-    }
+//    public Pashmina getPashmina() {
+//        return pashmina;
+//    }
 
     public void setPashmina(Pashmina pashmina) {
         this.pashmina = pashmina;

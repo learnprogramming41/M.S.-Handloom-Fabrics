@@ -44,13 +44,13 @@ public class PashminaService implements GenericService<Pashmina> {
     @Override
     public boolean delete(Pashmina t) throws HibernateException {
         try {
-            if(pashminaDaoImp.delete(t)) {
+            if (pashminaDaoImp.delete(t)) {
                 return true;
             }
         } catch (HibernateException e) {
             throw new HibernateException(e.getMessage());
         }
-        
+
         return false;
     }
 
@@ -71,10 +71,18 @@ public class PashminaService implements GenericService<Pashmina> {
             throw new HibernateException(e.getMessage());
         }
     }
-    
+
     public List<Pashmina> getAllPashmina(int pageSize, int pageNumber) throws HibernateException {
         try {
             return pashminaDaoImp.getAllPashmina(pageSize, pageNumber);
+        } catch (HibernateException e) {
+            throw new HibernateException(e.getMessage());
+        }
+    }
+
+    public Long getPashminaCount() throws HibernateException {
+        try {
+            return pashminaDaoImp.getPashminaCount();
         } catch (HibernateException e) {
             throw new HibernateException(e.getMessage());
         }

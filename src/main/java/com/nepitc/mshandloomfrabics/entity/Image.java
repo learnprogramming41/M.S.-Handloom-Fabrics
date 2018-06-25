@@ -42,7 +42,6 @@ public class Image implements Serializable {
     
     @JoinColumn(name = "PASHMINA_ID", referencedColumnName = "PASHMINA_ID")
     @ManyToOne
-    @JsonBackReference
     private Pashmina pashmina;
 
     public Image() {
@@ -74,9 +73,9 @@ public class Image implements Serializable {
     }
     
     
-    public Pashmina getPashmina() {
-        return pashmina;
-    }
+//    public Pashmina getPashmina() {
+//        return pashmina;
+//    }
 
     public void setPashmina(Pashmina pashmina) {
         this.pashmina = pashmina;

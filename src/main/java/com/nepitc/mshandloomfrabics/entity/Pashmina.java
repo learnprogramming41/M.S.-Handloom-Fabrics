@@ -9,8 +9,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,7 +22,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -69,18 +66,12 @@ public class Pashmina implements Serializable {
     private Character enabled;
 
     @OneToMany(mappedBy = "colourId", fetch = FetchType.EAGER)
-    @Fetch(value = FetchMode.SUBSELECT)
-    @JsonManagedReference
     private Set<PashminaColour> pashminaColor  = new HashSet<PashminaColour>();
 
     @OneToMany(mappedBy = "imageId", fetch = FetchType.EAGER)
-    @Fetch(value = FetchMode.SUBSELECT)
-    @JsonManagedReference
     private Set<Image> images  = new HashSet<Image>();
 
     @OneToMany(mappedBy = "descriptionId", fetch = FetchType.EAGER)
-    @Fetch(value = FetchMode.SUBSELECT)
-    @JsonManagedReference
     private Set<Description> descriptions  = new HashSet<Description>();
 
     public Pashmina() {
