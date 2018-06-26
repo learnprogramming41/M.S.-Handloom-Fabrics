@@ -85,4 +85,18 @@ public class PashminaController {
         }
     }
     
+    @RequestMapping(value = "/delete-pashmina", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> deletePashmina(@RequestParam("pashminaId") int pashminaId) {
+        if(pashminaId != 0) {
+            try {
+                pashminaService.delete(new Pashmina(pashminaId));
+                return new ResponseEntity<>(HttpStatus.OK);
+            } catch (HibernateException e) {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+    
 }

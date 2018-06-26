@@ -160,6 +160,9 @@ CREATE TABLE TBL_DESCRIPTION(
     CONSTRAINT fk_pashmina_id FOREIGN KEY(pashmina_id) REFERENCES TBL_PASHMINA(pashmina_id)
 );
 
+ALTER TABLE TBL_DESCRIPTION DROP CONSTRAINT fk_pashmina_id; 
+ALTER TABLE TBL_DESCRIPTION ADD CONSTRAINT fk_pashmina_id FOREIGN KEY(pashmina_id) REFERENCES TBL_PASHMINA(pashmina_id) ON DELETE CASCADE;
+
 CREATE SEQUENCE sq_description_id START WITH 1;
 
 CREATE OR REPLACE TRIGGER tr_description_id
@@ -210,6 +213,9 @@ CREATE TABLE TBL_PASHMINA_COLOUR(
 );
 
 CREATE SEQUENCE sq_colour_id START WITH 1;
+
+ALTER TABLE TBL_PASHMINA_COLOUR DROP CONSTRAINT fk_colour_pashmina_id;
+ALTER TABLE TBL_PASHMINA_COLOUR ADD CONSTRAINT fk_colour_pashmina_id FOREIGN KEY(pashmina_id) REFERENCES TBL_PASHMINA(pashmina_id) ON DELETE CASCADE;
 
 
 CREATE OR REPLACE TRIGGER tr_colour_id
@@ -287,7 +293,7 @@ desc tbl_pashmina;
 select * from tbl_user;
 select * from tbl_user_role;
 
-delete from tbl_user_role where user_role_id = 2;
+delete from tbl_user_ where user_role_id = 2;
 
 ----------------------------------------------------------------------------------------------------------------
 --store procedure for pagination
@@ -299,7 +305,11 @@ WHERE P.PASHMINA_ID = I.PASHMINA_ID
 AND P.PASHMINA_ID = D.PASHMINA_ID
 AND P.PASHMINA_ID = PC.PASHMINA_ID;
 
-
+----------------------------------------------------------------------------------------------------------------------
+--adding on delete cascade on tbl_image table
+ALTER TABLE TBL_IMAGE DROP CONSTRAINT FK_IMAGE_PASHMINA_ID;
+ALTER TABLE TBL_IMAGE ADD CONSTRAINT FK_IMAGE_PASHMINA_ID FOREIGN KEY(pashmina_id) REFERENCES TBL_PASHMINA(pashmina_id) ON DELETE CASCADE;
+COMMIT;
 
 
 
