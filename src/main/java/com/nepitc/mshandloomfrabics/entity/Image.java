@@ -73,7 +73,6 @@ public class Image implements Serializable {
         this.imageName = imageName;
     }
     
-    
 //    public Pashmina getPashmina() {
 //        return pashmina;
 //    }

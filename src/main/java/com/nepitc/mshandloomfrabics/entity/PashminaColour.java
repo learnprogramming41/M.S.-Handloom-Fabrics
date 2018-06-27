@@ -6,18 +6,14 @@
 package com.nepitc.mshandloomfrabics.entity;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import org.codehaus.jackson.annotate.JsonBackReference;
-import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -72,7 +68,6 @@ public class PashminaColour implements Serializable {
     public void setColor(String color) {
         this.color = color;
     }
-
     
 //    public Pashmina getPashmina() {
 //        return pashmina;

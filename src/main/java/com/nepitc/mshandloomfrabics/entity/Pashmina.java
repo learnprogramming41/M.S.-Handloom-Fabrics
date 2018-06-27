@@ -8,7 +8,9 @@ package com.nepitc.mshandloomfrabics.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,9 +24,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import org.codehaus.jackson.annotate.JsonManagedReference;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -65,14 +64,14 @@ public class Pashmina implements Serializable {
     @Column(name = "ENABLED", insertable = false)
     private Character enabled;
 
-    @OneToMany(mappedBy = "colourId", fetch = FetchType.EAGER)
-    private Set<PashminaColour> pashminaColor  = new HashSet<PashminaColour>();
-
-    @OneToMany(mappedBy = "imageId", fetch = FetchType.EAGER)
-    private Set<Image> images  = new HashSet<Image>();
-
-    @OneToMany(mappedBy = "descriptionId", fetch = FetchType.EAGER)
-    private Set<Description> descriptions  = new HashSet<Description>();
+    @OneToMany(mappedBy = "pashmina", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<PashminaColour> pashminaColor;
+    
+    @OneToMany(mappedBy = "pashmina", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Image> images;
+    
+    @OneToMany(mappedBy = "pashmina", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Description> descriptions;
 
     public Pashmina() {
     }
@@ -137,31 +136,29 @@ public class Pashmina implements Serializable {
         this.category = category;
     }
 
-    @JsonManagedReference
-    public Set<PashminaColour> getPashminaColor() {
+    public List<PashminaColour> getPashminaColor() {
         return pashminaColor;
     }
 
-    public void setPashminaColor(Set<PashminaColour> pashminaColor) {
+    public void setPashminaColor(List<PashminaColour> pashminaColor) {
         this.pashminaColor = pashminaColor;
     }
 
-    @JsonManagedReference
-    public Set<Image> getImages() {
+    public List<Image> getImages() {
         return images;
     }
 
-    public void setImages(Set<Image> images) {
+    public void setImages(List<Image> images) {
         this.images = images;
     }
 
-    @JsonManagedReference
-    public Set<Description> getDescriptions() {
+    public List<Description> getDescriptions() {
         return descriptions;
     }
 
-    public void setDescriptions(Set<Description> descriptions) {
+    public void setDescriptions(List<Description> descriptions) {
         this.descriptions = descriptions;
     }
+    
 
 }

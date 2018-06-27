@@ -11,8 +11,6 @@ import com.nepitc.mshandloomfrabics.service.*;
 import com.nepitc.mshandloomfrabics.service.PashminaService;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
