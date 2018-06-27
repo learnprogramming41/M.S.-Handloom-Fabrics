@@ -41,9 +41,9 @@ public class ImageController {
                 try {
                     File file = new File(f.getOriginalFilename());
                     f.transferTo(file);
-                    String imageUrl = CloudinaryConfig.uploadImage(file);
+                    String imageUrl[] = CloudinaryConfig.uploadImage(file).split(",");
                     Pashmina pashmina = new Pashmina(PashminaController.pashminaId);
-                    imageService.insert(new Image(imageUrl, pashmina));
+                    imageService.insert(new Image(imageUrl[0], pashmina, imageUrl[1]));
                 } catch (IOException | HibernateException e) {
                     return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
                 }

@@ -70,4 +70,12 @@ public class ImageService implements GenericService<Image>{
         }
     }
     
+    public List<String> deleteImageFromPashminaId(int pashminaId) throws HibernateException{
+        try {
+            return imageDaoImp.deleteImageFromPashminaId(pashminaId);
+        } catch (HibernateException e) {
+            throw new HibernateException(e.getMessage());
+        }
+    }
+    
 }

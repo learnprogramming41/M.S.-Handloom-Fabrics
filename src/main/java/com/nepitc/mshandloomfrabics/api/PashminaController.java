@@ -5,10 +5,14 @@
  */
 package com.nepitc.mshandloomfrabics.api;
 
+import com.nepitc.mshandloomfrabics.common.CloudinaryConfig;
 import com.nepitc.mshandloomfrabics.entity.*;
 import com.nepitc.mshandloomfrabics.service.*;
 import com.nepitc.mshandloomfrabics.service.PashminaService;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,10 +39,12 @@ public class PashminaController {
 
     @Autowired
     DescriptionService descriptionService;
+    
+    @Autowired
+    ImageService imageService;
 
-    @Async
     @RequestMapping(value = "/add-pashmina", method = RequestMethod.POST)
-    public ResponseEntity<String> insertPashmina(@RequestBody Pashmina pashmina) {
+    public @Async ResponseEntity<String> insertPashmina(@RequestBody Pashmina pashmina) {
         if (pashmina != null) {
             try {
                 pashminaService.insert(pashmina);
@@ -75,7 +81,7 @@ public class PashminaController {
     }
 
     @RequestMapping(value = "/get-pashmina-count", method = RequestMethod.GET)
-    public ResponseEntity<Long> getPashminaCount() {
+    public @Async ResponseEntity<Long> getPashminaCount() {
         Long count = pashminaService.getPashminaCount();
         System.out.println(count);
         try {
@@ -86,12 +92,16 @@ public class PashminaController {
     }
     
     @RequestMapping(value = "/delete-pashmina", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> deletePashmina(@RequestParam("pashminaId") int pashminaId) {
+    public @Async ResponseEntity<Void> deletePashmina(@RequestParam("pashminaId") int pashminaId) {
         if(pashminaId != 0) {
             try {
+                List<String> list = imageService.deleteImageFromPashminaId(pashminaId);
+                for(String s : list) {
+                    CloudinaryConfig.deleteImage(s);
+                }
                 pashminaService.delete(new Pashmina(pashminaId));
                 return new ResponseEntity<>(HttpStatus.OK);
-            } catch (HibernateException e) {
+            } catch (HibernateException | IOException e) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
         } else {
