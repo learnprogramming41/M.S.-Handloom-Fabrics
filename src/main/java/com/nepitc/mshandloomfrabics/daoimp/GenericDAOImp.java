@@ -46,7 +46,7 @@ public abstract class GenericDAOImp<T> implements GenericDAO<T>{
             trans.rollback();
             throw new HibernateException(ex);
         } finally {
-            session.close();   
+            session.close();
         }
     }
 

@@ -6,7 +6,7 @@
 package com.nepitc.mshandloomfrabics.service;
 
 import com.nepitc.mshandloomfrabics.daoimp.PashminaDAOImp;
-import com.nepitc.mshandloomfrabics.entity.PashminaModel;
+import com.nepitc.mshandloomfrabics.entity.Pashmina;
 import java.util.List;
 import org.hibernate.HibernateError;
 import org.hibernate.HibernateException;
@@ -18,13 +18,13 @@ import org.springframework.stereotype.Service;
  * @author Nishan Dhungana
  */
 @Service(value = "pashminaService")
-public class PashminaService implements GenericService<PashminaModel> {
+public class PashminaService implements GenericService<Pashmina> {
 
     @Autowired
     private PashminaDAOImp pashminaDaoImp;
 
     @Override
-    public void insert(PashminaModel t) throws HibernateException {
+    public void insert(Pashmina t) throws HibernateException {
         try {
             pashminaDaoImp.insert(t);
         } catch (HibernateException e) {
@@ -33,7 +33,7 @@ public class PashminaService implements GenericService<PashminaModel> {
     }
 
     @Override
-    public void update(PashminaModel t) throws HibernateException {
+    public void update(Pashmina t) throws HibernateException {
         try {
             pashminaDaoImp.update(t);
         } catch (HibernateException e) {
@@ -42,7 +42,7 @@ public class PashminaService implements GenericService<PashminaModel> {
     }
 
     @Override
-    public boolean delete(PashminaModel t) throws HibernateException {
+    public boolean delete(Pashmina t) throws HibernateException {
         try {
             if (pashminaDaoImp.delete(t)) {
                 return true;
@@ -55,7 +55,7 @@ public class PashminaService implements GenericService<PashminaModel> {
     }
 
     @Override
-    public PashminaModel getById(int id) throws HibernateException {
+    public Pashmina getById(int id) throws HibernateException {
         try {
             return pashminaDaoImp.getById(id);
         } catch (HibernateException e) {
@@ -64,7 +64,7 @@ public class PashminaService implements GenericService<PashminaModel> {
     }
 
     @Override
-    public List<PashminaModel> getAll() throws HibernateException {
+    public List<Pashmina> getAll() throws HibernateException {
         try {
             return pashminaDaoImp.getAll();
         } catch (HibernateException e) {
@@ -72,7 +72,7 @@ public class PashminaService implements GenericService<PashminaModel> {
         }
     }
 
-    public List<PashminaModel> getAllPashmina(int pageSize, int pageNumber) throws HibernateException {
+    public List<Pashmina> getAllPashmina(int pageSize, int pageNumber) throws HibernateException {
         try {
             return pashminaDaoImp.getAllPashmina(pageSize, pageNumber);
         } catch (HibernateException e) {

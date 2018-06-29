@@ -10,12 +10,15 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -28,15 +31,21 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "TBL_PASHMINA", catalog = "", schema = "NISHAN")
-
-public class PashminaModel implements Serializable {
+@NamedQueries({
+    @NamedQuery(name = "Pashmina.findAll", query = "SELECT p FROM Pashmina p")
+    , @NamedQuery(name = "Pashmina.findByPashminaId", query = "SELECT p FROM Pashmina p WHERE p.pashminaId = :pashminaId")
+    , @NamedQuery(name = "Pashmina.findByPashminaName", query = "SELECT p FROM Pashmina p WHERE p.pashminaName = :pashminaName")
+    , @NamedQuery(name = "Pashmina.findByPrice", query = "SELECT p FROM Pashmina p WHERE p.price = :price")
+    , @NamedQuery(name = "Pashmina.findByAddedAt", query = "SELECT p FROM Pashmina p WHERE p.addedAt = :addedAt")
+    , @NamedQuery(name = "Pashmina.findByEnabled", query = "SELECT p FROM Pashmina p WHERE p.enabled = :enabled")})
+public class Pashmina implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "sq_pashmina_id")
     @SequenceGenerator(name = "sq_pashmina_id", sequenceName = "sq_pashmina_id")
-    @Column(name = "PASHMINA_ID", unique = true, nullable = false)
+    @Column(name = "PASHMINA_ID")
     private int pashminaId;
 
     @Column(name = "PASHMINA_NAME")
@@ -49,31 +58,33 @@ public class PashminaModel implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date addedAt;
 
-    public PashminaModel() {
-    }
-
     @Column(name = "CATEGORY")
     private String category;
 
     @Column(name = "ENABLED", insertable = false)
     private Character enabled;
 
-    @OneToMany(mappedBy = "pashmina", fetch = FetchType.EAGER)
-    private Set<PashminaColourModel> pashminaColor = new HashSet<>();
+    @OneToMany(mappedBy = "pashmina", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<PashminaColour> pashminaColor;
     
-    @OneToMany(mappedBy = "pashmina", fetch = FetchType.EAGER)
-    private Set<ImageModel> images = new HashSet<>();
+    @OneToMany(mappedBy = "pashmina", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Image> images;
     
-    @OneToMany(mappedBy = "pashmina", fetch = FetchType.EAGER)
-    private Set<DescriptionModel> descriptions = new HashSet<>();
+    @OneToMany(mappedBy = "pashmina", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Description> descriptions;
 
-    public PashminaModel(int pashminaId) {
+    public Pashmina() {
+    }
+
+    public Pashmina(int pashminaId) {
         this.pashminaId = pashminaId;
     }
 
-    public PashminaModel(String pashminaName, double price, String category) {
-        this.pashminaName = pashminaName;
+    public Pashmina(int pashminaId, double price, Date addedAt, Character enabled, String category) {
+        this.pashminaId = pashminaId;
         this.price = price;
+        this.addedAt = addedAt;
+        this.enabled = enabled;
         this.category = category;
     }
 
@@ -125,27 +136,27 @@ public class PashminaModel implements Serializable {
         this.category = category;
     }
 
-    public Set<PashminaColourModel> getPashminaColor() {
+    public List<PashminaColour> getPashminaColor() {
         return pashminaColor;
     }
 
-    public void setPashminaColor(Set<PashminaColourModel> pashminaColor) {
+    public void setPashminaColor(List<PashminaColour> pashminaColor) {
         this.pashminaColor = pashminaColor;
     }
 
-    public Set<ImageModel> getImages() {
+    public List<Image> getImages() {
         return images;
     }
 
-    public void setImages(Set<ImageModel> images) {
+    public void setImages(List<Image> images) {
         this.images = images;
     }
 
-    public Set<DescriptionModel> getDescriptions() {
+    public List<Description> getDescriptions() {
         return descriptions;
     }
 
-    public void setDescriptions(Set<DescriptionModel> descriptions) {
+    public void setDescriptions(List<Description> descriptions) {
         this.descriptions = descriptions;
     }
     

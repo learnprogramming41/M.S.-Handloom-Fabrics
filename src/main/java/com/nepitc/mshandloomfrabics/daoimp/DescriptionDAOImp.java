@@ -6,7 +6,7 @@
 package com.nepitc.mshandloomfrabics.daoimp;
 
 import com.nepitc.mshandloomfrabics.dao.DescriptionDAO;
-import com.nepitc.mshandloomfrabics.entity.DescriptionModel;
+import com.nepitc.mshandloomfrabics.entity.Description;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,6 +14,6 @@ import org.springframework.stereotype.Repository;
  * @author Nishan Dhungana
  */
 @Repository(value = "descriptionDAOImp")
-public class DescriptionDAOImp extends GenericDAOImp<DescriptionModel> implements DescriptionDAO {
+public class DescriptionDAOImp extends GenericDAOImp<Description> implements DescriptionDAO {
     
 }

@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -20,7 +22,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TBL_DESCRIPTION", catalog = "", schema = "NISHAN")
 
-public class DescriptionModel implements Serializable {
+@NamedQueries({
+    @NamedQuery(name = "Description.findAll", query = "SELECT d FROM Description d")
+    , @NamedQuery(name = "Description.findByDescriptionId", query = "SELECT d FROM Description d WHERE d.descriptionId = :descriptionId")
+    , @NamedQuery(name = "Description.findByPashminaDescription", query = "SELECT d FROM Description d WHERE d.pashminaDescription = :pashminaDescription")})
+public class Description implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -34,16 +40,16 @@ public class DescriptionModel implements Serializable {
 
     @JoinColumn(name = "PASHMINA_ID", referencedColumnName = "PASHMINA_ID")
     @ManyToOne
-    private PashminaModel pashmina;
+    private Pashmina pashmina;
 
-    public DescriptionModel() {
+    public Description() {
     }
 
-    public DescriptionModel(int descriptionId) {
+    public Description(int descriptionId) {
         this.descriptionId = descriptionId;
     }
 
-    public DescriptionModel(String pashminaDescription, PashminaModel pashmina) {
+    public Description(String pashminaDescription, Pashmina pashmina) {
         this.pashminaDescription = pashminaDescription;
         this.pashmina = pashmina;
     }
@@ -68,7 +74,7 @@ public class DescriptionModel implements Serializable {
 //        return pashmina;
 //    }
 
-    public void setPashmina(PashminaModel pashmina) {
+    public void setPashmina(Pashmina pashmina) {
         this.pashmina = pashmina;
     }
 }

@@ -6,7 +6,7 @@
 package com.nepitc.mshandloomfrabics.service;
 
 import com.nepitc.mshandloomfrabics.daoimp.PashminaColorDAOImp;
-import com.nepitc.mshandloomfrabics.entity.PashminaColourModel;
+import com.nepitc.mshandloomfrabics.entity.PashminaColour;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +17,13 @@ import org.springframework.stereotype.Service;
  * @author Nishan Dhungana
  */
 @Service(value = "pashminaColorService")
-public class PashminaColorService implements GenericService<PashminaColourModel>{
+public class PashminaColorService implements GenericService<PashminaColour>{
 
     @Autowired
     PashminaColorDAOImp pashminaColorDaoImp;
     
     @Override
-    public void insert(PashminaColourModel t) throws HibernateException {
+    public void insert(PashminaColour t) throws HibernateException {
         try {
             pashminaColorDaoImp.insert(t);
         } catch (HibernateException e) {
@@ -32,7 +32,7 @@ public class PashminaColorService implements GenericService<PashminaColourModel>
     }
 
     @Override
-    public void update(PashminaColourModel t) throws HibernateException {
+    public void update(PashminaColour t) throws HibernateException {
         try {
             pashminaColorDaoImp.update(t);
         } catch (HibernateException e) {
@@ -41,7 +41,7 @@ public class PashminaColorService implements GenericService<PashminaColourModel>
     }
 
     @Override
-    public boolean delete(PashminaColourModel t) throws HibernateException {
+    public boolean delete(PashminaColour t) throws HibernateException {
         try {
             if(pashminaColorDaoImp.delete(t)) {
                 return true;
@@ -54,7 +54,7 @@ public class PashminaColorService implements GenericService<PashminaColourModel>
     }
 
     @Override
-    public PashminaColourModel getById(int id) throws HibernateException {
+    public PashminaColour getById(int id) throws HibernateException {
         try {
             return pashminaColorDaoImp.getById(id);
         } catch (HibernateException e) {
@@ -63,7 +63,7 @@ public class PashminaColorService implements GenericService<PashminaColourModel>
     }
 
     @Override
-    public List<PashminaColourModel> getAll() throws HibernateException {
+    public List<PashminaColour> getAll() throws HibernateException {
         try {
             return pashminaColorDaoImp.getAll();
         } catch (HibernateException e) {

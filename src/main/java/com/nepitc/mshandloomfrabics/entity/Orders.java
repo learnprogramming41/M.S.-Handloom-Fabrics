@@ -27,6 +27,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "TBL_ORDER", catalog = "", schema = "NISHAN")
 
+@NamedQueries({
+    @NamedQuery(name = "Orders.findAll", query = "SELECT o FROM Orders o")
+    , @NamedQuery(name = "Orders.findByOrderId", query = "SELECT o FROM Orders o WHERE o.orderId = :orderId")
+    , @NamedQuery(name = "Orders.findByOrderDate", query = "SELECT o FROM Orders o WHERE o.orderDate = :orderDate")
+    , @NamedQuery(name = "Orders.findBySoldOutStatus", query = "SELECT o FROM Orders o WHERE o.soldOutStatus = :soldOutStatus")
+    , @NamedQuery(name = "Orders.findByShippedDate", query = "SELECT o FROM Orders o WHERE o.shippedDate = :shippedDate")
+    , @NamedQuery(name = "Orders.findByQuantity", query = "SELECT o FROM Orders o WHERE o.quantity = :quantity")})
 public class Orders implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -50,7 +57,7 @@ public class Orders implements Serializable {
     private BigInteger quantity;
     @JoinColumn(name = "PASHMINA_ID", referencedColumnName = "PASHMINA_ID")
     @ManyToOne
-    private PashminaModel pashminaId;
+    private Pashmina pashminaId;
     @JoinColumn(name = "SHIPPING_ADDRESS_ID", referencedColumnName = "SHIPPING_ADDRESS_ID")
     @ManyToOne
     private ShippingAddress shippingAddressId;
@@ -112,11 +119,11 @@ public class Orders implements Serializable {
         this.quantity = quantity;
     }
 
-    public PashminaModel getPashminaId() {
+    public Pashmina getPashminaId() {
         return pashminaId;
     }
 
-    public void setPashminaId(PashminaModel pashminaId) {
+    public void setPashminaId(Pashmina pashminaId) {
         this.pashminaId = pashminaId;
     }
 

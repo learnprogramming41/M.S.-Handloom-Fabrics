@@ -5,7 +5,7 @@
  */
 package com.nepitc.mshandloomfrabics.dao;
 
-import com.nepitc.mshandloomfrabics.entity.ImageModel;
+import com.nepitc.mshandloomfrabics.entity.Image;
 import java.util.List;
 import org.hibernate.HibernateException;
 
@@ -13,6 +13,6 @@ import org.hibernate.HibernateException;
  *
  * @author Nishan Dhungana
  */
-public interface ImageDAO extends GenericDAO<ImageModel>{
+public interface ImageDAO extends GenericDAO<Image>{
     List<String> deleteImageFromPashminaId(int pashminaId) throws HibernateException;
 }
