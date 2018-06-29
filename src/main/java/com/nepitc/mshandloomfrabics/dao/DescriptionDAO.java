@@ -5,12 +5,12 @@
  */
 package com.nepitc.mshandloomfrabics.dao;
 
-import com.nepitc.mshandloomfrabics.entity.Description;
+import com.nepitc.mshandloomfrabics.entity.DescriptionModel;
 
 /**
  *
  * @author Nishan Dhungana
  */
-public interface DescriptionDAO extends GenericDAO<Description>{
+public interface DescriptionDAO extends GenericDAO<DescriptionModel>{
     
 }

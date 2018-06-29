@@ -9,8 +9,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -20,11 +18,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TBL_USER_ROLE")
 
-@NamedQueries({
-    @NamedQuery(name = "UserRole.findAll", query = "SELECT u FROM UserRole u")
-    , @NamedQuery(name = "UserRole.findByUserRoleId", query = "SELECT u FROM UserRole u WHERE u.userRoleId = :userRoleId")
-    , @NamedQuery(name = "UserRole.findByUsername", query = "SELECT u FROM UserRole u WHERE u.username = :username")
-    , @NamedQuery(name = "UserRole.findByUserRole", query = "SELECT u FROM UserRole u WHERE u.userRole = :userRole")})
 public class UserRole implements Serializable {
 
     private static final long serialVersionUID = 1L;

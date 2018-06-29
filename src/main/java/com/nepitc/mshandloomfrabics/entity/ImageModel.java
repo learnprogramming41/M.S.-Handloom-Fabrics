@@ -11,8 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -21,11 +19,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "TBL_IMAGE", catalog = "", schema = "NISHAN")
-@NamedQueries({
-    @NamedQuery(name = "Image.findAll", query = "SELECT i FROM Image i")
-    , @NamedQuery(name = "Image.findByImageId", query = "SELECT i FROM Image i WHERE i.imageId = :imageId")
-    , @NamedQuery(name = "Image.findByImageName", query = "SELECT i FROM Image i WHERE i.imageName = :imageName")})
-public class Image implements Serializable {
+public class ImageModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -39,19 +33,19 @@ public class Image implements Serializable {
     
     @JoinColumn(name = "PASHMINA_ID", referencedColumnName = "PASHMINA_ID")
     @ManyToOne
-    private Pashmina pashmina;
+    private PashminaModel pashmina;
     
     @Column(name = "PUBLIC_ID")
     private String publicId;
 
-    public Image() {
+    public ImageModel() {
     }
 
-    public Image(int imageId) {
+    public ImageModel(int imageId) {
         this.imageId = imageId;
     }
 
-    public Image(String imageName, Pashmina pashmina, String publicId) {
+    public ImageModel(String imageName, PashminaModel pashmina, String publicId) {
         this.imageName = imageName;
         this.pashmina = pashmina;
         this.publicId = publicId;
@@ -77,7 +71,7 @@ public class Image implements Serializable {
 //        return pashmina;
 //    }
 
-    public void setPashmina(Pashmina pashmina) {
+    public void setPashmina(PashminaModel pashmina) {
         this.pashmina = pashmina;
     }
 

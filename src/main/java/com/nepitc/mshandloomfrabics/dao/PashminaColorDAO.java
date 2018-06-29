@@ -5,12 +5,12 @@
  */
 package com.nepitc.mshandloomfrabics.dao;
 
-import com.nepitc.mshandloomfrabics.entity.PashminaColour;
+import com.nepitc.mshandloomfrabics.entity.PashminaColourModel;
 
 /**
  *
  * @author Nishan Dhungana
  */
-public interface PashminaColorDAO extends GenericDAO<PashminaColour> {
+public interface PashminaColorDAO extends GenericDAO<PashminaColourModel> {
     
 }

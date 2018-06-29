@@ -42,19 +42,19 @@ public class PashminaController {
     ImageService imageService;
 
     @RequestMapping(value = "/add-pashmina", method = RequestMethod.POST)
-    public @Async ResponseEntity<String> insertPashmina(@RequestBody Pashmina pashmina) {
+    public @Async ResponseEntity<String> insertPashmina(@RequestBody PashminaModel pashmina) {
         if (pashmina != null) {
             try {
                 pashminaService.insert(pashmina);
 
                 pashminaId = pashmina.getPashminaId();
 
-                for (PashminaColour pash : pashmina.getPashminaColor()) {
-                    pashminaColorService.insert(new PashminaColour(pash.getColor(), new Pashmina(pashminaId)));
+                for (PashminaColourModel pash : pashmina.getPashminaColor()) {
+                    pashminaColorService.insert(new PashminaColourModel(pash.getColor(), new PashminaModel(pashminaId)));
                 }
 
-                for (Description desc : pashmina.getDescriptions()) {
-                    descriptionService.insert(new Description(desc.getPashminaDescription(), new Pashmina(pashminaId)));
+                for (DescriptionModel desc : pashmina.getDescriptions()) {
+                    descriptionService.insert(new DescriptionModel(desc.getPashminaDescription(), new PashminaModel(pashminaId)));
                 }
 
                 return new ResponseEntity<>(HttpStatus.OK);
@@ -68,10 +68,10 @@ public class PashminaController {
     }
 
     @RequestMapping(value = "/get-all-pashmina/{pageSize}/{pageNumber}", method = RequestMethod.GET)
-    public @Async ResponseEntity<List<Pashmina>> getAllPashmina(@PathVariable int pageSize, @PathVariable int pageNumber) {
+    public @Async ResponseEntity<List<PashminaModel>> getAllPashmina(@PathVariable int pageSize, @PathVariable int pageNumber) {
         try {
             Thread.sleep(1000);
-            List<Pashmina> pashmina = pashminaService.getAllPashmina(pageSize, pageNumber);
+            List<PashminaModel> pashmina = pashminaService.getAllPashmina(pageSize, pageNumber);
             return new ResponseEntity<>(pashmina, HttpStatus.OK);
         } catch (HibernateException | InterruptedException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -97,7 +97,7 @@ public class PashminaController {
                 for(String s : list) {
                     CloudinaryConfig.deleteImage(s);
                 }
-                pashminaService.delete(new Pashmina(pashminaId));
+                pashminaService.delete(new PashminaModel(pashminaId));
                 return new ResponseEntity<>(HttpStatus.OK);
             } catch (HibernateException | IOException e) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
