@@ -6,8 +6,7 @@
 package com.nepitc.mshandloomfrabics.daoimp;
 
 import com.nepitc.mshandloomfrabics.dao.ImageDAO;
-import com.nepitc.mshandloomfrabics.entity.Image;
-import java.util.ArrayList;
+import com.nepitc.mshandloomfrabics.entity.ImageModel;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -18,14 +17,14 @@ import org.springframework.stereotype.Repository;
  * @author Nishan Dhungana
  */
 @Repository(value = "imageDaoImp")
-public class ImageDAOImp extends GenericDAOImp<Image> implements ImageDAO {
+public class ImageDAOImp extends GenericDAOImp<ImageModel> implements ImageDAO {
 
     @Override
     public List<String> deleteImageFromPashminaId(int pashminaId) throws HibernateException {
         session = sessionFactory.openSession();
 
         try {
-            final String hql = "SELECT I.publicId FROM Image I WHERE I.pashmina.pashminaId = :pashminaId";
+            final String hql = "SELECT I.publicId FROM ImageModel I WHERE I.pashmina.pashminaId = :pashminaId";
             Query query = session.createQuery(hql);
             query.setParameter("pashminaId", pashminaId);
 

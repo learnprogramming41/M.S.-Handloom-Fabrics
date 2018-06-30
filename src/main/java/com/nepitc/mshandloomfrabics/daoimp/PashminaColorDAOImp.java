@@ -5,7 +5,7 @@
  */
 package com.nepitc.mshandloomfrabics.daoimp;
  
-import com.nepitc.mshandloomfrabics.entity.PashminaColour;
+import com.nepitc.mshandloomfrabics.entity.PashminaColourModel;
 import org.springframework.stereotype.Repository;
 import com.nepitc.mshandloomfrabics.dao.PashminaColorDAO;
 
@@ -14,6 +14,6 @@ import com.nepitc.mshandloomfrabics.dao.PashminaColorDAO;
  * @author Nishan Dhungana
  */
 @Repository(value = "pashminaColorDaoImp")
-public class PashminaColorDAOImp extends GenericDAOImp<PashminaColour> implements PashminaColorDAO{
+public class PashminaColorDAOImp extends GenericDAOImp<PashminaColourModel> implements PashminaColorDAO{
     
 }

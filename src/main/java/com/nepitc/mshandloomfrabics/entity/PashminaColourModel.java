@@ -11,8 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -21,12 +19,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "TBL_PASHMINA_COLOUR", catalog = "", schema = "NISHAN")
-
-@NamedQueries({
-    @NamedQuery(name = "PashminaColour.findAll", query = "SELECT p FROM PashminaColour p")
-    , @NamedQuery(name = "PashminaColour.findByColourId", query = "SELECT p FROM PashminaColour p WHERE p.colourId = :colourId")
-    , @NamedQuery(name = "PashminaColour.findByColor", query = "SELECT p FROM PashminaColour p WHERE p.color = :color")})
-public class PashminaColour implements Serializable {
+public class PashminaColourModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -39,16 +32,16 @@ public class PashminaColour implements Serializable {
     
     @JoinColumn(name = "PASHMINA_ID", referencedColumnName = "PASHMINA_ID")
     @ManyToOne
-    private Pashmina pashmina;
+    private PashminaModel pashmina;
 
-    public PashminaColour() {
+    public PashminaColourModel() {
     }
 
-    public PashminaColour(int colourId) {
+    public PashminaColourModel(int colourId) {
         this.colourId = colourId;
     }
 
-    public PashminaColour(String color, Pashmina pashmina) {
+    public PashminaColourModel(String color, PashminaModel pashmina) {
         this.color = color;
         this.pashmina = pashmina;
     }
@@ -73,7 +66,7 @@ public class PashminaColour implements Serializable {
 //        return pashmina;
 //    }
 
-    public void setPashmina(Pashmina pashmina) {
+    public void setPashmina(PashminaModel pashmina) {
         this.pashmina = pashmina;
     }
 }

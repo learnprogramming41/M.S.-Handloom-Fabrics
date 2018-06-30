@@ -7,9 +7,7 @@ package com.nepitc.mshandloomfrabics.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,8 +15,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -31,14 +27,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "TBL_PASHMINA", catalog = "", schema = "NISHAN")
-@NamedQueries({
-    @NamedQuery(name = "Pashmina.findAll", query = "SELECT p FROM Pashmina p")
-    , @NamedQuery(name = "Pashmina.findByPashminaId", query = "SELECT p FROM Pashmina p WHERE p.pashminaId = :pashminaId")
-    , @NamedQuery(name = "Pashmina.findByPashminaName", query = "SELECT p FROM Pashmina p WHERE p.pashminaName = :pashminaName")
-    , @NamedQuery(name = "Pashmina.findByPrice", query = "SELECT p FROM Pashmina p WHERE p.price = :price")
-    , @NamedQuery(name = "Pashmina.findByAddedAt", query = "SELECT p FROM Pashmina p WHERE p.addedAt = :addedAt")
-    , @NamedQuery(name = "Pashmina.findByEnabled", query = "SELECT p FROM Pashmina p WHERE p.enabled = :enabled")})
-public class Pashmina implements Serializable {
+public class PashminaModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -64,23 +53,23 @@ public class Pashmina implements Serializable {
     @Column(name = "ENABLED", insertable = false)
     private Character enabled;
 
-    @OneToMany(mappedBy = "pashmina", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<PashminaColour> pashminaColor;
+    @OneToMany(mappedBy = "pashmina", fetch = FetchType.EAGER)
+    private List<PashminaColourModel> pashminaColor;
     
-    @OneToMany(mappedBy = "pashmina", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Image> images;
+    @OneToMany(mappedBy = "pashmina", fetch = FetchType.EAGER)
+    private List<ImageModel> images;
     
-    @OneToMany(mappedBy = "pashmina", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Description> descriptions;
+    @OneToMany(mappedBy = "pashmina", fetch = FetchType.EAGER)
+    private List<DescriptionModel> descriptions;
 
-    public Pashmina() {
+    public PashminaModel() {
     }
 
-    public Pashmina(int pashminaId) {
+    public PashminaModel(int pashminaId) {
         this.pashminaId = pashminaId;
     }
 
-    public Pashmina(int pashminaId, double price, Date addedAt, Character enabled, String category) {
+    public PashminaModel(int pashminaId, double price, Date addedAt, Character enabled, String category) {
         this.pashminaId = pashminaId;
         this.price = price;
         this.addedAt = addedAt;
@@ -136,29 +125,28 @@ public class Pashmina implements Serializable {
         this.category = category;
     }
 
-    public List<PashminaColour> getPashminaColor() {
+    public List<PashminaColourModel> getPashminaColor() {
         return pashminaColor;
     }
 
-    public void setPashminaColor(List<PashminaColour> pashminaColor) {
+    public void setPashminaColor(List<PashminaColourModel> pashminaColor) {
         this.pashminaColor = pashminaColor;
     }
 
-    public List<Image> getImages() {
+    public List<ImageModel> getImages() {
         return images;
     }
 
-    public void setImages(List<Image> images) {
+    public void setImages(List<ImageModel> images) {
         this.images = images;
     }
 
-    public List<Description> getDescriptions() {
+    public List<DescriptionModel> getDescriptions() {
         return descriptions;
     }
 
-    public void setDescriptions(List<Description> descriptions) {
+    public void setDescriptions(List<DescriptionModel> descriptions) {
         this.descriptions = descriptions;
     }
     
-
 }

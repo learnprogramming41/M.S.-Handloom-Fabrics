@@ -6,7 +6,7 @@
 package com.nepitc.mshandloomfrabics.service;
 
 import com.nepitc.mshandloomfrabics.daoimp.DescriptionDAOImp;
-import com.nepitc.mshandloomfrabics.entity.Description;
+import com.nepitc.mshandloomfrabics.entity.DescriptionModel;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +17,13 @@ import org.springframework.stereotype.Service;
  * @author Nishan Dhungana
  */
 @Service(value = "descriptionService")
-public class DescriptionService implements GenericService<Description>{
+public class DescriptionService implements GenericService<DescriptionModel>{
 
     @Autowired
     DescriptionDAOImp descriptionDaoImp;
     
     @Override
-    public void insert(Description t) throws HibernateException {
+    public void insert(DescriptionModel t) throws HibernateException {
         try {
             descriptionDaoImp.insert(t);
         } catch (HibernateException e) {
@@ -32,7 +32,7 @@ public class DescriptionService implements GenericService<Description>{
     }
 
     @Override
-    public void update(Description t) throws HibernateException {
+    public void update(DescriptionModel t) throws HibernateException {
         try {
             descriptionDaoImp.update(t);
         } catch (HibernateException e) {
@@ -41,7 +41,7 @@ public class DescriptionService implements GenericService<Description>{
     }
 
     @Override
-    public boolean delete(Description t) throws HibernateException {
+    public boolean delete(DescriptionModel t) throws HibernateException {
         try {
             if(descriptionDaoImp.delete(t)) {
                 return true;
@@ -54,7 +54,7 @@ public class DescriptionService implements GenericService<Description>{
     }
 
     @Override
-    public Description getById(int id) throws HibernateException {
+    public DescriptionModel getById(int id) throws HibernateException {
         try {
             return descriptionDaoImp.getById(id);
         } catch (HibernateException e) {
@@ -63,7 +63,7 @@ public class DescriptionService implements GenericService<Description>{
     }
 
     @Override
-    public List<Description> getAll() throws HibernateException {
+    public List<DescriptionModel> getAll() throws HibernateException {
         try {
             return descriptionDaoImp.getAll();
         } catch (HibernateException e) {

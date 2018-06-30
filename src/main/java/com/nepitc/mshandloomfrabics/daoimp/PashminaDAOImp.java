@@ -6,7 +6,7 @@
 package com.nepitc.mshandloomfrabics.daoimp;
 
 import com.nepitc.mshandloomfrabics.dao.PashminaDAO;
-import com.nepitc.mshandloomfrabics.entity.Pashmina;
+import com.nepitc.mshandloomfrabics.entity.PashminaModel;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -17,14 +17,14 @@ import org.springframework.stereotype.Repository;
  * @author Nishan Dhungana
  */
 @Repository(value = "pashminaDaoImp")
-public class PashminaDAOImp extends GenericDAOImp<Pashmina> implements PashminaDAO {
+public class PashminaDAOImp extends GenericDAOImp<PashminaModel> implements PashminaDAO {
 
     @Override
-    public List<Pashmina> getAllPashmina(int pageSize, int pageNumber) throws HibernateException {
+    public List<PashminaModel> getAllPashmina(int pageSize, int pageNumber) throws HibernateException {
         session = sessionFactory.openSession();
 
         try {
-            String hql = "FROM Pashmina P ORDER BY P.pashminaId ASC";
+            String hql = "FROM PashminaModel P ORDER BY P.pashminaId ASC";
             Query query = session.createQuery(hql);
             query.setFirstResult(pageNumber);
             query.setMaxResults(pageSize);
@@ -40,7 +40,7 @@ public class PashminaDAOImp extends GenericDAOImp<Pashmina> implements PashminaD
     @Override
     public Long getPashminaCount() throws HibernateException {
         session = sessionFactory.openSession();
-        String hql = "SELECT COUNT(*) FROM Pashmina";
+        String hql = "SELECT COUNT(*) FROM PashminaModel";
         
         try {
             Query query = session.createQuery(hql);

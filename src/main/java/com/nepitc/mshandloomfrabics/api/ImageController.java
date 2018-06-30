@@ -6,8 +6,8 @@
 package com.nepitc.mshandloomfrabics.api;
 
 import com.nepitc.mshandloomfrabics.common.CloudinaryConfig;
-import com.nepitc.mshandloomfrabics.entity.Image;
-import com.nepitc.mshandloomfrabics.entity.Pashmina;
+import com.nepitc.mshandloomfrabics.entity.ImageModel;
+import com.nepitc.mshandloomfrabics.entity.PashminaModel;
 import com.nepitc.mshandloomfrabics.service.ImageService;
 import java.io.File;
 import java.io.IOException;
@@ -42,8 +42,8 @@ public class ImageController {
                     File file = new File(f.getOriginalFilename());
                     f.transferTo(file);
                     String imageUrl[] = CloudinaryConfig.uploadImage(file).split(",");
-                    Pashmina pashmina = new Pashmina(PashminaController.pashminaId);
-                    imageService.insert(new Image(imageUrl[0], pashmina, imageUrl[1]));
+                    PashminaModel pashmina = new PashminaModel(PashminaController.pashminaId);
+                    imageService.insert(new ImageModel(imageUrl[0], pashmina, imageUrl[1]));
                 } catch (IOException | HibernateException e) {
                     return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
                 }

@@ -10,8 +10,6 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,12 +19,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "TBL_SHIPPING_ADDRESS", catalog = "", schema = "NISHAN")
-
-@NamedQueries({
-    @NamedQuery(name = "ShippingAddress.findAll", query = "SELECT s FROM ShippingAddress s")
-    , @NamedQuery(name = "ShippingAddress.findByShippingAddressId", query = "SELECT s FROM ShippingAddress s WHERE s.shippingAddressId = :shippingAddressId")
-    , @NamedQuery(name = "ShippingAddress.findByAddress", query = "SELECT s FROM ShippingAddress s WHERE s.address = :address")})
-public class ShippingAddress implements Serializable {
+public class ShippingAddressModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -40,14 +33,14 @@ public class ShippingAddress implements Serializable {
     @OneToMany(mappedBy = "shippingAddressId")
     private List<Orders> ordersList;
 
-    public ShippingAddress() {
+    public ShippingAddressModel() {
     }
 
-    public ShippingAddress(int shippingAddressId) {
+    public ShippingAddressModel(int shippingAddressId) {
         this.shippingAddressId = shippingAddressId;
     }
 
-    public ShippingAddress(int shippingAddressId, String address) {
+    public ShippingAddressModel(int shippingAddressId, String address) {
         this.shippingAddressId = shippingAddressId;
         this.address = address;
     }

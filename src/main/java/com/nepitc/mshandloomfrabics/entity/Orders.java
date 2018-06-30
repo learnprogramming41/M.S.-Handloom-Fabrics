@@ -13,12 +13,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -26,14 +23,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "TBL_ORDER", catalog = "", schema = "NISHAN")
-
-@NamedQueries({
-    @NamedQuery(name = "Orders.findAll", query = "SELECT o FROM Orders o")
-    , @NamedQuery(name = "Orders.findByOrderId", query = "SELECT o FROM Orders o WHERE o.orderId = :orderId")
-    , @NamedQuery(name = "Orders.findByOrderDate", query = "SELECT o FROM Orders o WHERE o.orderDate = :orderDate")
-    , @NamedQuery(name = "Orders.findBySoldOutStatus", query = "SELECT o FROM Orders o WHERE o.soldOutStatus = :soldOutStatus")
-    , @NamedQuery(name = "Orders.findByShippedDate", query = "SELECT o FROM Orders o WHERE o.shippedDate = :shippedDate")
-    , @NamedQuery(name = "Orders.findByQuantity", query = "SELECT o FROM Orders o WHERE o.quantity = :quantity")})
 public class Orders implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -57,10 +46,10 @@ public class Orders implements Serializable {
     private BigInteger quantity;
     @JoinColumn(name = "PASHMINA_ID", referencedColumnName = "PASHMINA_ID")
     @ManyToOne
-    private Pashmina pashminaId;
+    private PashminaModel pashminaId;
     @JoinColumn(name = "SHIPPING_ADDRESS_ID", referencedColumnName = "SHIPPING_ADDRESS_ID")
     @ManyToOne
-    private ShippingAddress shippingAddressId;
+    private ShippingAddressModel shippingAddressId;
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
     @ManyToOne
     private User userId;
@@ -119,19 +108,19 @@ public class Orders implements Serializable {
         this.quantity = quantity;
     }
 
-    public Pashmina getPashminaId() {
+    public PashminaModel getPashminaId() {
         return pashminaId;
     }
 
-    public void setPashminaId(Pashmina pashminaId) {
+    public void setPashminaId(PashminaModel pashminaId) {
         this.pashminaId = pashminaId;
     }
 
-    public ShippingAddress getShippingAddressId() {
+    public ShippingAddressModel getShippingAddressId() {
         return shippingAddressId;
     }
 
-    public void setShippingAddressId(ShippingAddress shippingAddressId) {
+    public void setShippingAddressId(ShippingAddressModel shippingAddressId) {
         this.shippingAddressId = shippingAddressId;
     }
 

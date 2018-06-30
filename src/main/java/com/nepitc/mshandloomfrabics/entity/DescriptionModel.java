@@ -11,8 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -21,12 +19,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "TBL_DESCRIPTION", catalog = "", schema = "NISHAN")
-
-@NamedQueries({
-    @NamedQuery(name = "Description.findAll", query = "SELECT d FROM Description d")
-    , @NamedQuery(name = "Description.findByDescriptionId", query = "SELECT d FROM Description d WHERE d.descriptionId = :descriptionId")
-    , @NamedQuery(name = "Description.findByPashminaDescription", query = "SELECT d FROM Description d WHERE d.pashminaDescription = :pashminaDescription")})
-public class Description implements Serializable {
+public class DescriptionModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -40,16 +33,16 @@ public class Description implements Serializable {
 
     @JoinColumn(name = "PASHMINA_ID", referencedColumnName = "PASHMINA_ID")
     @ManyToOne
-    private Pashmina pashmina;
+    private PashminaModel pashmina;
 
-    public Description() {
+    public DescriptionModel() {
     }
 
-    public Description(int descriptionId) {
+    public DescriptionModel(int descriptionId) {
         this.descriptionId = descriptionId;
     }
 
-    public Description(String pashminaDescription, Pashmina pashmina) {
+    public DescriptionModel(String pashminaDescription, PashminaModel pashmina) {
         this.pashminaDescription = pashminaDescription;
         this.pashmina = pashmina;
     }
@@ -74,7 +67,7 @@ public class Description implements Serializable {
 //        return pashmina;
 //    }
 
-    public void setPashmina(Pashmina pashmina) {
+    public void setPashmina(PashminaModel pashmina) {
         this.pashmina = pashmina;
     }
 }
