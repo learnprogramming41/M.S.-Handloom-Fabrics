@@ -7,7 +7,7 @@ package com.nepitc.mshandloomfrabics.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,6 +20,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -54,13 +56,16 @@ public class PashminaModel implements Serializable {
     private Character enabled;
 
     @OneToMany(mappedBy = "pashmina", fetch = FetchType.EAGER)
-    private List<PashminaColourModel> pashminaColor;
+    @Fetch(FetchMode.SELECT)
+    private Set<PashminaColourModel> pashminaColor;
     
     @OneToMany(mappedBy = "pashmina", fetch = FetchType.EAGER)
-    private List<ImageModel> images;
+    @Fetch(FetchMode.SELECT)
+    private Set<ImageModel> images;
     
     @OneToMany(mappedBy = "pashmina", fetch = FetchType.EAGER)
-    private List<DescriptionModel> descriptions;
+    @Fetch(FetchMode.SELECT)
+    private Set<DescriptionModel> descriptions;
 
     public PashminaModel() {
     }
@@ -125,27 +130,27 @@ public class PashminaModel implements Serializable {
         this.category = category;
     }
 
-    public List<PashminaColourModel> getPashminaColor() {
+    public Set<PashminaColourModel> getPashminaColor() {
         return pashminaColor;
     }
 
-    public void setPashminaColor(List<PashminaColourModel> pashminaColor) {
+    public void setPashminaColor(Set<PashminaColourModel> pashminaColor) {
         this.pashminaColor = pashminaColor;
     }
 
-    public List<ImageModel> getImages() {
+    public Set<ImageModel> getImages() {
         return images;
     }
 
-    public void setImages(List<ImageModel> images) {
+    public void setImages(Set<ImageModel> images) {
         this.images = images;
     }
 
-    public List<DescriptionModel> getDescriptions() {
+    public Set<DescriptionModel> getDescriptions() {
         return descriptions;
     }
 
-    public void setDescriptions(List<DescriptionModel> descriptions) {
+    public void setDescriptions(Set<DescriptionModel> descriptions) {
         this.descriptions = descriptions;
     }
     

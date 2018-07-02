@@ -81,7 +81,6 @@ public class PashminaController {
     @RequestMapping(value = "/get-pashmina-count", method = RequestMethod.GET)
     public @Async ResponseEntity<Long> getPashminaCount() {
         Long count = pashminaService.getPashminaCount();
-        System.out.println(count);
         try {
             return new ResponseEntity<>(count, HttpStatus.OK);
         } catch (HibernateException e) {
@@ -107,7 +106,7 @@ public class PashminaController {
         }
     }
     
-    @RequestMapping(value = "get-pashmina-by-id/{pashminaId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/get-pashmina-by-id/{pashminaId}", method = RequestMethod.GET)
     public @Async ResponseEntity<PashminaModel> getPashminaById(@PathVariable int pashminaId) {
         try {
             return new ResponseEntity<>(pashminaService.getById(pashminaId), HttpStatus.OK);
