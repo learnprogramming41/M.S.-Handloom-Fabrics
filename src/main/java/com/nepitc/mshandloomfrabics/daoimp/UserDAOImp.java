@@ -7,7 +7,7 @@ package com.nepitc.mshandloomfrabics.daoimp;
 
 import com.nepitc.mshandloomfrabics.dao.UserDAO;
 import com.nepitc.mshandloomfrabics.entity.UserModel;
-import com.nepitc.mshandloomfrabics.entity.Login;
+import com.nepitc.mshandloomfrabics.entity.LoginModel;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
@@ -20,11 +20,11 @@ import org.springframework.stereotype.Repository;
 public class UserDAOImp extends GenericDAOImp<UserModel> implements UserDAO{
 
     @Override
-    public UserModel login(Login login, String userType) throws HibernateException {
+    public UserModel login(LoginModel login, String userType) throws HibernateException {
         session = sessionFactory.openSession();
         
         UserModel admin = null;
-        final String hql = "SELECT u FROM User u, UserRole ur WHERE u.username = ur.username AND u.username = :username AND u.password = :password AND ur.userRole = :ust";
+        final String hql = "SELECT u FROM UserModel u, UserRole ur WHERE u.username = ur.username AND u.username = :username AND u.password = :password AND ur.userRole = :ust";
         
         try {
             Query query = session.createQuery(hql);

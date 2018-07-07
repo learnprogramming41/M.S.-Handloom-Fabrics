@@ -5,6 +5,7 @@
  */
 package com.nepitc.mshandloomfrabics.api;
 
+import com.nepitc.mshandloomfrabics.entity.LoginModel;
 import com.nepitc.mshandloomfrabics.entity.PashminaModel;
 import com.nepitc.mshandloomfrabics.entity.UserModel;
 import com.nepitc.mshandloomfrabics.service.PashminaService;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -69,6 +71,27 @@ public class CommonController {
                 return new ResponseEntity(HttpStatus.CREATED);
             } catch (HibernateException e) {
                 return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+            }
+        }
+    }
+    
+    @RequestMapping(value = "/user/login", method = RequestMethod.GET)
+    public @Async
+    ResponseEntity login(@RequestParam("username") String username, @RequestParam("password") String password) {
+        LoginModel login = new LoginModel(username, password);
+        if(login.getUsername() == null || login.getPassword() == null) {
+            return new ResponseEntity("Username or password cann't be null", HttpStatus.NO_CONTENT);
+        } else {
+            try {
+                UserModel user = this.userService.login(login, "ROLE_USER");
+                
+                if(user == null) {
+                    return new ResponseEntity("Invalid username or password", HttpStatus.OK);
+                }
+                
+                return new ResponseEntity(user, HttpStatus.OK);
+            } catch (HibernateException e) {
+                return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
             }
         }
     }

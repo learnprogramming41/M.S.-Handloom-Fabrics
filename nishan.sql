@@ -79,7 +79,8 @@ BEGIN
     FROM DUAL;
 END;
 
-
+insert into tbl_user(full_name, email, username, password, USER_TYPE) values('Test', 'test', 'test', 'test', 'user');
+select * from tbl_user;
 --444444444444444444444444444444444444444444444444444444444444444444444444444444444
 CREATE TABLE TBL_SHIPPING_ADDRESS(
     shipping_address_id NUMBER,

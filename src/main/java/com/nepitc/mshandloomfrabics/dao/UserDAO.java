@@ -6,7 +6,7 @@
 package com.nepitc.mshandloomfrabics.dao;
 
 import com.nepitc.mshandloomfrabics.entity.UserModel;
-import com.nepitc.mshandloomfrabics.entity.Login;
+import com.nepitc.mshandloomfrabics.entity.LoginModel;
 import org.hibernate.HibernateException;
 
 /**
@@ -14,7 +14,7 @@ import org.hibernate.HibernateException;
  * @author Nishan Dhungana
  */
 public interface UserDAO extends GenericDAO<UserModel>{
-    UserModel login(Login login, String userType) throws Exception;
+    UserModel login(LoginModel login, String userType) throws Exception;
     boolean checkEmailAvailability(String email) throws Exception;
     String getUsername(String email) throws HibernateException;
     void changePassword(String password, String username) throws HibernateException;

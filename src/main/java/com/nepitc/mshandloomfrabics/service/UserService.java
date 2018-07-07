@@ -7,7 +7,7 @@ package com.nepitc.mshandloomfrabics.service;
 
 import com.nepitc.mshandloomfrabics.daoimp.UserDAOImp;
 import com.nepitc.mshandloomfrabics.entity.UserModel;
-import com.nepitc.mshandloomfrabics.entity.Login;
+import com.nepitc.mshandloomfrabics.entity.LoginModel;
 import com.nepitc.mshandloomfrabics.entity.UserModel;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -69,7 +69,7 @@ public class UserService implements GenericService<UserModel> {
         }
     }
     
-    public UserModel login(Login login, String userType) throws HibernateException {
+    public UserModel login(LoginModel login, String userType) throws HibernateException {
         try {
             return adminDaoImp.login(login, userType);
         } catch(HibernateException ex) {

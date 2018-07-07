@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.nepitc.mshandloomfrabics.entity.UpdatePassword;
-import org.springframework.web.bind.annotation.ModelAttribute;
 /**
  *
  * @author Nishan Dhungana
@@ -37,7 +36,7 @@ public class UserController {
         try {
             admin = adminService.getAll();
             return new ResponseEntity<>(admin, HttpStatus.OK);
-        } catch (Exception ex) {
+        } catch (HibernateException ex) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
@@ -47,7 +46,7 @@ public class UserController {
         try {
             adminService.insert(admin);
             return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e) {
+        } catch (HibernateException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
@@ -63,7 +62,7 @@ public class UserController {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
 
-        } catch (Exception ex) {
+        } catch (HibernateException ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }

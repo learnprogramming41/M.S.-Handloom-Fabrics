@@ -9,15 +9,15 @@ package com.nepitc.mshandloomfrabics.entity;
  *
  * @author Nishan Dhungana
  */
-public class Login {
+public class LoginModel {
     private String username;
     private String password;
     
-    public Login() {
+    public LoginModel() {
         
     }
     
-    public Login(String username, String password) {
+    public LoginModel(String username, String password) {
         this.username = username;
         this.password = password;
     }
