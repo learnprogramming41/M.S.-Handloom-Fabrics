@@ -5,7 +5,7 @@
  */
 package com.nepitc.mshandloomfrabics.api;
 
-import com.nepitc.mshandloomfrabics.entity.User;
+import com.nepitc.mshandloomfrabics.entity.UserModel;
 import com.nepitc.mshandloomfrabics.service.UserService;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -32,8 +32,8 @@ public class UserController {
     private UserService adminService;
 
     @RequestMapping(value = "/getAllUsers", method = RequestMethod.GET)
-    public ResponseEntity<List<User>> getAll() {
-        List<User> admin = null;
+    public ResponseEntity<List<UserModel>> getAll() {
+        List<UserModel> admin = null;
         try {
             admin = adminService.getAll();
             return new ResponseEntity<>(admin, HttpStatus.OK);
@@ -43,7 +43,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/create-user", method = RequestMethod.POST)
-    public ResponseEntity<Void> create(@RequestBody User admin) {
+    public ResponseEntity<Void> create(@RequestBody UserModel admin) {
         try {
             adminService.insert(admin);
             return new ResponseEntity<>(HttpStatus.OK);

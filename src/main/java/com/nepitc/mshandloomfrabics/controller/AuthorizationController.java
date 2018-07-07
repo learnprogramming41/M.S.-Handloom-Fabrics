@@ -5,7 +5,7 @@
  */
 package com.nepitc.mshandloomfrabics.controller;
 
-import com.nepitc.mshandloomfrabics.entity.User;
+import com.nepitc.mshandloomfrabics.entity.UserModel;
 import com.nepitc.mshandloomfrabics.entity.Login;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,14 +28,14 @@ public class AuthorizationController {
     UserService adminService;
     
     @RequestMapping(value = "admin/login", method = RequestMethod.GET)
-    public ResponseEntity<User> login(@RequestParam("username") String username, @RequestParam("password") String password) {
+    public ResponseEntity<UserModel> login(@RequestParam("username") String username, @RequestParam("password") String password) {
         Login login = new Login(username, password);
         
         if (username.isEmpty() || password.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             try {
-                User admin = adminService.login(login, "ROLE_ADMIN");
+                UserModel admin = adminService.login(login, "ROLE_ADMIN");
                 return new ResponseEntity<>(admin, HttpStatus.OK);
             } catch (Exception ex) {
                 System.out.println(ex);

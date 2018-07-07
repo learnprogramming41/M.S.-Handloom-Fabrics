@@ -6,11 +6,13 @@
 package com.nepitc.mshandloomfrabics.entity;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,24 +23,25 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "TBL_USER", catalog = "", schema = "NISHAN")
-public class User implements Serializable {
+public class UserModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
-    
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "sq_user_id")
+    @SequenceGenerator(name = "sq_user_id", sequenceName = "sq_user_id")
     @Column(name = "USER_ID")
-    private BigDecimal userId;
+    private Integer userId;
     @Column(name = "FULL_NAME")
     private String fullName;
     @Column(name = "EMAIL")
     private String email;
-    @Column(name = "CONTACT")
+    @Column(name = "CONTACT", unique = true)
     private String contact;
     @Column(name = "ADDRESS")
     private String address;
     
-    @Column(name = "USERNAME")
+    @Column(name = "USERNAME", unique = true)
     private String username;
     
     @Column(name = "PASSWORD")
@@ -54,14 +57,14 @@ public class User implements Serializable {
     @Column(name = "USER_TYPE")
     private String userType;
     
-    public User() {
+    public UserModel() {
     }
 
-    public User(BigDecimal userId) {
+    public UserModel(Integer userId) {
         this.userId = userId;
     }
 
-    public User(BigDecimal userId, String username, String password, Date createdAt, Character enabled, String userType) {
+    public UserModel(Integer userId, String username, String password, Date createdAt, Character enabled, String userType) {
         this.userId = userId;
         this.username = username;
         this.password = password;
@@ -70,11 +73,11 @@ public class User implements Serializable {
         this.userType = userType;
     }
 
-    public BigDecimal getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(BigDecimal userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

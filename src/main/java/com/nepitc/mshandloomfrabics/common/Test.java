@@ -5,10 +5,6 @@
  */
 package com.nepitc.mshandloomfrabics.common;
 
-import java.io.IOException;
-
-
-
 /**
  *
  * @author Nishan Dhungana
@@ -16,12 +12,6 @@ import java.io.IOException;
 public class Test {
 
     public static void main(String[] args) {
-        String imageUrl = "mydxdavmbhkam2mmuumj";
         
-        try {
-            CloudinaryConfig.deleteImage(imageUrl);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
     }
 }

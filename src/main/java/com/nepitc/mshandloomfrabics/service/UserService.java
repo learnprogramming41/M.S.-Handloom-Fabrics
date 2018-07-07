@@ -6,9 +6,9 @@
 package com.nepitc.mshandloomfrabics.service;
 
 import com.nepitc.mshandloomfrabics.daoimp.UserDAOImp;
-import com.nepitc.mshandloomfrabics.entity.User;
+import com.nepitc.mshandloomfrabics.entity.UserModel;
 import com.nepitc.mshandloomfrabics.entity.Login;
-import com.nepitc.mshandloomfrabics.entity.User;
+import com.nepitc.mshandloomfrabics.entity.UserModel;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +19,13 @@ import org.springframework.stereotype.Service;
  * @author Nishan Dhungana
  */
 @Service(value = "userService")
-public class UserService implements GenericService<User> {
+public class UserService implements GenericService<UserModel> {
 
     @Autowired
     private UserDAOImp adminDaoImp;
     
     @Override
-    public void insert(User t) throws HibernateException {
+    public void insert(UserModel t) throws HibernateException {
         try {
             adminDaoImp.insert(t);
         } catch(HibernateException ex) {
@@ -34,7 +34,7 @@ public class UserService implements GenericService<User> {
     }
 
     @Override
-    public void update(User t) throws HibernateException {
+    public void update(UserModel t) throws HibernateException {
         try {
             adminDaoImp.update(t);
         } catch(HibernateException ex) {
@@ -43,7 +43,7 @@ public class UserService implements GenericService<User> {
     }
 
     @Override
-    public boolean delete(User t) throws HibernateException {
+    public boolean delete(UserModel t) throws HibernateException {
         try {
             return adminDaoImp.delete(t);
         } catch(HibernateException ex) {
@@ -52,7 +52,7 @@ public class UserService implements GenericService<User> {
     }
 
     @Override
-    public User getById(int id) throws HibernateException {
+    public UserModel getById(int id) throws HibernateException {
         try {
             return adminDaoImp.getById(id);
         } catch(HibernateException ex) {
@@ -61,7 +61,7 @@ public class UserService implements GenericService<User> {
     }
 
     @Override
-    public List<User> getAll() throws HibernateException {
+    public List<UserModel> getAll() throws HibernateException {
         try {
             return adminDaoImp.getAll();
         } catch(HibernateException ex) {
@@ -69,7 +69,7 @@ public class UserService implements GenericService<User> {
         }
     }
     
-    public User login(Login login, String userType) throws HibernateException {
+    public UserModel login(Login login, String userType) throws HibernateException {
         try {
             return adminDaoImp.login(login, userType);
         } catch(HibernateException ex) {

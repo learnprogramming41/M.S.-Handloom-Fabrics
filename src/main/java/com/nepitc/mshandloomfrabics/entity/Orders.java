@@ -52,7 +52,7 @@ public class Orders implements Serializable {
     private ShippingAddressModel shippingAddressId;
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
     @ManyToOne
-    private User userId;
+    private UserModel userId;
 
     public Orders() {
     }
@@ -124,11 +124,11 @@ public class Orders implements Serializable {
         this.shippingAddressId = shippingAddressId;
     }
 
-    public User getUserId() {
+    public UserModel getUserId() {
         return userId;
     }
 
-    public void setUserId(User userId) {
+    public void setUserId(UserModel userId) {
         this.userId = userId;
     }
 }
