@@ -6,7 +6,6 @@
 package com.nepitc.mshandloomfrabics.entity;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,14 +22,14 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "TBL_ORDER", catalog = "", schema = "NISHAN")
-public class Orders implements Serializable {
+public class OrderModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     
     @Column(name = "ORDER_ID", insertable = false)
-    private int orderId;
+    private Integer orderId;
     
     @Column(name = "ORDER_DATE")
     @Temporal(TemporalType.TIMESTAMP)
@@ -38,41 +37,49 @@ public class Orders implements Serializable {
     
     @Column(name = "SOLD_OUT_STATUS")
     private boolean soldOutStatus;
+    
     @Column(name = "SHIPPED_DATE", insertable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date shippedDate;
     
     @Column(name = "QUANTITY")
-    private BigInteger quantity;
+    private Integer quantity;
     @JoinColumn(name = "PASHMINA_ID", referencedColumnName = "PASHMINA_ID")
     @ManyToOne
     private PashminaModel pashminaId;
-    @JoinColumn(name = "SHIPPING_ADDRESS_ID", referencedColumnName = "SHIPPING_ADDRESS_ID")
-    @ManyToOne
-    private ShippingAddressModel shippingAddressId;
+    
+    
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
     @ManyToOne
     private UserModel userId;
 
-    public Orders() {
+    @Column(name = "SHIPPING_ADDRESS")
+    private String shippingAddress;
+    
+    @Column(name = "CONTACT")
+    private String contact;
+    
+    public OrderModel() {
     }
 
-    public Orders(int orderId) {
+    public OrderModel(Integer orderId) {
         this.orderId = orderId;
     }
 
-    public Orders(int orderId, Date orderDate, boolean soldOutStatus, BigInteger quantity) {
+    public OrderModel(Integer orderId, Date orderDate, boolean soldOutStatus, Integer quantity, String shippingAddress, String contact) {
         this.orderId = orderId;
         this.orderDate = orderDate;
         this.soldOutStatus = soldOutStatus;
         this.quantity = quantity;
+        this.shippingAddress = shippingAddress;
+        this.contact = contact;
     }
 
-    public int getOrderId() {
+    public Integer getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(int orderId) {
+    public void setOrderId(Integer orderId) {
         this.orderId = orderId;
     }
 
@@ -100,11 +107,11 @@ public class Orders implements Serializable {
         this.shippedDate = shippedDate;
     }
 
-    public BigInteger getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(BigInteger quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
@@ -116,17 +123,9 @@ public class Orders implements Serializable {
         this.pashminaId = pashminaId;
     }
 
-    public ShippingAddressModel getShippingAddressId() {
-        return shippingAddressId;
-    }
-
-    public void setShippingAddressId(ShippingAddressModel shippingAddressId) {
-        this.shippingAddressId = shippingAddressId;
-    }
-
-    public UserModel getUserId() {
-        return userId;
-    }
+//    public UserModel getUserId() {
+//        return userId;
+//    }
 
     public void setUserId(UserModel userId) {
         this.userId = userId;
