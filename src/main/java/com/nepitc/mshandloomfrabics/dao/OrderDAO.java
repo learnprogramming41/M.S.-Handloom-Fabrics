@@ -15,4 +15,5 @@ import org.hibernate.HibernateException;
  */
 public interface OrderDAO extends GenericDAO<OrderModel>{
     List<OrderModel> getOrderByUserId(int userId) throws HibernateException;
+    Long getPashminaCount() throws HibernateException;
 }

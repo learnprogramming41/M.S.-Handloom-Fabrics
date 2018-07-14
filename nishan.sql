@@ -193,6 +193,7 @@ CREATE TABLE TBL_ORDER(
 );
 
 CREATE SEQUENCE sq_order_id START WITH 1;
+
 ALTER TABLE TBL_ORDER DROP CONSTRAINT fk_shipping_address_id;
 ALTER TABLE TBL_ORDER DROP COLUMN shipping_address_id;
 ALTER TABLE TBL_ORDER ADD shipping_address VARCHAR2(500) NOT NULL;
@@ -209,6 +210,12 @@ BEGIN
     FROM DUAL;
 END;
 
+select sq_order_id.NEXTVAL from dual;
+commit;
+
+insert into tbl_order(user_id, pashmina_id, quantity, shipping_address, contact)
+values (52, 61, 5, 'Hokse', '9841983008');
+select * from tbl_order;
 --99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
 CREATE TABLE TBL_PASHMINA_COLOUR(
     colour_id NUMBER,

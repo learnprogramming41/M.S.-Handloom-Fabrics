@@ -76,4 +76,12 @@ public class OrderService implements GenericService<OrderModel>{
         }
     }
     
+    public Long getPashminaCount() throws HibernateException {
+        try {
+            return orderDaoImp.getPashminaCount();
+        } catch (HibernateException e) {
+            throw new HibernateException(e.getMessage());
+        }
+    }
+    
 }

@@ -127,9 +127,10 @@ public class OrderModel implements Serializable {
         this.pashminaId = pashminaId;
     }
 
-//    public UserModel getUserId() {
-//        return userId;
-//    }
+    public UserModel getUserId() {
+        return userId;
+    }
+    
     public void setUserId(UserModel userId) {
         this.userId = userId;
     }

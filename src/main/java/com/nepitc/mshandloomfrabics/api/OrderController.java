@@ -7,6 +7,7 @@ package com.nepitc.mshandloomfrabics.api;
 
 import com.nepitc.mshandloomfrabics.entity.OrderModel;
 import com.nepitc.mshandloomfrabics.service.OrderService;
+import java.util.List;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,13 +23,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author Nishan Dhungana
  */
 @Controller
-@RequestMapping(value = "/api")
+
 public class OrderController {
 
     @Autowired
     OrderService orderService;
 
-    @RequestMapping(value = "/order-pashmina", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/order-pashmina", method = RequestMethod.POST)
     public ResponseEntity orderPashmina(@RequestBody OrderModel orderModel) {
         try {
             if (orderModel == null) {
@@ -42,7 +43,7 @@ public class OrderController {
         }
     }
 
-    @RequestMapping(value = "/cancel-order/{orderId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/api/cancel-order/{orderId}", method = RequestMethod.DELETE)
     public ResponseEntity cancelOrder(@PathVariable Integer orderId) {
         if (orderId != 0) {
             try {
@@ -56,7 +57,7 @@ public class OrderController {
         }
     }
 
-    @RequestMapping(value = "/update-order", method = RequestMethod.PUT)
+    @RequestMapping(value = "/api/update-order", method = RequestMethod.PUT)
     public ResponseEntity cancelOrder(@RequestBody OrderModel orderModel) {
         try {
             if (orderModel == null) {
@@ -70,7 +71,7 @@ public class OrderController {
         }
     }
 
-    @RequestMapping(value = "/get-order-by-user/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/get-order-by-user/{id}", method = RequestMethod.GET)
     public ResponseEntity getOrderByUser(@PathVariable("id") int userId) {
         if (userId != 0) {
             try {
@@ -80,6 +81,39 @@ public class OrderController {
             }
         } else {
             return new ResponseEntity("User doesn't exist", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/admin-api/get-order-count", method = RequestMethod.GET)
+    public ResponseEntity getPashminaCount() {
+        try {
+            return new ResponseEntity(orderService.getPashminaCount(), HttpStatus.OK);
+        } catch (HibernateException e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/admin-api/get-all-order", method = RequestMethod.GET)
+    public ResponseEntity getAllOrders() {
+        try {
+            List<OrderModel> order = orderService.getAll();
+            return new ResponseEntity(order, HttpStatus.OK);
+        } catch (HibernateException e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/admin-api/get-order-by-order-id/{orderId}", method = RequestMethod.GET)
+    public ResponseEntity getOrderByOrderId(@PathVariable("orderId") int orderId) {
+        if (orderId != 0) {
+            try {
+                OrderModel order = orderService.getById(orderId);
+                return new ResponseEntity(order, HttpStatus.OK);
+            } catch (HibernateException e) {
+                return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+            }
+        } else {
+            return new ResponseEntity("Order id cann't be null", HttpStatus.BAD_REQUEST);
         }
     }
 }

@@ -33,5 +33,19 @@ public class OrderDAOImp extends GenericDAOImp<OrderModel> implements OrderDAO{
             throw new HibernateException(e.getMessage());
         }
     }
+
+    @Override
+    public Long getPashminaCount() throws HibernateException {
+        session = sessionFactory.openSession();
+        
+        try {
+            final String hql = "SELECT COUNT(*) FROM OrderModel";
+            
+            Query query = session.createQuery(hql);
+            return (Long) query.uniqueResult();
+        } catch (HibernateException e) {
+            throw new HibernateException(e.getMessage());
+        }
+    }
     
 }
