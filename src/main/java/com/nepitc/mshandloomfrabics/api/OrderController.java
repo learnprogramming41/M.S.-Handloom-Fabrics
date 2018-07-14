@@ -24,14 +24,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping(value = "/api")
 public class OrderController {
-    
+
     @Autowired
-    private OrderService orderService;
-    
+    OrderService orderService;
+
     @RequestMapping(value = "/order-pashmina", method = RequestMethod.POST)
     public ResponseEntity orderPashmina(@RequestBody OrderModel orderModel) {
         try {
-            if(orderModel == null) {
+            if (orderModel == null) {
                 return new ResponseEntity("Order can't be null.", HttpStatus.NO_CONTENT);
             } else {
                 orderService.insert(orderModel);
@@ -41,7 +41,7 @@ public class OrderController {
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
-    
+
     @RequestMapping(value = "/cancel-order/{orderId}", method = RequestMethod.DELETE)
     public ResponseEntity cancelOrder(@PathVariable Integer orderId) {
         if (orderId != 0) {
@@ -55,11 +55,11 @@ public class OrderController {
             return new ResponseEntity("Pashmina id id 0", HttpStatus.NOT_FOUND);
         }
     }
-    
+
     @RequestMapping(value = "/update-order", method = RequestMethod.PUT)
     public ResponseEntity cancelOrder(@RequestBody OrderModel orderModel) {
         try {
-            if(orderModel == null) {
+            if (orderModel == null) {
                 return new ResponseEntity("Order can't be null.", HttpStatus.NO_CONTENT);
             } else {
                 orderService.update(orderModel);
@@ -67,6 +67,19 @@ public class OrderController {
             }
         } catch (HibernateException e) {
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/get-order-by-user/{id}", method = RequestMethod.GET)
+    public ResponseEntity getOrderByUser(@PathVariable int userId) {
+        if (userId != 0) {
+            try {
+                return new ResponseEntity(orderService.getOrderByUserId(userId), HttpStatus.OK);
+            } catch (HibernateException e) {
+                return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+            }
+        } else {
+            return new ResponseEntity("User doesn't exist", HttpStatus.NOT_FOUND);
         }
     }
 }

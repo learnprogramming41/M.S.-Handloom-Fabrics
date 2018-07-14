@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 public class OrderService implements GenericService<OrderModel>{
 
     @Autowired
-    OrderDAOImp orderDaoImp;
+    private OrderDAOImp orderDaoImp;
     
     @Override
     public void insert(OrderModel t) throws HibernateException {
@@ -63,6 +63,14 @@ public class OrderService implements GenericService<OrderModel>{
     public List<OrderModel> getAll() throws HibernateException {
         try {
             return orderDaoImp.getAll();
+        } catch (HibernateException e) {
+            throw new HibernateException(e.getMessage());
+        }
+    }
+    
+    public OrderModel getOrderByUserId(int userId) throws HibernateException {
+        try {
+            return orderDaoImp.getOrderByUserId(userId);
         } catch (HibernateException e) {
             throw new HibernateException(e.getMessage());
         }

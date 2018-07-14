@@ -7,15 +7,21 @@ package com.nepitc.mshandloomfrabics.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -56,6 +62,10 @@ public class UserModel implements Serializable {
     
     @Column(name = "USER_TYPE")
     private String userType;
+    
+    @OneToMany(mappedBy = "userId", fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
+    private Set<OrderModel> order;
     
     public UserModel() {
     }
@@ -152,4 +162,14 @@ public class UserModel implements Serializable {
     public void setUserType(String userType) {
         this.userType = userType;
     }
+
+//    public List<OrderModel> getOrder() {
+//        return order;
+//    }
+
+    public void setOrder(Set<OrderModel> order) {
+        this.order = order;
+    }
+    
+    
 }

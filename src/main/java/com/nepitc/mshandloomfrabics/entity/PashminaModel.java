@@ -8,7 +8,6 @@ package com.nepitc.mshandloomfrabics.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -67,6 +66,10 @@ public class PashminaModel implements Serializable {
     @Fetch(FetchMode.SELECT)
     private Set<DescriptionModel> descriptions;
 
+    @OneToMany(mappedBy = "pashminaId", fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
+    private Set<OrderModel> orders;
+    
     public PashminaModel() {
     }
 
@@ -152,6 +155,14 @@ public class PashminaModel implements Serializable {
 
     public void setDescriptions(Set<DescriptionModel> descriptions) {
         this.descriptions = descriptions;
+    }
+
+//    public Set<OrderModel> getOrders() {
+//        return orders;
+//    }
+
+    public void setOrders(Set<OrderModel> orders) {
+        this.orders = orders;
     }
     
 }
