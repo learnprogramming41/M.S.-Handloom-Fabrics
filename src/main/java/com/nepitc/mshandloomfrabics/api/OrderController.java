@@ -71,12 +71,12 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/get-order-by-user/{id}", method = RequestMethod.GET)
-    public ResponseEntity getOrderByUser(@PathVariable int userId) {
+    public ResponseEntity getOrderByUser(@PathVariable("id") int userId) {
         if (userId != 0) {
             try {
                 return new ResponseEntity(orderService.getOrderByUserId(userId), HttpStatus.OK);
             } catch (HibernateException e) {
-                return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+                return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
             }
         } else {
             return new ResponseEntity("User doesn't exist", HttpStatus.NOT_FOUND);

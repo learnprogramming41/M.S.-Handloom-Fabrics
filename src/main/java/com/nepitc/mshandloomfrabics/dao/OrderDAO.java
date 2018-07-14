@@ -6,6 +6,7 @@
 package com.nepitc.mshandloomfrabics.dao;
 
 import com.nepitc.mshandloomfrabics.entity.OrderModel;
+import java.util.List;
 import org.hibernate.HibernateException;
 
 /**
@@ -13,5 +14,5 @@ import org.hibernate.HibernateException;
  * @author Nishan Dhungana
  */
 public interface OrderDAO extends GenericDAO<OrderModel>{
-    OrderModel getOrderByUserId(int userId) throws HibernateException;
+    List<OrderModel> getOrderByUserId(int userId) throws HibernateException;
 }
