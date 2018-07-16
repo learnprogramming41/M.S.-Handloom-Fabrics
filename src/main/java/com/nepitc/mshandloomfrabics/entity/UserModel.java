@@ -34,9 +34,9 @@ public class UserModel implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "sq_user_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_user_id")
     @SequenceGenerator(name = "sq_user_id", sequenceName = "sq_user_id")
-    @Column(name = "USER_ID")
+    @Column(name = "USER_ID", insertable = false)
     private Integer userId;
     @Column(name = "FULL_NAME")
     private String fullName;
