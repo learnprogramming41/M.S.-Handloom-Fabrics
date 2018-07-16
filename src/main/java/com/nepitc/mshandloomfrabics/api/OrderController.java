@@ -96,7 +96,7 @@ public class OrderController {
     @RequestMapping(value = "/admin-api/get-all-order", method = RequestMethod.GET)
     public ResponseEntity getAllOrders() {
         try {
-            List<OrderModel> order = orderService.getAll();
+            List<OrderModel> order = orderService.getAllOrders();
             return new ResponseEntity(order, HttpStatus.OK);
         } catch (HibernateException e) {
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);

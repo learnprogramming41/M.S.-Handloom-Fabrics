@@ -62,6 +62,9 @@ public class OrderModel implements Serializable {
 
     @Column(name = "CONTACT")
     private String contact;
+    
+    @Column(name = "STATUS", insertable = false)
+    private String status;
 
     public OrderModel() {
     }
@@ -149,6 +152,14 @@ public class OrderModel implements Serializable {
 
     public void setContact(String contact) {
         this.contact = contact;
+    }
+
+    public String isStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 }

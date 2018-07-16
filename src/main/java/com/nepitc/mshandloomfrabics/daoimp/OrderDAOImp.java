@@ -39,11 +39,45 @@ public class OrderDAOImp extends GenericDAOImp<OrderModel> implements OrderDAO{
         session = sessionFactory.openSession();
         
         try {
-            final String hql = "SELECT COUNT(*) FROM OrderModel";
+            final String hql = "SELECT COUNT(*) FROM OrderModel WHERE status=0";
             
             Query query = session.createQuery(hql);
             return (Long) query.uniqueResult();
         } catch (HibernateException e) {
+            throw new HibernateException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<OrderModel> getAllOrders() throws HibernateException {
+        session = sessionFactory.openSession();
+        
+        try {
+            final String hql = "FROM OrderModel WHERE status=:status";
+            Query query = session.createQuery(hql);
+            query.setParameter("status", "0");
+            
+            return query.list();
+        } catch (HibernateException e) {
+            throw new HibernateException(e.getMessage());
+        }
+    }
+
+    @Override
+    public void updateOrderStatus(int orderId) throws HibernateException {
+        session = sessionFactory.openSession();
+        trans = session.beginTransaction();
+        
+        try {
+            final String hql = "UPDATE OrderModel SET status=:status WHERE orderId=:orderId";
+            Query query = session.createQuery(hql);
+            query.setParameter("status", "1");
+            query.setParameter("orderId", orderId);
+            query.executeUpdate();
+            
+            trans.commit();
+        } catch (HibernateException e) {
+            trans.rollback();
             throw new HibernateException(e.getMessage());
         }
     }

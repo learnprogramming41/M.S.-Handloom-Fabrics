@@ -118,7 +118,8 @@ public class MailController {
                     mimeMsgHelperObj.setSubject("You order has been confirmed");
                 }
             });
-
+            
+            orderService.updateOrderStatus(orderId);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (MailException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);

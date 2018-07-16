@@ -84,4 +84,20 @@ public class OrderService implements GenericService<OrderModel>{
         }
     }
     
+    public List<OrderModel> getAllOrders() throws HibernateException {
+        try {
+            return orderDaoImp.getAllOrders();
+        } catch (HibernateException e) {
+            throw new HibernateException(e.getMessage());
+        }
+    }
+    
+    public void updateOrderStatus(int orderId) throws HibernateException {
+        try {
+            orderDaoImp.updateOrderStatus(orderId);
+        } catch (HibernateException e) {
+            throw new HibernateException(e.getMessage());
+        }
+    }
+    
 }
