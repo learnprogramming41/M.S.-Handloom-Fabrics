@@ -18,4 +18,7 @@ public interface OrderDAO extends GenericDAO<OrderModel>{
     Long getPashminaCount() throws HibernateException;
     void updateOrderStatus(int orderId) throws HibernateException;
     List<OrderModel> getAllOrders() throws HibernateException;
+    List<OrderModel> confirmedOrders() throws HibernateException;
+    List<OrderModel> history() throws HibernateException;
+    void shippedItem(int orderId) throws HibernateException;
 }

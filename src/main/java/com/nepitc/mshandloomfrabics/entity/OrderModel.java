@@ -40,7 +40,7 @@ public class OrderModel implements Serializable {
     private Date orderDate;
 
     @Column(name = "SOLD_OUT_STATUS")
-    private boolean soldOutStatus;
+    private String soldOutStatus;
 
     @Column(name = "SHIPPED_DATE", insertable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -73,7 +73,7 @@ public class OrderModel implements Serializable {
         this.orderId = orderId;
     }
 
-    public OrderModel(Integer orderId, Date orderDate, boolean soldOutStatus, Integer quantity, String shippingAddress, String contact) {
+    public OrderModel(Integer orderId, Date orderDate, String soldOutStatus, Integer quantity, String shippingAddress, String contact) {
         this.orderId = orderId;
         this.orderDate = orderDate;
         this.soldOutStatus = soldOutStatus;
@@ -98,11 +98,11 @@ public class OrderModel implements Serializable {
         this.orderDate = orderDate;
     }
 
-    public boolean getSoldOutStatus() {
+    public String getSoldOutStatus() {
         return soldOutStatus;
     }
 
-    public void setSoldOutStatus(boolean soldOutStatus) {
+    public void setSoldOutStatus(String soldOutStatus) {
         this.soldOutStatus = soldOutStatus;
     }
 

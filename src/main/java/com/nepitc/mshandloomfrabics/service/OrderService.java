@@ -100,4 +100,28 @@ public class OrderService implements GenericService<OrderModel>{
         }
     }
     
+    public List<OrderModel> confirmedOrders() throws HibernateException {
+        try {
+            return orderDaoImp.confirmedOrders();
+        } catch (HibernateException e) {
+            throw new HibernateException(e.getMessage());
+        }
+    }
+    
+    public List<OrderModel> history() throws HibernateException {
+        try {
+           return orderDaoImp.history();
+        } catch (HibernateException e) {
+            throw new HibernateException(e.getMessage());
+        }
+    }
+    
+    public void shippedItem(int orderId) throws HibernateException {
+        try {
+            orderDaoImp.shippedItem(orderId);
+        } catch (HibernateException e) {
+            throw new HibernateException(e.getMessage());
+        }
+    }
+
 }

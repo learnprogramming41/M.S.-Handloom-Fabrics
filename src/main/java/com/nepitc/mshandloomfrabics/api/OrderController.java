@@ -116,4 +116,49 @@ public class OrderController {
             return new ResponseEntity("Order id cann't be null", HttpStatus.BAD_REQUEST);
         }
     }
+
+    @RequestMapping(value = "/admin-api/confirmed-order", method = RequestMethod.GET)
+    public ResponseEntity getAllConfirmedOrders() {
+        List<OrderModel> list = orderService.confirmedOrders();
+
+        if (list.isEmpty()) {
+            return new ResponseEntity("List of confirmed order is empty", HttpStatus.NO_CONTENT);
+        } else {
+            try {
+                return new ResponseEntity(list, HttpStatus.OK);
+            } catch (HibernateException e) {
+                return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+            }
+        }
+    }
+
+    @RequestMapping(value = "/admin-api/history", method = RequestMethod.GET)
+    public ResponseEntity history() {
+        List<OrderModel> orderModel = orderService.history();
+
+        if (!orderModel.isEmpty()) {
+            try {
+
+                return new ResponseEntity(orderModel, HttpStatus.OK);
+            } catch (HibernateException e) {
+                return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+            }
+        } else {
+            return new ResponseEntity("List of history is empty", HttpStatus.NO_CONTENT);
+        }
+    }
+
+    @RequestMapping(value = "/admin-api/shipped-order/{orderId}", method = RequestMethod.GET)
+    public ResponseEntity shippedOrder(@PathVariable("orderId") int orderId) {
+        if (orderId != 0) {
+            try {
+                orderService.shippedItem(orderId);
+                return new ResponseEntity(HttpStatus.OK);
+            } catch (HibernateException e) {
+                return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+            }
+        } else {
+            return new ResponseEntity("Order Id cann't be null", HttpStatus.BAD_REQUEST);
+        }
+    }
 }
