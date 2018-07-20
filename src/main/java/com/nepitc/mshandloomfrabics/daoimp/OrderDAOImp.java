@@ -7,6 +7,7 @@ package com.nepitc.mshandloomfrabics.daoimp;
 
 import com.nepitc.mshandloomfrabics.dao.OrderDAO;
 import com.nepitc.mshandloomfrabics.entity.OrderModel;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -144,9 +145,10 @@ public class OrderDAOImp extends GenericDAOImp<OrderModel> implements OrderDAO{
         trans = ses.beginTransaction();
         
         try {
-            final String hql = "UPDATE OrderModel SET soldOutStatus=:status WHERE orderId=:orderId";
+            final String hql = "UPDATE OrderModel SET soldOutStatus=:status, shippedDate=:shippedDate WHERE orderId=:orderId";
             Query query = ses.createQuery(hql);
-            query.setParameter("status", true);
+            query.setParameter("status", "1");
+            query.setParameter("shippedDate", new Date());
             query.setParameter("orderId", orderId);
             query.executeUpdate();
             

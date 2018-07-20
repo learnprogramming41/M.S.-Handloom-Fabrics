@@ -75,7 +75,8 @@ public class OrderController {
     public ResponseEntity getOrderByUser(@PathVariable("id") int userId) {
         if (userId != 0) {
             try {
-                return new ResponseEntity(orderService.getOrderByUserId(userId), HttpStatus.OK);
+                List<OrderModel> list = orderService.getOrderByUserId(userId);
+                return new ResponseEntity(list, HttpStatus.OK);
             } catch (HibernateException e) {
                 return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
             }
@@ -153,6 +154,20 @@ public class OrderController {
         if (orderId != 0) {
             try {
                 orderService.shippedItem(orderId);
+                return new ResponseEntity(HttpStatus.OK);
+            } catch (HibernateException e) {
+                return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+            }
+        } else {
+            return new ResponseEntity("Order Id cann't be null", HttpStatus.BAD_REQUEST);
+        }
+    }
+    
+    @RequestMapping(value = "/admin-api/delete-history/{orderId}", method = RequestMethod.DELETE)
+    public ResponseEntity deleteHistory(@PathVariable("orderId") int orderId){
+        if (orderId != 0) {
+            try {
+                orderService.delete(new OrderModel(orderId));
                 return new ResponseEntity(HttpStatus.OK);
             } catch (HibernateException e) {
                 return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);

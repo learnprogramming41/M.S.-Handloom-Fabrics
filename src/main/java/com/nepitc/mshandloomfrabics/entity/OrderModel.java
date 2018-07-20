@@ -39,7 +39,7 @@ public class OrderModel implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date orderDate;
 
-    @Column(name = "SOLD_OUT_STATUS")
+    @Column(name = "SOLD_OUT_STATUS", insertable = false)
     private String soldOutStatus;
 
     @Column(name = "SHIPPED_DATE", insertable = false)

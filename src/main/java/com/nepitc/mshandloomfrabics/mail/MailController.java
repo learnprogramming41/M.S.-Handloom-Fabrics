@@ -5,6 +5,7 @@
  */
 package com.nepitc.mshandloomfrabics.mail;
 
+import com.nepitc.mshandloomfrabics.entity.GetInTouch;
 import com.nepitc.mshandloomfrabics.entity.OrderModel;
 import com.nepitc.mshandloomfrabics.service.OrderService;
 import com.nepitc.mshandloomfrabics.service.UserService;
@@ -126,5 +127,28 @@ public class MailController {
         }
     }
     
+    @RequestMapping(value = "/mail/get-in-touch", method = RequestMethod.POST, produces="application/x-www-form-urlencoded")
+    public ResponseEntity<String> getInTouch(@RequestBody final GetInTouch temp) {
+        //final StringBuilder message = new StringBuilder();
+        //String userName = userService.getUsername(email);
+        //message.append("<p>Please click <a href=\"http://localhost:4200/admin/change-password?username=").append(userName).append("\">here</a> to recover password</p>");
+
+        try {
+            mailSenderObj.send(new MimeMessagePreparator() {
+                @Override
+                public void prepare(MimeMessage mimeMessage) throws Exception {
+                    MimeMessageHelper mimeMsgHelperObj = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+                    mimeMsgHelperObj.setTo("nishandhungana41@gmail.com");
+                    mimeMsgHelperObj.setFrom(temp.getEmail());
+                    mimeMsgHelperObj.setText(temp.getBody(), true);
+                    mimeMsgHelperObj.setSubject(temp.getSubject());
+                }
+            });
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (MailException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
     
 }
