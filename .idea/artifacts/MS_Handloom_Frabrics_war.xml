@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="MS-Handloom-Frabrics:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="MS-Handloom-Frabrics-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="MS-Handloom-Frabrics:war exploded" />
+    </root>
+  </artifact>
+</component>

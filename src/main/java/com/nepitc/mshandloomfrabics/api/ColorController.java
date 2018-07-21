@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ColorController {
 
     @Autowired
-    PashminaColorService pashminaColorService;
+    private PashminaColorService pashminaColorService;
 
     @RequestMapping(value = "/add-color", method = RequestMethod.POST)
     public @Async ResponseEntity addDescription(@RequestBody PashminaColourModel pashminaColourModel) {
@@ -70,6 +70,6 @@ public class ColorController {
             return new ResponseEntity("Empty model. Please send me some value", HttpStatus.NO_CONTENT);
         }
     }
-    
+
     
 }

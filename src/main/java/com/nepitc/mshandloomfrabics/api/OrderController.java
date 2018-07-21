@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class OrderController {
 
     @Autowired
-    OrderService orderService;
+    private OrderService orderService;
 
     @RequestMapping(value = "/api/order-pashmina", method = RequestMethod.POST)
     public ResponseEntity orderPashmina(@RequestBody OrderModel orderModel) {

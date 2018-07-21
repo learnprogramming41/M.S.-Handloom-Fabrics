@@ -87,4 +87,11 @@ public class PashminaService implements GenericService<PashminaModel> {
         }
     }
 
+    public List<PashminaModel> getPashminaByCategory(String category, int pageSize, int pageNo) throws HibernateException {
+        try {
+            return pashminaDaoImp.getPashminaByCategory(category, pageSize, pageNo);
+        } catch (HibernateException e) {
+            throw new HibernateException(e.getMessage());
+        }
+    }
 }

@@ -49,6 +49,20 @@ public class CommonController {
         }
     }
 
+    @RequestMapping(value = "/get-pashmina-by-category/{pageSize}/{pageNumber}/{category}", method = RequestMethod.GET)
+    public ResponseEntity getPashminaByCategory(@PathVariable("pageSize") int pageSize, @PathVariable("pageNumber") int pageNumber, @PathVariable("category") String category) {
+        if (!category.isEmpty() || category != null) {
+            try {
+                List<PashminaModel> pashmina = pashminaService.getPashminaByCategory(category, pageSize, pageNumber);
+                return new ResponseEntity(pashmina, HttpStatus.OK);
+            } catch (HibernateException e) {
+                return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            }
+        } else {
+            return new ResponseEntity("Category is empty", HttpStatus.NOT_FOUND);
+        }
+    }
+
     @RequestMapping(value = "/get-pashmina-by-id/{pashminaId}", method = RequestMethod.GET)
     public @Async
     ResponseEntity<PashminaModel> getPashminaById(@PathVariable int pashminaId) {

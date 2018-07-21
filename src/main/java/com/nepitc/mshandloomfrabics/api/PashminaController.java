@@ -9,8 +9,10 @@ import com.nepitc.mshandloomfrabics.common.CloudinaryConfig;
 import com.nepitc.mshandloomfrabics.entity.*;
 import com.nepitc.mshandloomfrabics.service.*;
 import com.nepitc.mshandloomfrabics.service.PashminaService;
+
 import java.io.IOException;
 import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +22,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 /**
- *
  * @author Nishan Dhungana
  */
 @Controller
@@ -30,19 +31,20 @@ public class PashminaController {
     public static int pashminaId = 0;
 
     @Autowired
-    PashminaService pashminaService;
+    private PashminaService pashminaService;
 
     @Autowired
-    PashminaColorService pashminaColorService;
+    private PashminaColorService pashminaColorService;
 
     @Autowired
-    DescriptionService descriptionService;
-    
+    private DescriptionService descriptionService;
+
     @Autowired
-    ImageService imageService;
+    private ImageService imageService;
 
     @RequestMapping(value = "/add-pashmina", method = RequestMethod.POST)
-    public @Async ResponseEntity<String> insertPashmina(@RequestBody PashminaModel pashmina) {
+    public @Async
+    ResponseEntity<String> insertPashmina(@RequestBody PashminaModel pashmina) {
         if (pashmina != null) {
             try {
                 pashminaService.insert(pashmina);
@@ -68,7 +70,8 @@ public class PashminaController {
     }
 
     @RequestMapping(value = "/get-all-pashmina/{pageSize}/{pageNumber}", method = RequestMethod.GET)
-    public @Async ResponseEntity<List<PashminaModel>> getAllPashmina(@PathVariable int pageSize, @PathVariable int pageNumber) {
+    public @Async
+    ResponseEntity<List<PashminaModel>> getAllPashmina(@PathVariable int pageSize, @PathVariable int pageNumber) {
         try {
             Thread.sleep(1000);
             List<PashminaModel> pashmina = pashminaService.getAllPashmina(pageSize, pageNumber);
@@ -79,7 +82,8 @@ public class PashminaController {
     }
 
     @RequestMapping(value = "/get-pashmina-count", method = RequestMethod.GET)
-    public @Async ResponseEntity<Long> getPashminaCount() {
+    public @Async
+    ResponseEntity<Long> getPashminaCount() {
         Long count = pashminaService.getPashminaCount();
         try {
             return new ResponseEntity<>(count, HttpStatus.OK);
@@ -87,27 +91,29 @@ public class PashminaController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-    
+
     @RequestMapping(value = "/delete-pashmina", method = RequestMethod.DELETE)
-    public @Async ResponseEntity<Void> deletePashmina(@RequestParam("pashminaId") int pashminaId) {
-        if(pashminaId != 0) {
+    public @Async
+    ResponseEntity deletePashmina(@RequestParam("pashminaId") int pashminaId) {
+        if (pashminaId != 0) {
             try {
                 List<String> list = imageService.deleteImageFromPashminaId(pashminaId);
-                for(String s : list) {
+                for (String s : list) {
                     CloudinaryConfig.deleteImage(s);
                 }
                 pashminaService.delete(new PashminaModel(pashminaId));
                 return new ResponseEntity<>(HttpStatus.OK);
             } catch (HibernateException | IOException e) {
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
             }
         } else {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("Pashmina id is empty", HttpStatus.NO_CONTENT);
         }
     }
-    
+
     @RequestMapping(value = "/get-pashmina-by-id/{pashminaId}", method = RequestMethod.GET)
-    public @Async ResponseEntity<PashminaModel> getPashminaById(@PathVariable int pashminaId) {
+    public @Async
+    ResponseEntity<PashminaModel> getPashminaById(@PathVariable int pashminaId) {
         try {
             return new ResponseEntity<>(pashminaService.getById(pashminaId), HttpStatus.OK);
         } catch (HibernateException e) {

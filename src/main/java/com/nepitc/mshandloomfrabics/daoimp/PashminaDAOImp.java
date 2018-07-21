@@ -52,4 +52,22 @@ public class PashminaDAOImp extends GenericDAOImp<PashminaModel> implements Pash
         }
     }
 
+    @Override
+    public List<PashminaModel> getPashminaByCategory(String category, int pageSize, int pageNo) throws HibernateException {
+        session = sessionFactory.openSession();
+        final String hql = "FROM PashminaModel WHERE category=:category";
+        try {
+            Query query = session.createQuery(hql);
+            query.setParameter("category", category);
+            query.setFirstResult(pageNo);
+            query.setMaxResults(pageSize);
+
+            return query.list();
+        } catch (HibernateException e) {
+            throw new HibernateException(e.getMessage());
+        } finally {
+            session.close();
+        }
+    }
+
 }

@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 public class PashminaColorService implements GenericService<PashminaColourModel>{
 
     @Autowired
-    PashminaColorDAOImp pashminaColorDaoImp;
+    private PashminaColorDAOImp pashminaColorDaoImp;
     
     @Override
     public void insert(PashminaColourModel t) throws HibernateException {

@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="@localhost">
+  <database-model serializer="dbm" rdbms="ORACLE" format-version="4.8">
+    <root id="1">
+      <ServerVersion>11.2.0.2</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="NISHAN">
+      <ObjectId>55</ObjectId>
+      <IntrospectionTimestamp>2018-07-20.21:06:25</IntrospectionTimestamp>
+      <CreatedTimestamp>2018-04-26.03:52:03</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-16.14:34:57</ModifiedTimestamp>
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="PUBLIC">
+      <ObjectId>1</ObjectId>
+    </schema>
+    <schema id="4" parent="1" name="SYS">
+      <ObjectId>0</ObjectId>
+    </schema>
+    <schema id="5" parent="1" name="SYSTEM">
+      <ObjectId>5</ObjectId>
+    </schema>
+    <schema id="6" parent="1" name="OUTLN">
+      <ObjectId>9</ObjectId>
+    </schema>
+    <schema id="7" parent="1" name="DIP">
+      <ObjectId>14</ObjectId>
+    </schema>
+    <schema id="8" parent="1" name="ORACLE_OCM">
+      <ObjectId>21</ObjectId>
+    </schema>
+    <schema id="9" parent="1" name="DBSNMP">
+      <ObjectId>29</ObjectId>
+    </schema>
+    <schema id="10" parent="1" name="APPQOSSYS">
+      <ObjectId>30</ObjectId>
+    </schema>
+    <schema id="11" parent="1" name="CTXSYS">
+      <ObjectId>32</ObjectId>
+    </schema>
+    <schema id="12" parent="1" name="XDB">
+      <ObjectId>34</ObjectId>
+    </schema>
+    <schema id="13" parent="1" name="ANONYMOUS">
+      <ObjectId>35</ObjectId>
+    </schema>
+    <schema id="14" parent="1" name="MDSYS">
+      <ObjectId>42</ObjectId>
+    </schema>
+    <schema id="15" parent="1" name="HR">
+      <ObjectId>43</ObjectId>
+    </schema>
+    <schema id="16" parent="1" name="FLOWS_FILES">
+      <ObjectId>44</ObjectId>
+    </schema>
+    <schema id="17" parent="1" name="APEX_PUBLIC_USER">
+      <ObjectId>45</ObjectId>
+    </schema>
+    <schema id="18" parent="1" name="APEX_040000">
+      <ObjectId>47</ObjectId>
+    </schema>
+    <schema id="19" parent="1" name="NISHANDH">
+      <ObjectId>48</ObjectId>
+    </schema>
+    <schema id="20" parent="1" name="PLACEIT">
+      <ObjectId>50</ObjectId>
+    </schema>
+    <schema id="21" parent="1" name="ADA_ASSIGNMENT">
+      <ObjectId>51</ObjectId>
+    </schema>
+    <schema id="22" parent="1" name="TEST">
+      <ObjectId>52</ObjectId>
+    </schema>
+    <schema id="23" parent="1" name="NEPITC">
+      <ObjectId>54</ObjectId>
+    </schema>
+    <schema id="24" parent="1" name="TESTUSER">
+      <ObjectId>56</ObjectId>
+    </schema>
+    <schema id="25" parent="1" name="NISHANDHUNGANA">
+      <ObjectId>57</ObjectId>
+    </schema>
+    <schema id="26" parent="1" name="NISHANDHUN">
+      <ObjectId>58</ObjectId>
+    </schema>
+    <schema id="27" parent="1" name="NISHANDHUNGANA41">
+      <ObjectId>59</ObjectId>
+    </schema>
+    <schema id="28" parent="1" name="NISHANDHUNGANA44248">
+      <ObjectId>60</ObjectId>
+    </schema>
+    <schema id="29" parent="1" name="CHARLIE">
+      <ObjectId>61</ObjectId>
+    </schema>
+    <schema id="30" parent="1" name="XS$NULL">
+      <ObjectId>2147483638</ObjectId>
+    </schema>
+    <sequence id="31" parent="2" name="SQ_COLOUR_ID">
+      <ObjectId>22185</ObjectId>
+      <CreatedTimestamp>2018-06-28.16:15:58</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-28.16:15:58</ModifiedTimestamp>
+      <SequenceIdentity>1</SequenceIdentity>
+    </sequence>
+    <sequence id="32" parent="2" name="SQ_DESCRIPTION_ID">
+      <ObjectId>22184</ObjectId>
+      <CreatedTimestamp>2018-06-28.16:15:32</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-28.16:15:32</ModifiedTimestamp>
+      <SequenceIdentity>1</SequenceIdentity>
+    </sequence>
+    <sequence id="33" parent="2" name="SQ_IMAGE">
+      <ObjectId>22122</ObjectId>
+      <CreatedTimestamp>2018-06-04.03:49:00</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-04.03:49:00</ModifiedTimestamp>
+      <SequenceIdentity>1</SequenceIdentity>
+    </sequence>
+    <sequence id="34" parent="2" name="SQ_ORDER_ID">
+      <ObjectId>22188</ObjectId>
+      <CreatedTimestamp>2018-07-14.15:59:58</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-14.15:59:58</ModifiedTimestamp>
+      <SequenceIdentity>1</SequenceIdentity>
+    </sequence>
+    <sequence id="35" parent="2" name="SQ_PASHMINA_ID">
+      <ObjectId>22183</ObjectId>
+      <CreatedTimestamp>2018-06-28.16:14:44</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-28.16:14:44</ModifiedTimestamp>
+      <SequenceIdentity>1</SequenceIdentity>
+    </sequence>
+    <sequence id="36" parent="2" name="SQ_SHIPPING_ADDRESS_ID">
+      <ObjectId>22021</ObjectId>
+      <CreatedTimestamp>2018-04-26.04:21:33</CreatedTimestamp>
+      <ModifiedTimestamp>2018-04-26.04:21:33</ModifiedTimestamp>
+      <SequenceIdentity>1</SequenceIdentity>
+    </sequence>
+    <sequence id="37" parent="2" name="SQ_USER_ID">
+      <ObjectId>22019</ObjectId>
+      <CreatedTimestamp>2018-04-26.04:18:31</CreatedTimestamp>
+      <ModifiedTimestamp>2018-04-26.04:18:31</ModifiedTimestamp>
+      <SequenceIdentity>1</SequenceIdentity>
+    </sequence>
+    <sequence id="38" parent="2" name="SQ_USER_ROLE_ID">
+      <ObjectId>22117</ObjectId>
+      <CreatedTimestamp>2018-06-01.19:27:43</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-01.19:27:43</ModifiedTimestamp>
+      <SequenceIdentity>1</SequenceIdentity>
+    </sequence>
+    <table id="39" parent="2" name="TBL_DESCRIPTION">
+      <ObjectId>22011</ObjectId>
+      <CreatedTimestamp>2018-04-26.04:02:25</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-28.16:15:39</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="40" parent="2" name="TBL_IMAGE">
+      <ObjectId>22118</ObjectId>
+      <CreatedTimestamp>2018-06-04.03:48:35</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-27.13:56:26</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="41" parent="2" name="TBL_ORDER">
+      <ObjectId>22017</ObjectId>
+      <CreatedTimestamp>2018-04-26.04:12:00</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-16.14:34:57</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="42" parent="2" name="TBL_PASHMINA">
+      <ObjectId>22009</ObjectId>
+      <CreatedTimestamp>2018-04-26.03:59:27</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-28.16:14:50</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="43" parent="2" name="TBL_PASHMINA_COLOUR">
+      <ObjectId>22034</ObjectId>
+      <CreatedTimestamp>2018-04-26.04:29:55</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-28.16:16:02</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="44" parent="2" name="TBL_SHIPPING_ADDRESS">
+      <ObjectId>22013</ObjectId>
+      <CreatedTimestamp>2018-04-26.04:07:45</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-06.16:56:58</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="45" parent="2" name="TBL_USER">
+      <ObjectId>22003</ObjectId>
+      <CreatedTimestamp>2018-04-26.03:52:03</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-16.14:34:16</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="46" parent="2" name="TBL_USER_ROLE">
+      <ObjectId>22115</ObjectId>
+      <CreatedTimestamp>2018-06-01.19:27:13</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-06.16:56:59</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <routine id="47" parent="2" name="PR_LOGIN">
+      <ObjectId>22174</ObjectId>
+      <RoutineKind>procedure</RoutineKind>
+      <Invalid>1</Invalid>
+      <DependsOnIds>4973,22003,4852</DependsOnIds>
+      <CreatedTimestamp>2018-06-06.21:55:27</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-06.22:14:25</ModifiedTimestamp>
+    </routine>
+    <routine id="48" parent="2" name="PR_PASHMINA_PAGINATION">
+      <ObjectId>22178</ObjectId>
+      <RoutineKind>procedure</RoutineKind>
+      <Invalid>1</Invalid>
+      <DependsOnIds>22034,22011,22009,22118</DependsOnIds>
+      <CreatedTimestamp>2018-06-21.03:55:14</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-21.03:55:14</ModifiedTimestamp>
+    </routine>
+    <routine id="49" parent="2" name="PR_TEST">
+      <ObjectId>22175</ObjectId>
+      <RoutineKind>procedure</RoutineKind>
+      <DependsOnIds>4973,4852</DependsOnIds>
+      <CreatedTimestamp>2018-06-06.22:30:19</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-06.22:30:19</ModifiedTimestamp>
+    </routine>
+    <column id="50" parent="39" name="DESCRIPTION_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="51" parent="39" name="PASHMINA_DESCRIPTION">
+      <Position>2</Position>
+      <DataType>VARCHAR2(999 byte)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="52" parent="39" name="PASHMINA_ID">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0s</DataType>
+    </column>
+    <index id="53" parent="39" name="PK_DESCRIPTION_ID">
+      <ObjectId>22012</ObjectId>
+      <CreatedTimestamp>2018-04-26.04:02:25</CreatedTimestamp>
+      <ModifiedTimestamp>2018-04-26.04:02:25</ModifiedTimestamp>
+      <TablespaceName>SYSTEM</TablespaceName>
+      <ColNames>DESCRIPTION_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="54" parent="39" name="PK_DESCRIPTION_ID">
+      <ModifiedTimestamp>2018-04-26.04:02:25</ModifiedTimestamp>
+      <ColNames>DESCRIPTION_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_DESCRIPTION_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="55" parent="39" name="FK_PASHMINA_ID">
+      <ModifiedTimestamp>2018-06-26.14:41:58</ModifiedTimestamp>
+      <ColNames>PASHMINA_ID</ColNames>
+      <RefSchemaName>NISHAN</RefSchemaName>
+      <RefTableName>TBL_PASHMINA</RefTableName>
+      <RefKeyName>PK_PASHMINA_ID</RefKeyName>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <trigger id="56" parent="39" name="TR_DESCRIPTION_ID">
+      <ObjectId>22028</ObjectId>
+      <DependsOnIds>117,22184</DependsOnIds>
+      <CreatedTimestamp>2018-04-26.04:22:05</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-28.16:15:39</ModifiedTimestamp>
+      <Events>I</Events>
+      <Turn>before-row</Turn>
+    </trigger>
+    <column id="57" parent="40" name="IMAGE_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="58" parent="40" name="IMAGE_NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(100 byte)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="59" parent="40" name="PASHMINA_ID">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0s</DataType>
+    </column>
+    <column id="60" parent="40" name="PUBLIC_ID">
+      <Position>4</Position>
+      <DataType>VARCHAR2(100 byte)|0s</DataType>
+    </column>
+    <index id="61" parent="40" name="PK_IMAGE_ID">
+      <ObjectId>22121</ObjectId>
+      <CreatedTimestamp>2018-06-04.03:48:35</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-04.03:48:35</ModifiedTimestamp>
+      <TablespaceName>SYSTEM</TablespaceName>
+      <ColNames>IMAGE_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="62" parent="40" name="PK_IMAGE_ID">
+      <ModifiedTimestamp>2018-06-04.03:48:35</ModifiedTimestamp>
+      <ColNames>IMAGE_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_IMAGE_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="63" parent="40" name="FK_IMAGE_PASHMINA_ID">
+      <ModifiedTimestamp>2018-06-26.14:46:16</ModifiedTimestamp>
+      <ColNames>PASHMINA_ID</ColNames>
+      <RefSchemaName>NISHAN</RefSchemaName>
+      <RefTableName>TBL_PASHMINA</RefTableName>
+      <RefKeyName>PK_PASHMINA_ID</RefKeyName>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <trigger id="64" parent="40" name="TR_IMAGE">
+      <ObjectId>22123</ObjectId>
+      <DependsOnIds>117,22122</DependsOnIds>
+      <CreatedTimestamp>2018-06-04.03:50:41</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-06.16:56:58</ModifiedTimestamp>
+      <Events>I</Events>
+      <Turn>before-row</Turn>
+    </trigger>
+    <column id="65" parent="41" name="ORDER_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="66" parent="41" name="USER_ID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0s</DataType>
+    </column>
+    <column id="67" parent="41" name="PASHMINA_ID">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0s</DataType>
+    </column>
+    <column id="68" parent="41" name="ORDER_DATE">
+      <Position>4</Position>
+      <DataType>DATE|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>SYSDATE </DefaultExpression>
+    </column>
+    <column id="69" parent="41" name="SOLD_OUT_STATUS">
+      <Position>5</Position>
+      <DataType>CHAR(1 byte)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0 </DefaultExpression>
+    </column>
+    <column id="70" parent="41" name="SHIPPED_DATE">
+      <Position>6</Position>
+      <DataType>DATE|0s</DataType>
+    </column>
+    <column id="71" parent="41" name="QUANTITY">
+      <Position>7</Position>
+      <DataType>NUMBER(*)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="72" parent="41" name="SHIPPING_ADDRESS">
+      <Position>8</Position>
+      <DataType>VARCHAR2(500 byte)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="73" parent="41" name="CONTACT">
+      <Position>9</Position>
+      <DataType>VARCHAR2(20 byte)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="74" parent="41" name="STATUS">
+      <Position>10</Position>
+      <DataType>CHAR(1 byte)|0s</DataType>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <index id="75" parent="41" name="PK_ORDER_ID">
+      <ObjectId>22018</ObjectId>
+      <CreatedTimestamp>2018-04-26.04:12:00</CreatedTimestamp>
+      <ModifiedTimestamp>2018-04-26.04:12:00</ModifiedTimestamp>
+      <TablespaceName>SYSTEM</TablespaceName>
+      <ColNames>ORDER_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="76" parent="41" name="PK_ORDER_ID">
+      <ModifiedTimestamp>2018-04-26.04:12:00</ModifiedTimestamp>
+      <ColNames>ORDER_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_ORDER_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="77" parent="41" name="FK_USER_ID">
+      <ModifiedTimestamp>2018-04-26.04:12:00</ModifiedTimestamp>
+      <ColNames>USER_ID</ColNames>
+      <RefSchemaName>NISHAN</RefSchemaName>
+      <RefTableName>TBL_USER</RefTableName>
+      <RefKeyName>PK_USER_ID</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <foreign-key id="78" parent="41" name="FK_ORDER_PASHMINA_ID">
+      <ModifiedTimestamp>2018-04-26.04:12:00</ModifiedTimestamp>
+      <ColNames>PASHMINA_ID</ColNames>
+      <RefSchemaName>NISHAN</RefSchemaName>
+      <RefTableName>TBL_PASHMINA</RefTableName>
+      <RefKeyName>PK_PASHMINA_ID</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <trigger id="79" parent="41" name="TR_ORDER_ID">
+      <ObjectId>22030</ObjectId>
+      <DependsOnIds>117,22188</DependsOnIds>
+      <CreatedTimestamp>2018-04-26.04:22:13</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-14.16:00:07</ModifiedTimestamp>
+      <Events>I</Events>
+      <Turn>before-row</Turn>
+    </trigger>
+    <column id="80" parent="42" name="PASHMINA_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="81" parent="42" name="PASHMINA_NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(255 byte)|0s</DataType>
+    </column>
+    <column id="82" parent="42" name="PRICE">
+      <Position>3</Position>
+      <DataType>FLOAT(*)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="83" parent="42" name="ADDED_AT">
+      <Position>4</Position>
+      <DataType>DATE|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>SYSDATE </DefaultExpression>
+    </column>
+    <column id="84" parent="42" name="ENABLED">
+      <Position>5</Position>
+      <DataType>CHAR(1 byte)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>1 </DefaultExpression>
+    </column>
+    <column id="85" parent="42" name="CATEGORY">
+      <Position>6</Position>
+      <DataType>VARCHAR2(250 byte)|0s</DataType>
+    </column>
+    <index id="86" parent="42" name="PK_PASHMINA_ID">
+      <ObjectId>22010</ObjectId>
+      <CreatedTimestamp>2018-04-26.03:59:27</CreatedTimestamp>
+      <ModifiedTimestamp>2018-04-26.03:59:27</ModifiedTimestamp>
+      <TablespaceName>SYSTEM</TablespaceName>
+      <ColNames>PASHMINA_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="87" parent="42" name="PK_PASHMINA_ID">
+      <ModifiedTimestamp>2018-04-26.03:59:27</ModifiedTimestamp>
+      <ColNames>PASHMINA_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_PASHMINA_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <trigger id="88" parent="42" name="TR_PASHMINA_ID">
+      <ObjectId>22026</ObjectId>
+      <DependsOnIds>22183,117</DependsOnIds>
+      <CreatedTimestamp>2018-06-11.17:47:10</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-28.16:14:50</ModifiedTimestamp>
+      <Events>I</Events>
+      <Turn>before-row</Turn>
+      <Condition>NEW.pashmina_id IS NULL</Condition>
+    </trigger>
+    <column id="89" parent="43" name="COLOUR_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="90" parent="43" name="COLOR">
+      <Position>2</Position>
+      <DataType>VARCHAR2(20 byte)|0s</DataType>
+    </column>
+    <column id="91" parent="43" name="PASHMINA_ID">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0s</DataType>
+    </column>
+    <index id="92" parent="43" name="PK_COLOUR_ID">
+      <ObjectId>22035</ObjectId>
+      <CreatedTimestamp>2018-04-26.04:29:55</CreatedTimestamp>
+      <ModifiedTimestamp>2018-04-26.04:29:55</ModifiedTimestamp>
+      <TablespaceName>SYSTEM</TablespaceName>
+      <ColNames>COLOUR_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="93" parent="43" name="PK_COLOUR_ID">
+      <ModifiedTimestamp>2018-04-26.04:29:55</ModifiedTimestamp>
+      <ColNames>COLOUR_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_COLOUR_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="94" parent="43" name="FK_COLOUR_PASHMINA_ID">
+      <ModifiedTimestamp>2018-06-26.14:43:01</ModifiedTimestamp>
+      <ColNames>PASHMINA_ID</ColNames>
+      <RefSchemaName>NISHAN</RefSchemaName>
+      <RefTableName>TBL_PASHMINA</RefTableName>
+      <RefKeyName>PK_PASHMINA_ID</RefKeyName>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <trigger id="95" parent="43" name="TR_COLOUR_ID">
+      <ObjectId>22036</ObjectId>
+      <DependsOnIds>117,22185</DependsOnIds>
+      <CreatedTimestamp>2018-04-26.04:29:55</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-28.16:16:02</ModifiedTimestamp>
+      <Events>I</Events>
+      <Turn>before-row</Turn>
+    </trigger>
+    <column id="96" parent="44" name="SHIPPING_ADDRESS_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="97" parent="44" name="ADDRESS">
+      <Position>2</Position>
+      <DataType>VARCHAR2(255 byte)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="98" parent="44" name="PK_SHIPPING_ADDRESS_ID">
+      <ObjectId>22014</ObjectId>
+      <CreatedTimestamp>2018-04-26.04:07:45</CreatedTimestamp>
+      <ModifiedTimestamp>2018-04-26.04:07:45</ModifiedTimestamp>
+      <TablespaceName>SYSTEM</TablespaceName>
+      <ColNames>SHIPPING_ADDRESS_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="99" parent="44" name="PK_SHIPPING_ADDRESS_ID">
+      <ModifiedTimestamp>2018-04-26.04:07:45</ModifiedTimestamp>
+      <ColNames>SHIPPING_ADDRESS_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_SHIPPING_ADDRESS_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <trigger id="100" parent="44" name="TR_SHIPPING_ADDRESS_ID">
+      <ObjectId>22022</ObjectId>
+      <DependsOnIds>117,22021</DependsOnIds>
+      <CreatedTimestamp>2018-04-26.04:21:33</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-06.16:56:58</ModifiedTimestamp>
+      <Events>I</Events>
+      <Turn>before-row</Turn>
+    </trigger>
+    <column id="101" parent="45" name="USER_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="102" parent="45" name="FULL_NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(255 byte)|0s</DataType>
+    </column>
+    <column id="103" parent="45" name="EMAIL">
+      <Position>3</Position>
+      <DataType>VARCHAR2(255 byte)|0s</DataType>
+    </column>
+    <column id="104" parent="45" name="CONTACT">
+      <Position>4</Position>
+      <DataType>VARCHAR2(255 byte)|0s</DataType>
+    </column>
+    <column id="105" parent="45" name="ADDRESS">
+      <Position>5</Position>
+      <DataType>VARCHAR2(255 byte)|0s</DataType>
+    </column>
+    <column id="106" parent="45" name="USERNAME">
+      <Position>6</Position>
+      <DataType>VARCHAR2(255 byte)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="107" parent="45" name="PASSWORD">
+      <Position>7</Position>
+      <DataType>VARCHAR2(255 byte)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="108" parent="45" name="CREATED_AT">
+      <Position>8</Position>
+      <DataType>DATE|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>SYSDATE </DefaultExpression>
+    </column>
+    <column id="109" parent="45" name="ENABLED">
+      <Position>9</Position>
+      <DataType>CHAR(1 byte)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>1 </DefaultExpression>
+    </column>
+    <column id="110" parent="45" name="USER_TYPE">
+      <Position>10</Position>
+      <DataType>VARCHAR2(10 byte)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="111" parent="45" name="PK_USER_ID">
+      <ObjectId>22004</ObjectId>
+      <CreatedTimestamp>2018-04-26.03:52:03</CreatedTimestamp>
+      <ModifiedTimestamp>2018-04-26.03:52:03</ModifiedTimestamp>
+      <TablespaceName>SYSTEM</TablespaceName>
+      <ColNames>USER_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="112" parent="45" name="SYS_C008059">
+      <ObjectId>22005</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2018-04-26.03:52:03</CreatedTimestamp>
+      <ModifiedTimestamp>2018-04-26.03:52:03</ModifiedTimestamp>
+      <TablespaceName>SYSTEM</TablespaceName>
+      <ColNames>EMAIL</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="113" parent="45" name="SYS_C008060">
+      <ObjectId>22006</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2018-04-26.03:52:03</CreatedTimestamp>
+      <ModifiedTimestamp>2018-04-26.03:52:03</ModifiedTimestamp>
+      <TablespaceName>SYSTEM</TablespaceName>
+      <ColNames>USERNAME</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="114" parent="45" name="PK_USER_ID">
+      <ModifiedTimestamp>2018-04-26.03:52:03</ModifiedTimestamp>
+      <ColNames>USER_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_USER_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <key id="115" parent="45" name="SYS_C008059">
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2018-04-26.03:52:03</ModifiedTimestamp>
+      <ColNames>EMAIL</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>SYS_C008059</UnderlyingIndexName>
+    </key>
+    <key id="116" parent="45" name="SYS_C008060">
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2018-04-26.03:52:03</ModifiedTimestamp>
+      <ColNames>USERNAME</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>SYS_C008060</UnderlyingIndexName>
+    </key>
+    <trigger id="117" parent="45" name="TR_USER_ID">
+      <ObjectId>22020</ObjectId>
+      <DependsOnIds>117,22019</DependsOnIds>
+      <CreatedTimestamp>2018-04-26.04:18:32</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-07.18:27:54</ModifiedTimestamp>
+      <Events>I</Events>
+      <Turn>before-row</Turn>
+    </trigger>
+    <trigger id="118" parent="45" name="TR_USER_USER_ROLE">
+      <ObjectId>22114</ObjectId>
+      <DependsOnIds>22115</DependsOnIds>
+      <CreatedTimestamp>2018-06-01.15:47:02</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-06.16:56:59</ModifiedTimestamp>
+      <Events>I</Events>
+      <Turn>after-row</Turn>
+    </trigger>
+    <column id="119" parent="46" name="USER_ROLE_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="120" parent="46" name="USERNAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(50 byte)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="121" parent="46" name="USER_ROLE">
+      <Position>3</Position>
+      <DataType>VARCHAR2(50 byte)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;ROLE_ADMIN&apos; </DefaultExpression>
+    </column>
+    <index id="122" parent="46" name="PK_USER_ROLE_ID">
+      <ObjectId>22116</ObjectId>
+      <CreatedTimestamp>2018-06-01.19:27:13</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-01.19:27:13</ModifiedTimestamp>
+      <TablespaceName>SYSTEM</TablespaceName>
+      <ColNames>USER_ROLE_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="123" parent="46" name="PK_USER_ROLE_ID">
+      <ModifiedTimestamp>2018-06-01.19:27:13</ModifiedTimestamp>
+      <ColNames>USER_ROLE_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_USER_ROLE_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="124" parent="46" name="FK_USERNAME">
+      <ModifiedTimestamp>2018-06-03.20:26:45</ModifiedTimestamp>
+      <ColNames>USERNAME</ColNames>
+      <RefSchemaName>NISHAN</RefSchemaName>
+      <RefTableName>TBL_USER</RefTableName>
+      <RefKeyName>SYS_C008060</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <trigger id="125" parent="46" name="TR_USER_ROLE">
+      <ObjectId>21999</ObjectId>
+      <DependsOnIds>22117,117</DependsOnIds>
+      <CreatedTimestamp>2018-06-01.19:27:46</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-06.16:56:59</ModifiedTimestamp>
+      <Events>I</Events>
+      <Turn>before-row</Turn>
+    </trigger>
+  </database-model>
+</dataSource>
