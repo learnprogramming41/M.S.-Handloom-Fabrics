@@ -10,6 +10,7 @@ import com.nepitc.mshandloomfrabics.entity.PashminaModel;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -54,10 +55,10 @@ public class PashminaDAOImp extends GenericDAOImp<PashminaModel> implements Pash
 
     @Override
     public List<PashminaModel> getPashminaByCategory(String category, int pageSize, int pageNo) throws HibernateException {
-        session = sessionFactory.openSession();
+        Session sess = sessionFactory.openSession();
         final String hql = "FROM PashminaModel WHERE category=:category";
         try {
-            Query query = session.createQuery(hql);
+            Query query = sess.createQuery(hql);
             query.setParameter("category", category);
             query.setFirstResult(pageSize);
             query.setMaxResults(pageNo);
@@ -66,7 +67,7 @@ public class PashminaDAOImp extends GenericDAOImp<PashminaModel> implements Pash
         } catch (HibernateException e) {
             throw new HibernateException(e.getMessage());
         } finally {
-            session.close();
+            sess.close();
         }
     }
 
