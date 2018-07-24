@@ -8,11 +8,13 @@ package com.nepitc.mshandloomfrabics.dao;
 import com.nepitc.mshandloomfrabics.entity.PashminaModel;
 import java.util.List;
 import org.hibernate.HibernateException;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Nishan Dhungana
  */
+
 public interface PashminaDAO extends GenericDAO<PashminaModel>{
     List<PashminaModel> getAllPashmina(int pageSize, int pageNumber) throws HibernateException;
     Long getPashminaCount() throws HibernateException;

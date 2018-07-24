@@ -5,6 +5,7 @@
  */
 package com.nepitc.mshandloomfrabics.service;
 
+import com.nepitc.mshandloomfrabics.dao.PashminaDAO;
 import com.nepitc.mshandloomfrabics.daoimp.PashminaDAOImp;
 import com.nepitc.mshandloomfrabics.entity.PashminaModel;
 import java.util.List;

@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
  *
  * @author Nishan Dhungana
  */
-@Repository(value = "pashminaDaoImp")
+@Repository(value = "pashminaDAO")
 public class PashminaDAOImp extends GenericDAOImp<PashminaModel> implements PashminaDAO {
 
     @Override
@@ -59,8 +59,8 @@ public class PashminaDAOImp extends GenericDAOImp<PashminaModel> implements Pash
         try {
             Query query = session.createQuery(hql);
             query.setParameter("category", category);
-            query.setFirstResult(pageNo);
-            query.setMaxResults(pageSize);
+            query.setFirstResult(pageSize);
+            query.setMaxResults(pageNo);
 
             return query.list();
         } catch (HibernateException e) {

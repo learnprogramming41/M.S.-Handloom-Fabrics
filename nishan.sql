@@ -193,6 +193,9 @@ CREATE TABLE TBL_ORDER(
     CONSTRAINT fk_shipping_address_id FOREIGN KEY(shipping_address_id) REFERENCES TBL_SHIPPING_ADDRESS(shipping_address_id)
 );
 
+ALTER TABLE TBL_ORDER DROP CONSTRAINT fk_order_pashmina_id;
+ALTER TABLE TBL_ORDER ADD CONSTRAINT fk_order_pashmina_id FOREIGN KEY(pashmina_id) REFERENCES TBL_PASHMINA(pashmina_id) ON DELETE CASCADE;
+
 CREATE SEQUENCE sq_order_id START WITH 1;
 
 ALTER TABLE TBL_ORDER DROP CONSTRAINT fk_shipping_address_id;

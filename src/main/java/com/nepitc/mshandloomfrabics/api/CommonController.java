@@ -32,10 +32,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class CommonController {
 
     @Autowired
-    PashminaService pashminaService;
+    private PashminaService pashminaService;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @RequestMapping(value = "/get-pashmina/{pageSize}/{pageNumber}", method = RequestMethod.GET)
     public @Async
@@ -49,8 +49,8 @@ public class CommonController {
         }
     }
 
-    @RequestMapping(value = "/get-pashmina-by-category/{pageSize}/{pageNumber}/{category}", method = RequestMethod.GET)
-    public ResponseEntity getPashminaByCategory(@PathVariable("pageSize") int pageSize, @PathVariable("pageNumber") int pageNumber, @PathVariable("category") String category) {
+    @RequestMapping(value = "/get-pashmina-by-category/{pageSize}/{pageNumber}", method = RequestMethod.GET)
+    public ResponseEntity getPashminaByCategory(@PathVariable("pageSize") int pageSize, @PathVariable("pageNumber") int pageNumber, @RequestParam("category") String category) {
         if (!category.isEmpty() || category != null) {
             try {
                 List<PashminaModel> pashmina = pashminaService.getPashminaByCategory(category, pageSize, pageNumber);
