@@ -35,9 +35,9 @@ public class UserController {
         List<UserModel> admin = null;
         try {
             admin = adminService.getAll();
-            return new ResponseEntity<>(admin, HttpStatus.OK);
+            return new ResponseEntity(admin, HttpStatus.OK);
         } catch (HibernateException ex) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -45,9 +45,9 @@ public class UserController {
     public ResponseEntity<Void> create(@RequestBody UserModel admin) {
         try {
             adminService.insert(admin);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity(HttpStatus.OK);
         } catch (HibernateException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -57,13 +57,13 @@ public class UserController {
             boolean res = adminService.checkEmailAvailability(email);
 
             if (res) {
-                return new ResponseEntity<>(HttpStatus.OK);
+                return new ResponseEntity(HttpStatus.OK);
             } else {
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                return new ResponseEntity(HttpStatus.BAD_REQUEST);
             }
 
         } catch (HibernateException ex) {
-            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
     
@@ -71,9 +71,9 @@ public class UserController {
     public ResponseEntity<String> changePassword(@RequestBody UpdatePassword upPass) {
         try {
             adminService.changePassword(upPass.getPassword(), upPass.getUsername());
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity(HttpStatus.OK);
         } catch (HibernateException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
     

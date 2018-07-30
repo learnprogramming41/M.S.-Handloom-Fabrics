@@ -59,13 +59,13 @@ public class PashminaController {
                     descriptionService.insert(new DescriptionModel(desc.getPashminaDescription(), new PashminaModel(pashminaId)));
                 }
 
-                return new ResponseEntity<>(HttpStatus.OK);
+                return new ResponseEntity(HttpStatus.OK);
 
             } catch (HibernateException e) {
-                return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
             }
         } else {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
     }
 
@@ -75,9 +75,11 @@ public class PashminaController {
         try {
             Thread.sleep(1000);
             List<PashminaModel> pashmina = pashminaService.getAllPashmina(pageSize, pageNumber);
-            return new ResponseEntity<>(pashmina, HttpStatus.OK);
-        } catch (HibernateException | InterruptedException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(pashmina, HttpStatus.OK);
+        } catch (HibernateException e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (InterruptedException e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -86,9 +88,9 @@ public class PashminaController {
     ResponseEntity<Long> getPashminaCount() {
         Long count = pashminaService.getPashminaCount();
         try {
-            return new ResponseEntity<>(count, HttpStatus.OK);
+            return new ResponseEntity(count, HttpStatus.OK);
         } catch (HibernateException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -102,12 +104,14 @@ public class PashminaController {
                     CloudinaryConfig.deleteImage(s);
                 }
                 pashminaService.delete(new PashminaModel(pashminaId));
-                return new ResponseEntity<>(HttpStatus.OK);
-            } catch (HibernateException | IOException e) {
-                return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity(HttpStatus.OK);
+            } catch (HibernateException e) {
+                return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+            } catch (IOException e) {
+                return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
             }
         } else {
-            return new ResponseEntity<>("Pashmina id is empty", HttpStatus.NO_CONTENT);
+            return new ResponseEntity("Pashmina id is empty", HttpStatus.NO_CONTENT);
         }
     }
 
@@ -115,9 +119,9 @@ public class PashminaController {
     public @Async
     ResponseEntity<PashminaModel> getPashminaById(@PathVariable int pashminaId) {
         try {
-            return new ResponseEntity<>(pashminaService.getById(pashminaId), HttpStatus.OK);
+            return new ResponseEntity(pashminaService.getById(pashminaId), HttpStatus.OK);
         } catch (HibernateException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 }

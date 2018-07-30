@@ -43,9 +43,11 @@ public class CommonController {
         try {
             Thread.sleep(1000);
             List<PashminaModel> pashmina = pashminaService.getAllPashmina(pageSize, pageNumber);
-            return new ResponseEntity<>(pashmina, HttpStatus.OK);
-        } catch (HibernateException | InterruptedException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(pashmina, HttpStatus.OK);
+        } catch (HibernateException e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (InterruptedException e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -56,7 +58,7 @@ public class CommonController {
                 List<PashminaModel> pashmina = pashminaService.getPashminaByCategory(category, pageSize, pageNumber);
                 return new ResponseEntity(pashmina, HttpStatus.OK);
             } catch (HibernateException e) {
-                return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
             }
         } else {
             return new ResponseEntity("Category is empty", HttpStatus.NOT_FOUND);
@@ -67,9 +69,9 @@ public class CommonController {
     public @Async
     ResponseEntity<PashminaModel> getPashminaById(@PathVariable int pashminaId) {
         try {
-            return new ResponseEntity<>(pashminaService.getById(pashminaId), HttpStatus.OK);
+            return new ResponseEntity(pashminaService.getById(pashminaId), HttpStatus.OK);
         } catch (HibernateException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 

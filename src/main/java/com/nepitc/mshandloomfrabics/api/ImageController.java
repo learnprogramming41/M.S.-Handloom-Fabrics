@@ -32,7 +32,7 @@ public class ImageController {
 
     @Autowired
     ImageService imageService;
-    
+
     @Async
     @RequestMapping(value = "/image-upload", method = RequestMethod.POST)
     public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile[] files) {
@@ -44,15 +44,17 @@ public class ImageController {
                     String imageUrl[] = CloudinaryConfig.uploadImage(file).split(",");
                     PashminaModel pashmina = new PashminaModel(PashminaController.pashminaId);
                     imageService.insert(new ImageModel(imageUrl[0], pashmina, imageUrl[1]));
-                } catch (IOException | HibernateException e) {
-                    return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+                } catch (IOException e) {
+                    return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+                } catch (HibernateException e) {
+                    return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
                 }
             }
 
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity(HttpStatus.OK);
 
         } else {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.nepitc.mshandloomfrabics.service.UserService;
+import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,14 +33,13 @@ public class AuthorizationController {
         LoginModel login = new LoginModel(username, password);
         
         if (username.isEmpty() || password.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
         } else {
             try {
                 UserModel admin = adminService.login(login, "ROLE_ADMIN");
-                return new ResponseEntity<>(admin, HttpStatus.OK);
-            } catch (Exception ex) {
-                System.out.println(ex);
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                return new ResponseEntity(admin, HttpStatus.OK);
+            } catch (HibernateException ex) {
+                return new ResponseEntity(ex.getMessage(), HttpStatus.BAD_REQUEST);
             }
         }
     }
