@@ -8,6 +8,7 @@ package com.nepitc.mshandloomfrabics.daoimp;
 import com.nepitc.mshandloomfrabics.dao.PashminaDAO;
 import com.nepitc.mshandloomfrabics.entity.PashminaModel;
 import java.util.List;
+import org.hibernate.HibernateError;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -68,6 +69,24 @@ public class PashminaDAOImp extends GenericDAOImp<PashminaModel> implements Pash
             throw new HibernateException(e.getMessage());
         } finally {
             sess.close();
+        }
+    }
+
+    @Override
+    public List<PashminaModel> searchPashmina(String searchText) throws HibernateException {
+        session = sessionFactory.openSession();
+        
+        try {
+            final String hql = "FROM PashminaModel WHERE pashminaName=:pashminaName";
+            
+            Query query = session.createQuery(hql);
+            query.setParameter("pashminaName", searchText);
+            
+            return query.list();
+        } catch (HibernateException e) {
+            throw new HibernateException(e.getMessage());
+        } finally {
+            session.close();
         }
     }
 

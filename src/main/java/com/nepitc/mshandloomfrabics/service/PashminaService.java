@@ -95,4 +95,12 @@ public class PashminaService implements GenericService<PashminaModel> {
             throw new HibernateException(e.getMessage());
         }
     }
+    
+    public List<PashminaModel> searchPashmina(String searchText) throws HibernateException {
+        try {
+            return pashminaDaoImp.searchPashmina(searchText);
+        } catch (HibernateException e) {
+            throw new HibernateException(e.getMessage());
+        }
+    }
 }

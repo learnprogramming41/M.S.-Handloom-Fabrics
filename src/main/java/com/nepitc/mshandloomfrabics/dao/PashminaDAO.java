@@ -8,7 +8,6 @@ package com.nepitc.mshandloomfrabics.dao;
 import com.nepitc.mshandloomfrabics.entity.PashminaModel;
 import java.util.List;
 import org.hibernate.HibernateException;
-import org.springframework.stereotype.Repository;
 
 /**
  *
@@ -19,4 +18,5 @@ public interface PashminaDAO extends GenericDAO<PashminaModel>{
     List<PashminaModel> getAllPashmina(int pageSize, int pageNumber) throws HibernateException;
     Long getPashminaCount() throws HibernateException;
     List<PashminaModel> getPashminaByCategory(String category, int pageSize, int pageNo) throws HibernateException;
+    List<PashminaModel> searchPashmina(String searchText) throws HibernateException;
 }

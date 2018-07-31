@@ -105,9 +105,7 @@ public class PashminaController {
                 }
                 pashminaService.delete(new PashminaModel(pashminaId));
                 return new ResponseEntity(HttpStatus.OK);
-            } catch (HibernateException e) {
-                return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
-            } catch (IOException e) {
+            } catch (HibernateException | IOException e) {
                 return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
             }
         } else {
@@ -122,6 +120,19 @@ public class PashminaController {
             return new ResponseEntity(pashminaService.getById(pashminaId), HttpStatus.OK);
         } catch (HibernateException e) {
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/search-pashmina", method = RequestMethod.GET)
+    public ResponseEntity searchPashmina(@RequestParam("searchText") String searchText) {
+        if (searchText.isEmpty() || searchText == null) {
+            return new ResponseEntity("search text is empty", HttpStatus.NO_CONTENT);
+        } else {
+            try {
+                return new ResponseEntity(pashminaService.searchPashmina(searchText), HttpStatus.OK);
+            } catch (HibernateException e) {
+                return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+            }
         }
     }
 }
