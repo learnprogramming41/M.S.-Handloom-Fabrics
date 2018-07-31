@@ -63,7 +63,7 @@ public class OrderDAOImp extends GenericDAOImp<OrderModel> implements OrderDAO{
         Session ses = sessionFactory.openSession();
         
         try {
-            final String hql = "FROM OrderModel WHERE status=:status";
+            final String hql = "FROM OrderModel o WHERE status=:status ORDER BY o.orderDate DESC";
             Query query = ses.createQuery(hql);
             query.setParameter("status", "0");
             

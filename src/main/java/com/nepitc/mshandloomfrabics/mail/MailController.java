@@ -81,7 +81,7 @@ public class MailController {
         
         
         
-        message.append("<h2>Product name").append(productName).append("</h2><br><hr>\n" +
+        message.append("<h2>Product name: ").append(productName).append("</h2><br><hr>\n" +
 "		<center>\n" +
 "			<b>Success - Your order has been confirmed</b>\n" +
 "		</center>\n" +
@@ -105,8 +105,8 @@ public class MailController {
 "		<p align=\"right\">Total: Rs. ").append(totalPrice).append("</p><br><br>\n" +
 "		<p>Thank you for trusting us............</p>\n" +
 "		<p>M.S. HandLoom Fabrics</p>\n" +
-"		<p>Contact: +977-9861211775</p>\n" +
-"		<p>Email: nishandhungana41@gmail.com</p>");
+"		<p>Contact: +91 - 9205756240</p>\n" +
+"		<p>Email: info@mshandloomfabrics.com</p>");
 
         try {
             mailSenderObj.send(new MimeMessagePreparator() {

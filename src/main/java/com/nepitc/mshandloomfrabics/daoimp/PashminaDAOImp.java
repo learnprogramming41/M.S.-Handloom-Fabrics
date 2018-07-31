@@ -8,7 +8,6 @@ package com.nepitc.mshandloomfrabics.daoimp;
 import com.nepitc.mshandloomfrabics.dao.PashminaDAO;
 import com.nepitc.mshandloomfrabics.entity.PashminaModel;
 import java.util.List;
-import org.hibernate.HibernateError;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -26,7 +25,7 @@ public class PashminaDAOImp extends GenericDAOImp<PashminaModel> implements Pash
         session = sessionFactory.openSession();
 
         try {
-            String hql = "FROM PashminaModel P ORDER BY P.pashminaId ASC";
+            String hql = "FROM PashminaModel P ORDER BY P.addedAt DESC";
             Query query = session.createQuery(hql);
             query.setFirstResult(pageNumber);
             query.setMaxResults(pageSize);
