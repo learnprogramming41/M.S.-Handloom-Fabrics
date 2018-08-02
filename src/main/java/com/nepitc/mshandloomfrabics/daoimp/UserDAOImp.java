@@ -44,12 +44,13 @@ public class UserDAOImp extends GenericDAOImp<UserModel> implements UserDAO{
     @Override
     public boolean checkEmailAvailability(String email) throws HibernateException {
         session = sessionFactory.openSession();
-        final String hql = "SELECT u FROM User u WHERE email=:email";
+        final String hql = "SELECT u FROM UserModel u WHERE email=:email AND userType=:userType";
         boolean res = false;
         
         try {
             Query query = session.createQuery(hql);
             query.setParameter("email", email);
+            query.setParameter("userType", "admin");
             
             if(query.list().size() > 0) {
                 res = true;
@@ -66,7 +67,7 @@ public class UserDAOImp extends GenericDAOImp<UserModel> implements UserDAO{
     @Override
     public String getUsername(String email) throws HibernateException {
         session = sessionFactory.openSession();
-        final String hql = "SELECT username FROM User u WHERE email=:email";
+        final String hql = "SELECT username FROM UserModel u WHERE email=:email";
         
         try {
             Query query = session.createQuery(hql);
@@ -84,12 +85,13 @@ public class UserDAOImp extends GenericDAOImp<UserModel> implements UserDAO{
     public void changePassword(String password, String username) throws HibernateException {
         session = sessionFactory.openSession();
         trans = session.beginTransaction();
-        final String hql = "UPDATE User SET password=:password WHERE username=:username";
+        final String hql = "UPDATE UserModel SET password=:password WHERE username=:username";
         
         try {
             Query query = session.createQuery(hql);
             query.setParameter("password", password);
             query.setParameter("username", username);
+            query.executeUpdate();
             trans.commit();
         } catch (HibernateException e) {
             trans.rollback();
