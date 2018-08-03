@@ -25,7 +25,7 @@ public class UserService implements GenericService<UserModel> {
     private UserDAOImp adminDaoImp;
     
     @Override
-    public void insert(UserModel t) throws HibernateException {
+    public void insert(UserModel t) {
         try {
             adminDaoImp.insert(t);
         } catch(HibernateException ex) {
@@ -34,7 +34,7 @@ public class UserService implements GenericService<UserModel> {
     }
 
     @Override
-    public void update(UserModel t) throws HibernateException {
+    public void update(UserModel t) {
         try {
             adminDaoImp.update(t);
         } catch(HibernateException ex) {
@@ -43,7 +43,7 @@ public class UserService implements GenericService<UserModel> {
     }
 
     @Override
-    public boolean delete(UserModel t) throws HibernateException {
+    public boolean delete(UserModel t) {
         try {
             return adminDaoImp.delete(t);
         } catch(HibernateException ex) {
@@ -52,7 +52,7 @@ public class UserService implements GenericService<UserModel> {
     }
 
     @Override
-    public UserModel getById(int id) throws HibernateException {
+    public UserModel getById(int id) {
         try {
             return adminDaoImp.getById(id);
         } catch(HibernateException ex) {
@@ -61,7 +61,7 @@ public class UserService implements GenericService<UserModel> {
     }
 
     @Override
-    public List<UserModel> getAll() throws HibernateException {
+    public List<UserModel> getAll() {
         try {
             return adminDaoImp.getAll();
         } catch(HibernateException ex) {
@@ -69,7 +69,7 @@ public class UserService implements GenericService<UserModel> {
         }
     }
     
-    public UserModel login(LoginModel login, String userType) throws HibernateException {
+    public UserModel login(LoginModel login, String userType) {
         try {
             return adminDaoImp.login(login, userType);
         } catch(HibernateException ex) {
@@ -77,7 +77,7 @@ public class UserService implements GenericService<UserModel> {
         }
     }    
     
-    public boolean checkEmailAvailability(String email) throws HibernateException {
+    public boolean checkEmailAvailability(String email) {
         try {
             return adminDaoImp.checkEmailAvailability(email);
         } catch (HibernateException ex) {
@@ -85,7 +85,7 @@ public class UserService implements GenericService<UserModel> {
         }
     }
     
-    public String getUsername(String email) throws HibernateException {
+    public String getUsername(String email) {
         try {
             return adminDaoImp.getUsername(email);
         } catch (HibernateException ex) {
@@ -93,7 +93,7 @@ public class UserService implements GenericService<UserModel> {
         }
     }
     
-    public void changePassword(String password, String username) throws HibernateException {
+    public void changePassword(String password, String username) {
         try {
             adminDaoImp.changePassword(password, username);
         } catch (HibernateException ex) {

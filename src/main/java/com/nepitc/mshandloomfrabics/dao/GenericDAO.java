@@ -7,6 +7,9 @@ package com.nepitc.mshandloomfrabics.dao;
 
 import java.util.List;
 import org.hibernate.HibernateException;
+import org.hibernate.exception.ConstraintViolationException;
+
+import javax.persistence.UniqueConstraint;
 
 /**
  *
@@ -14,9 +17,9 @@ import org.hibernate.HibernateException;
  * @param <T>
  */
 public interface GenericDAO<T> {
-    void insert(T t) throws HibernateException;
-    void update(T t) throws HibernateException;
-    boolean delete(T t) throws HibernateException;
-    T getById(int id) throws HibernateException;
-    List<T> getAll() throws HibernateException;
+    void insert(T t);
+    void update(T t);
+    boolean delete(T t);
+    T getById(int id);
+    List<T> getAll();
 }

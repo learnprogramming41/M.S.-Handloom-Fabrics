@@ -13,7 +13,10 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.transaction.Transactional;
 
 /**
  *
@@ -33,25 +36,25 @@ public abstract class GenericDAOImp<T> implements GenericDAO<T>{
     public GenericDAOImp() {
         persistClass = (Class<T>) ((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
-    
+
     @Override
-    public void insert(T t) throws HibernateException {
+    public void insert(T t) {
         session = sessionFactory.openSession();
         trans = session.beginTransaction();
         
         try {
             session.save(t);
             trans.commit();
-        } catch(HibernateException ex) {
+        } catch (HibernateException  ex) {
             trans.rollback();
-            throw new HibernateException(ex);
+            throw new HibernateException(ex.getMessage());
         } finally {
             session.close();
         }
     }
 
     @Override
-    public void update(T t) throws HibernateException{
+    public void update(T t) {
         session = sessionFactory.openSession();
         trans = session.beginTransaction();
         
@@ -60,14 +63,14 @@ public abstract class GenericDAOImp<T> implements GenericDAO<T>{
             trans.commit();
         } catch(HibernateException ex) {
             trans.rollback();
-            throw new HibernateException(ex);
+            throw new HibernateException(ex.getMessage());
         } finally {
             session.close();
         }
     }
 
     @Override
-    public boolean delete(T t) throws HibernateException {
+    public boolean delete(T t) {
         session = sessionFactory.openSession();
         trans = session.beginTransaction();
         
@@ -88,7 +91,7 @@ public abstract class GenericDAOImp<T> implements GenericDAO<T>{
     }
 
     @Override
-    public T getById(int id) throws HibernateException {
+    public T getById(int id) {
         session = sessionFactory.openSession();
         
         T t = null;
@@ -105,7 +108,7 @@ public abstract class GenericDAOImp<T> implements GenericDAO<T>{
     }
 
     @Override
-    public List<T> getAll() throws HibernateException {
+    public List<T> getAll() {
         session = sessionFactory.openSession();
         
         List<T> list = null;

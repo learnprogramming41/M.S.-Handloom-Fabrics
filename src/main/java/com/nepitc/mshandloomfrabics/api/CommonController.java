@@ -12,6 +12,7 @@ import com.nepitc.mshandloomfrabics.service.PashminaService;
 import com.nepitc.mshandloomfrabics.service.UserService;
 import java.util.List;
 import org.hibernate.HibernateException;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping(value = "/pashmina")
 public class CommonController {
 
+    private final String EXCEPTION_STRING = "org.hibernate.HibernateException: could not execute statement";
+    
     @Autowired
     private PashminaService pashminaService;
 
@@ -76,8 +79,7 @@ public class CommonController {
     }
 
     @RequestMapping(value = "/user/create-account", method = RequestMethod.POST)
-    public @Async
-    ResponseEntity createAccount(@RequestBody UserModel user) {
+    public ResponseEntity createAccount(@RequestBody UserModel user) {
         user.setUserType("user");
         if (user.getEmail() == null || user.getUsername() == null || user.getPassword() == null) {
             return new ResponseEntity("Email, username and password cann't be empty", HttpStatus.NO_CONTENT);
@@ -86,14 +88,16 @@ public class CommonController {
                 userService.insert(user);
                 return new ResponseEntity(HttpStatus.CREATED);
             } catch (HibernateException e) {
+                if(e.getMessage().equals(EXCEPTION_STRING)) {
+                    return new ResponseEntity("Username alerady exists. Please try another", HttpStatus.BAD_REQUEST);
+                }
                 return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
             }
         }
     }
     
     @RequestMapping(value = "/user/login", method = RequestMethod.GET)
-    public @Async
-    ResponseEntity login(@RequestParam("username") String username, @RequestParam("password") String password) {
+    public ResponseEntity login(@RequestParam("username") String username, @RequestParam("password") String password) {
         LoginModel login = new LoginModel(username, password);
         if(login.getUsername() == null || login.getPassword() == null) {
             return new ResponseEntity("Username or password cann't be null", HttpStatus.NO_CONTENT);
