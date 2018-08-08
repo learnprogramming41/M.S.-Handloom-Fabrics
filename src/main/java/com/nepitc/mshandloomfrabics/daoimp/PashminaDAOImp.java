@@ -76,7 +76,7 @@ public class PashminaDAOImp extends GenericDAOImp<PashminaModel> implements Pash
         session = sessionFactory.openSession();
         
         try {
-            final String hql = "FROM PashminaModel WHERE pashminaName=:pashminaName";
+            final String hql = "FROM PashminaModel WHERE pashminaName LIKE %:pashminaName%";
             
             Query query = session.createQuery(hql);
             query.setParameter("pashminaName", searchText);

@@ -12,7 +12,6 @@ import com.nepitc.mshandloomfrabics.service.PashminaService;
 import com.nepitc.mshandloomfrabics.service.UserService;
 import java.util.List;
 import org.hibernate.HibernateException;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

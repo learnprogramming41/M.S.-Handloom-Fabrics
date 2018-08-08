@@ -18,7 +18,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +31,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class MailController {
 
     private final String emailSubject = "Recover Password";
-    private final String emailFromRecipient = "nishandhungana41@gmail.com";
+    private final String EMAIL_FROM_RECEPIENT = "mshandloomfabrics@gmail.com";
 
     @Autowired
     private JavaMailSender mailSenderObj;
@@ -55,7 +54,7 @@ public class MailController {
                 public void prepare(MimeMessage mimeMessage) throws Exception {
                     MimeMessageHelper mimeMsgHelperObj = new MimeMessageHelper(mimeMessage, true, "UTF-8");
                     mimeMsgHelperObj.setTo(email);
-                    mimeMsgHelperObj.setFrom(emailFromRecipient);
+                    mimeMsgHelperObj.setFrom(EMAIL_FROM_RECEPIENT);
                     mimeMsgHelperObj.setText(message.toString(), true);
                     mimeMsgHelperObj.setSubject(emailSubject);
                 }
@@ -107,7 +106,7 @@ public class MailController {
 "		<p>Thank you for trusting us............</p>\n" +
 "		<p>M.S. HandLoom Fabrics</p>\n" +
 "		<p>Contact: +91 - 9205756240</p>\n" +
-"		<p>Email: info@mshandloomfabrics.com</p>");
+"		<p>Email: mshandloomfabrics@gmail.com</p>");
 
         try {
             mailSenderObj.send(new MimeMessagePreparator() {
@@ -115,7 +114,7 @@ public class MailController {
                 public void prepare(MimeMessage mimeMessage) throws Exception {
                     MimeMessageHelper mimeMsgHelperObj = new MimeMessageHelper(mimeMessage, true, "UTF-8");
                     mimeMsgHelperObj.setTo(email);
-                    mimeMsgHelperObj.setFrom(emailFromRecipient);
+                    mimeMsgHelperObj.setFrom(EMAIL_FROM_RECEPIENT);
                     mimeMsgHelperObj.setText(message.toString(), true);
                     mimeMsgHelperObj.setSubject("You order has been confirmed");
                 }
@@ -130,7 +129,9 @@ public class MailController {
     
     @RequestMapping(value = "/mail/get-in-touch", method = RequestMethod.POST, produces="application/x-www-form-urlencoded")
     public ResponseEntity<String> getInTouch(@RequestBody final GetInTouch temp) {
-        //final StringBuilder message = new StringBuilder();
+        final StringBuilder message = new StringBuilder();
+        message.append("From: ").append(temp.getName()).append(", ").append(temp.getEmail()).append("<br>");
+        message.append(temp.getBody());
         //String userName = userService.getUsername(email);
         //message.append("<p>Please click <a href=\"http://localhost:4200/admin/change-password?username=").append(userName).append("\">here</a> to recover password</p>");
 
@@ -139,9 +140,9 @@ public class MailController {
                 @Override
                 public void prepare(MimeMessage mimeMessage) throws Exception {
                     MimeMessageHelper mimeMsgHelperObj = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-                    mimeMsgHelperObj.setTo("nishandhungana41@gmail.com");
+                    mimeMsgHelperObj.setTo(EMAIL_FROM_RECEPIENT);
                     mimeMsgHelperObj.setFrom(temp.getEmail());
-                    mimeMsgHelperObj.setText(temp.getBody(), true);
+                    mimeMsgHelperObj.setText(message.toString(), true);
                     mimeMsgHelperObj.setSubject(temp.getSubject());
                 }
             });
