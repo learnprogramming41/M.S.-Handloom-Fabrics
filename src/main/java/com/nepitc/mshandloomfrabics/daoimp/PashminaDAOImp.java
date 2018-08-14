@@ -21,7 +21,7 @@ import org.springframework.stereotype.Repository;
 public class PashminaDAOImp extends GenericDAOImp<PashminaModel> implements PashminaDAO {
 
     @Override
-    public List<PashminaModel> getAllPashmina(int pageSize, int pageNumber) throws HibernateException {
+    public List<PashminaModel> getAllPashmina(int pageSize, int pageNumber) {
         session = sessionFactory.openSession();
 
         try {
@@ -39,7 +39,7 @@ public class PashminaDAOImp extends GenericDAOImp<PashminaModel> implements Pash
     }
 
     @Override
-    public Long getPashminaCount() throws HibernateException {
+    public Long getPashminaCount() {
         session = sessionFactory.openSession();
         String hql = "SELECT COUNT(*) FROM PashminaModel";
         
@@ -54,7 +54,7 @@ public class PashminaDAOImp extends GenericDAOImp<PashminaModel> implements Pash
     }
 
     @Override
-    public List<PashminaModel> getPashminaByCategory(String category, int pageSize, int pageNo) throws HibernateException {
+    public List<PashminaModel> getPashminaByCategory(String category, int pageSize, int pageNo) {
         Session sess = sessionFactory.openSession();
         final String hql = "FROM PashminaModel WHERE category=:category";
         try {
@@ -72,7 +72,7 @@ public class PashminaDAOImp extends GenericDAOImp<PashminaModel> implements Pash
     }
 
     @Override
-    public List<PashminaModel> searchPashmina(String searchText) throws HibernateException {
+    public List<PashminaModel> searchPashmina(String searchText) {
         session = sessionFactory.openSession();
         
         try {

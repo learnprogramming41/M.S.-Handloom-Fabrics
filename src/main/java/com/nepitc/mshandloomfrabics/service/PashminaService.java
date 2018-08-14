@@ -5,7 +5,6 @@
  */
 package com.nepitc.mshandloomfrabics.service;
 
-import com.nepitc.mshandloomfrabics.dao.PashminaDAO;
 import com.nepitc.mshandloomfrabics.daoimp.PashminaDAOImp;
 import com.nepitc.mshandloomfrabics.entity.PashminaModel;
 import java.util.List;
@@ -24,7 +23,7 @@ public class PashminaService implements GenericService<PashminaModel> {
     private PashminaDAOImp pashminaDaoImp;
 
     @Override
-    public void insert(PashminaModel t) throws HibernateException {
+    public void insert(PashminaModel t) {
         try {
             pashminaDaoImp.insert(t);
         } catch (HibernateException e) {
@@ -33,7 +32,7 @@ public class PashminaService implements GenericService<PashminaModel> {
     }
 
     @Override
-    public void update(PashminaModel t) throws HibernateException {
+    public void update(PashminaModel t) {
         try {
             pashminaDaoImp.update(t);
         } catch (HibernateException e) {
@@ -42,7 +41,7 @@ public class PashminaService implements GenericService<PashminaModel> {
     }
 
     @Override
-    public boolean delete(PashminaModel t) throws HibernateException {
+    public boolean delete(PashminaModel t) {
         try {
             if (pashminaDaoImp.delete(t)) {
                 return true;
@@ -55,7 +54,7 @@ public class PashminaService implements GenericService<PashminaModel> {
     }
 
     @Override
-    public PashminaModel getById(int id) throws HibernateException {
+    public PashminaModel getById(int id) {
         try {
             return pashminaDaoImp.getById(id);
         } catch (HibernateException e) {
@@ -64,7 +63,7 @@ public class PashminaService implements GenericService<PashminaModel> {
     }
 
     @Override
-    public List<PashminaModel> getAll() throws HibernateException {
+    public List<PashminaModel> getAll() {
         try {
             return pashminaDaoImp.getAll();
         } catch (HibernateException e) {
@@ -72,7 +71,7 @@ public class PashminaService implements GenericService<PashminaModel> {
         }
     }
 
-    public List<PashminaModel> getAllPashmina(int pageSize, int pageNumber) throws HibernateException {
+    public List<PashminaModel> getAllPashmina(int pageSize, int pageNumber) {
         try {
             return pashminaDaoImp.getAllPashmina(pageSize, pageNumber);
         } catch (HibernateException e) {
@@ -80,7 +79,7 @@ public class PashminaService implements GenericService<PashminaModel> {
         }
     }
 
-    public Long getPashminaCount() throws HibernateException {
+    public Long getPashminaCount() {
         try {
             return pashminaDaoImp.getPashminaCount();
         } catch (HibernateException e) {
@@ -88,7 +87,7 @@ public class PashminaService implements GenericService<PashminaModel> {
         }
     }
 
-    public List<PashminaModel> getPashminaByCategory(String category, int pageSize, int pageNo) throws HibernateException {
+    public List<PashminaModel> getPashminaByCategory(String category, int pageSize, int pageNo) {
         try {
             return pashminaDaoImp.getPashminaByCategory(category, pageSize, pageNo);
         } catch (HibernateException e) {
@@ -96,7 +95,7 @@ public class PashminaService implements GenericService<PashminaModel> {
         }
     }
     
-    public List<PashminaModel> searchPashmina(String searchText) throws HibernateException {
+    public List<PashminaModel> searchPashmina(String searchText) {
         try {
             return pashminaDaoImp.searchPashmina(searchText);
         } catch (HibernateException e) {

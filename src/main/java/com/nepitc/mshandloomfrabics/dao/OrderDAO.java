@@ -7,18 +7,17 @@ package com.nepitc.mshandloomfrabics.dao;
 
 import com.nepitc.mshandloomfrabics.entity.OrderModel;
 import java.util.List;
-import org.hibernate.HibernateException;
 
 /**
  *
  * @author Nishan Dhungana
  */
 public interface OrderDAO extends GenericDAO<OrderModel>{
-    List<OrderModel> getOrderByUserId(int userId) throws HibernateException;
-    Long getPashminaCount() throws HibernateException;
-    void updateOrderStatus(int orderId) throws HibernateException;
-    List<OrderModel> getAllOrders() throws HibernateException;
-    List<OrderModel> confirmedOrders() throws HibernateException;
-    List<OrderModel> history() throws HibernateException;
-    void shippedItem(int orderId) throws HibernateException;
+    List<OrderModel> getOrderByUserId(int userId);
+    Long getPashminaCount();
+    void updateOrderStatus(int orderId);
+    List<OrderModel> getAllOrders();
+    List<OrderModel> confirmedOrders();
+    List<OrderModel> history();
+    void shippedItem(int orderId);
 }

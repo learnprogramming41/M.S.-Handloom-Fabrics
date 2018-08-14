@@ -14,5 +14,5 @@ import org.hibernate.HibernateException;
  * @author Nishan Dhungana
  */
 public interface ImageDAO extends GenericDAO<ImageModel>{
-    List<String> deleteImageFromPashminaId(int pashminaId) throws HibernateException;
+    List<String> deleteImageFromPashminaId(int pashminaId);
 }

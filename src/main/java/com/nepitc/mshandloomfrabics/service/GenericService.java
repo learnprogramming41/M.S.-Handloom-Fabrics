@@ -6,7 +6,6 @@
 package com.nepitc.mshandloomfrabics.service;
 
 import java.util.List;
-import org.hibernate.HibernateException;
 
 /**
  *
@@ -14,9 +13,9 @@ import org.hibernate.HibernateException;
  * @param <T>
  */
 public interface GenericService<T> {
-    void insert(T t) throws HibernateException;
-    void update(T t) throws HibernateException;
-    boolean delete(T t) throws HibernateException;
-    T getById(int id) throws HibernateException;
-    List<T> getAll() throws HibernateException;
+    void insert(T t);
+    void update(T t);
+    boolean delete(T t);
+    T getById(int id);
+    List<T> getAll();
 }

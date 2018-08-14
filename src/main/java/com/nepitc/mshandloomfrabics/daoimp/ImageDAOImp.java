@@ -20,7 +20,7 @@ import org.springframework.stereotype.Repository;
 public class ImageDAOImp extends GenericDAOImp<ImageModel> implements ImageDAO {
 
     @Override
-    public List<String> deleteImageFromPashminaId(int pashminaId) throws HibernateException {
+    public List<String> deleteImageFromPashminaId(int pashminaId) {
         session = sessionFactory.openSession();
 
         try {

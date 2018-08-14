@@ -22,7 +22,7 @@ import org.springframework.stereotype.Repository;
 public class OrderDAOImp extends GenericDAOImp<OrderModel> implements OrderDAO{
 
     @Override
-    public List<OrderModel> getOrderByUserId(int userId) throws HibernateException {
+    public List<OrderModel> getOrderByUserId(int userId) {
         Session ses = sessionFactory.openSession();
         
         try {
@@ -41,7 +41,7 @@ public class OrderDAOImp extends GenericDAOImp<OrderModel> implements OrderDAO{
     }
 
     @Override
-    public Long getPashminaCount() throws HibernateException {
+    public Long getPashminaCount() {
         Session ses = sessionFactory.openSession();
         
         try {
@@ -59,7 +59,7 @@ public class OrderDAOImp extends GenericDAOImp<OrderModel> implements OrderDAO{
     }
 
     @Override
-    public List<OrderModel> getAllOrders() throws HibernateException {
+    public List<OrderModel> getAllOrders() {
         Session ses = sessionFactory.openSession();
         
         try {
@@ -78,7 +78,7 @@ public class OrderDAOImp extends GenericDAOImp<OrderModel> implements OrderDAO{
     }
 
     @Override
-    public void updateOrderStatus(int orderId) throws HibernateException {
+    public void updateOrderStatus(int orderId) {
         Session ses = sessionFactory.openSession();
         trans = ses.beginTransaction();
         
@@ -101,7 +101,7 @@ public class OrderDAOImp extends GenericDAOImp<OrderModel> implements OrderDAO{
     }
 
     @Override
-    public List<OrderModel> confirmedOrders() throws HibernateException {
+    public List<OrderModel> confirmedOrders() {
         Session ses = sessionFactory.openSession();
         
         try {
@@ -121,7 +121,7 @@ public class OrderDAOImp extends GenericDAOImp<OrderModel> implements OrderDAO{
     }
 
     @Override
-    public List<OrderModel> history() throws HibernateException {
+    public List<OrderModel> history() {
         Session ses = sessionFactory.openSession();
         
         try {
@@ -140,7 +140,7 @@ public class OrderDAOImp extends GenericDAOImp<OrderModel> implements OrderDAO{
     }
 
     @Override
-    public void shippedItem(int orderId) throws HibernateException {
+    public void shippedItem(int orderId) {
         Session ses = sessionFactory.openSession();
         trans = ses.beginTransaction();
         
